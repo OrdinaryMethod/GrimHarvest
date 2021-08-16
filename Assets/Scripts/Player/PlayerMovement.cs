@@ -27,9 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        //Player Stats Object
-        
-
         //Object Components
         rb2d = GetComponent<Rigidbody2D>();
         playerStats = GetComponent<PlayerStats>(); //This must only be set on start as game mechanics can temporarily change these
@@ -52,8 +49,6 @@ public class PlayerMovement : MonoBehaviour
         Move();
         jump();
         FixTheBugs();
-
-
     }
 
     private void GetKeyBinds()

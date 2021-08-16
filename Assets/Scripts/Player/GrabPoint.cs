@@ -5,6 +5,7 @@ using UnityEngine;
 public class GrabPoint : MonoBehaviour
 {
     //Variables
+    PlayerMovement playerMovement;
 
     private Collider2D ledgeCollider;
 
@@ -21,18 +22,21 @@ public class GrabPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Get object components
+        playerMovement = GetComponentInParent<PlayerMovement>();
+
         GrabLedge();
     }
     private void GrabLedge()
     {
-        if (GetComponentInParent<PlayerMovement>().grabbingLedge)
+        if (playerMovement.grabbingLedge)
         {
             rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 
             //Climb up
             if (Input.GetKey(KeyCode.Space) && GetComponentInParent<PlayerMovement>().canClimb)
             {
-                GetComponentInParent<PlayerMovement>().grabbingLedge = false;
+                playerMovement.grabbingLedge = false;
                 rb2d.constraints = RigidbodyConstraints2D.None;
                 rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -52,9 +56,9 @@ public class GrabPoint : MonoBehaviour
         //Ledges
         if (collision.gameObject.CompareTag("Ledge"))
         {
-            GetComponentInParent<PlayerMovement>().grabbingLedge = true;
-            GetComponentInParent<PlayerMovement>().canMove = false;
-            GetComponentInParent<PlayerMovement>().isGrounded = false;
+            playerMovement.grabbingLedge = true;
+            playerMovement.canMove = false;
+            playerMovement.isGrounded = false;
             ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore
             StartCoroutine(PreventFallOnClimb());
         }
@@ -69,10 +73,10 @@ public class GrabPoint : MonoBehaviour
         //Ledges
         if (collision.gameObject.CompareTag("Ledge"))
         {
-            GetComponentInParent<PlayerMovement>().grabbingLedge = false;
-            GetComponentInParent<PlayerMovement>().canMove = true;
-            GetComponentInParent<PlayerMovement>().isGrounded = false;
-            GetComponentInParent<PlayerMovement>().canClimb = false;
+            playerMovement.grabbingLedge = false;
+            playerMovement.canMove = true;
+            playerMovement.isGrounded = false;
+            playerMovement.canClimb = false;
             StartCoroutine(ResetColliderIgnore());
         }
     }
@@ -81,8 +85,7 @@ public class GrabPoint : MonoBehaviour
     IEnumerator PreventFallOnClimb()
     {
         yield return new WaitForSeconds(0.2f);
-        GetComponentInParent<PlayerMovement>().canClimb = true;
-        Debug.Log("Kablam");
+        playerMovement.canClimb = true;
     }
 
     //Reset Ledge collider ignore
