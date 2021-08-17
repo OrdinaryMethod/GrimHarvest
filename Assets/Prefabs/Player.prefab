@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {x: 0, y: 0}
-  playerSpeed: 10
   isGrounded: 0
-  canMove: 0
   grabbingLedge: 0
+  canMove: 0
+  canClimb: 0
 --- !u!114 &1146573437708568679
 MonoBehaviour:
   m_ObjectHideFlags: 0
