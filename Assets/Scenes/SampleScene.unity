@@ -165,8 +165,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0020956097, y: 0.09021901}
-  m_Size: {x: 0.043865755, y: 0.1665036}
+  m_Offset: {x: 0.014386463, y: 0.090219006}
+  m_Size: {x: 0.068447985, y: 0.1665036}
   m_Direction: 1
 --- !u!1 &133401518
 GameObject:
@@ -752,8 +752,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0550572, y: -0.111346215}
-  m_Size: {x: 0.06404801, y: 0.09821304}
+  m_Offset: {x: -0.08046607, y: -0.111346215}
+  m_Size: {x: 0.11486575, y: 0.09821304}
   m_Direction: 0
 --- !u!114 &1879686713
 MonoBehaviour:
@@ -811,8 +811,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0020956097, y: 0.09021901}
-  m_Size: {x: 0.043865755, y: 0.1665036}
+  m_Offset: {x: -0.006960942, y: 0.09021902}
+  m_Size: {x: 0.061978936, y: 0.1665036}
   m_Direction: 1
 --- !u!1 &2136385212
 GameObject:
