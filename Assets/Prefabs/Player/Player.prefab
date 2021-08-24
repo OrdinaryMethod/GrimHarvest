@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29ba7ad319e68b4a90c96fec7c09833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimSpeed: 1000
+  bullet: {fileID: 0}
+  aimSpeed: 50
   facingRight: 0
   setAngleUp: 45
 --- !u!1 &1146573437424855600

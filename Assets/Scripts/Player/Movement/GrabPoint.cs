@@ -56,11 +56,11 @@ public class GrabPoint : MonoBehaviour
         //Ledges
         if (collision.gameObject.CompareTag("Ledge"))
         {
+            StartCoroutine(PreventFallOnClimb());
             playerMovement.grabbingLedge = true;
             playerMovement.canMove = false;
             playerMovement.isGrounded = false;
-            ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore
-            StartCoroutine(PreventFallOnClimb());
+            ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore    
         }
         else
         {

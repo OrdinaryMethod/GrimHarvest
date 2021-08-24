@@ -5,9 +5,11 @@ using UnityEngine;
 public class MultiTool : MonoBehaviour
 {
     //Variables
-    private Vector2 direction;
+    public GameObject bulletPrefab;
 
-    public float aimSpeed = 1000f; //Aim speed
+    private Vector3 firePoint;
+
+    public float aimSpeed; //Aim speed
     [HideInInspector] public bool facingRight;
 
     [Header("Aim Angles")]
@@ -17,21 +19,31 @@ public class MultiTool : MonoBehaviour
     [SerializeField] private float setAngleUp;
     private float angleUp;
 
-    
-
-
     // Start is called before the first frame update
     void Start()
     {
         //Set values
         angleUp = setAngleUp;
-        angle = setAngle;
+        angle = setAngle;       
     }
 
     // Update is called once per frame
     void Update()
     {
         AimDirection();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        firePoint = GetComponentInChildren<Transform>().position;
+
+        if(Input.GetKey(KeyCode.Mouse0))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint, gameObject.transform.rotation);
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(25,25);
+        }
+        
     }
 
     private void AimDirection()

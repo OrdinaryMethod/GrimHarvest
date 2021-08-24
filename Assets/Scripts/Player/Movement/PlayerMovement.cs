@@ -57,13 +57,13 @@ public class PlayerMovement : MonoBehaviour
         //Player Movement. Check for horizontal movement
         if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
         {
-            if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight)
+            if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight && !canClimb)
             {
                 //If we're moving right but not facing right, flip the sprite and set     facingRight to true.
                 Flip();
                 facingRight = true;
             }
-            else if (Input.GetAxisRaw("Horizontal") < 0.5f && facingRight)
+            else if (Input.GetAxisRaw("Horizontal") < 0.5f && facingRight && !canClimb)
             {
                 //If we're moving left but not facing left, flip the sprite and set facingRight to false.
                 Flip();
