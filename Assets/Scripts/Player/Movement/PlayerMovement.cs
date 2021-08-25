@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float playerSpeed;
     private float moveHorizontal;
 
-    [HideInInspector] public bool facingRight;
+    public bool facingRight;
 
     [Header("Movement Conditions")]
     public bool isGrounded;
