@@ -46,7 +46,7 @@ public class MultiTool : MonoBehaviour
         float angle;
 
         float angleUpRight = -315;
-        float angleUpLeft = 135;
+        float angleUpLeft = 315;
 
         if (Input.GetKey(KeyCode.E))
         {
@@ -58,7 +58,6 @@ public class MultiTool : MonoBehaviour
             {
                 angle = angleUpLeft;
             }
-
         }
         else
         {
@@ -68,11 +67,10 @@ public class MultiTool : MonoBehaviour
             }
             else
             {
-                angle = 180;
-            }
-
+                angle = 360;
+            }         
         }
-        
+        transform.eulerAngles = Vector3.forward * angle;
 
     }
 }
