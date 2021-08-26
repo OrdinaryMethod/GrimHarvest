@@ -19,29 +19,29 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.E))
-        {
-            if(!cooldownActive)
-            {
-                cooldownActive = true;
-                //Get mouse position
-                Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+        //if(Input.GetKey(KeyCode.E))
+        //{
+        //    if(!cooldownActive)
+        //    {
+        //        cooldownActive = true;
+        //        //Get mouse position
+        //        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        //        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
-                Vector2 characterToMouse = worldPosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                gameObject.GetComponent<Rigidbody2D>().AddForce(characterToMouse / 100);
-            }            
-        }
+        //        Vector2 characterToMouse = worldPosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        //        gameObject.GetComponent<Rigidbody2D>().AddForce(characterToMouse / 100);
+        //    }            
+        //}
         
-        if(cooldownActive)
-        {
-            cooldown -= Time.deltaTime;
+        //if(cooldownActive)
+        //{
+        //    cooldown -= Time.deltaTime;
 
-            if(cooldown <= 0)
-            {
-                cooldownActive = false;
-                cooldown = setCooldown;
-            }
-        }
+        //    if(cooldown <= 0)
+        //    {
+        //        cooldownActive = false;
+        //        cooldown = setCooldown;
+        //    }
+        //}
     }
 }

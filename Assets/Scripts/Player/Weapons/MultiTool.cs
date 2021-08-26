@@ -7,16 +7,18 @@ public class MultiTool : MonoBehaviour
     //Variables
     public GameObject bulletPrefab;
 
-    private Vector3 firePoint;
+    [SerializeField] private GameObject firePoint;
+    [SerializeField] private GameObject fireDirection;
+
+    private Vector2 direction;
 
     public float aimSpeed; //Aim speed
     [SerializeField] private bool facingRight;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float angle;
+
+    private float FireRate;
+    public float SetFireRate;
 
     // Update is called once per frame
     void Update()
@@ -31,20 +33,31 @@ public class MultiTool : MonoBehaviour
 
     private void Shoot()
     {
-        firePoint = GetComponentInChildren<Transform>().position;
-
-        if(Input.GetKey(KeyCode.Mouse0))
+        if (FireRate <= 0)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint, gameObject.transform.rotation);
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(25,25);
+            if (Input.GetKey(KeyCode.Mouse0))
+            {             
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
+                direction = Camera.main.ScreenToWorldPoint(fireDirection.transform.position) - transform.position;
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * 20;
+                Destroy(bullet, 1);              
+            }
+            FireRate = SetFireRate;
         }
-        
+        else
+        {
+            FireRate -= Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y) * 10;
+        }     
     }
 
     private void AimDirection()
     {
-        float angle;
-
         float angleUpRight = -315;
         float angleUpLeft = 315;
 
@@ -71,6 +84,5 @@ public class MultiTool : MonoBehaviour
             }         
         }
         transform.eulerAngles = Vector3.forward * angle;
-
     }
 }
