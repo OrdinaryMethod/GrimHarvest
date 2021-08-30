@@ -10,15 +10,12 @@ public class MultiTool : MonoBehaviour
     [SerializeField] private GameObject firePoint;
     [SerializeField] private GameObject fireDirection;
 
-    private Vector2 direction;
-
-    public float aimSpeed; //Aim speed
-    [SerializeField] private bool facingRight;
-
-    private float angle;
-
-    private float FireRate;
     public float SetFireRate;
+
+    [SerializeField] private bool facingRight;
+    [SerializeField] private float bulletSpeed;
+    private float angle;
+    private float FireRate;
 
     // Update is called once per frame
     void Update()
@@ -27,8 +24,7 @@ public class MultiTool : MonoBehaviour
         Shoot();
 
         //Get parent values
-        facingRight = GetComponentInParent<PlayerMovement>().facingRight;
-        
+        facingRight = GetComponentInParent<PlayerMovement>().facingRight;     
     }
 
     private void Shoot()
@@ -38,22 +34,27 @@ public class MultiTool : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {             
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
-                direction = Camera.main.ScreenToWorldPoint(fireDirection.transform.position) - transform.position;
-                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * 20;
-                Destroy(bullet, 1);              
+
+                Rigidbody2D bulletRb2d;
+                bulletRb2d = bullet.GetComponent<Rigidbody2D>();
+
+                if(facingRight)
+                {
+                    bulletRb2d.velocity = bulletRb2d.GetRelativeVector(Vector2.right * bulletSpeed);
+                }
+                else
+                {
+                    bulletRb2d.velocity = bulletRb2d.GetRelativeVector(Vector2.left * bulletSpeed);
+                }
+
+                Destroy(bullet, 2);              
             }
             FireRate = SetFireRate;
         }
         else
         {
             FireRate -= Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(firePoint.transform.position.x, firePoint.transform.position.y) * 10;
-        }     
+        }  
     }
 
     private void AimDirection()

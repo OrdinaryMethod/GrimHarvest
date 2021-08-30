@@ -142,10 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29ba7ad319e68b4a90c96fec7c09833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  fireDirection: {fileID: 0}
   aimSpeed: 50
   facingRight: 0
-  setAngleUp: 45
+  bulletSpeed: 50
+  SetFireRate: 0.1
 --- !u!1 &1146573437424855600
 GameObject:
   m_ObjectHideFlags: 0
