@@ -9,4 +9,6 @@ public class Keybinds : MonoBehaviour
 
     //Combat
     public KeyCode attack;
+    public KeyCode shoot;
+    public KeyCode dataExtractor;
 }

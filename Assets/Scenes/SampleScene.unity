@@ -948,6 +948,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.6673629
       objectReference: {fileID: 0}
+    - target: {fileID: 1146573437708568678, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: dataExtractor
+      value: 324
+      objectReference: {fileID: 0}
     - target: {fileID: 1146573437708568696, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1080,6 +1085,27 @@ PrefabInstance:
       propertyPath: fireDirection
       value: 
       objectReference: {fileID: 1429866260}
+    - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: setFireRate
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: setExtractorRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: dataExtractorSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: DataExtractorPrefab
+      value: 
+      objectReference: {fileID: 6760953718106591882, guid: 0fdbf8b96e8913f42b314fd0fbad5d00,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 1879686712, guid: e0163772d066d004ab3b3afe9284fe2b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e0163772d066d004ab3b3afe9284fe2b, type: 3}

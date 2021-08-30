@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
+  DataExtractorPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   fireDirection: {fileID: 0}
   SetFireRate: 0.1
@@ -320,7 +321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: 32
-  attack: 323
+  attack: 0
+  shoot: 323
 --- !u!114 &1146573437708568676
 MonoBehaviour:
   m_ObjectHideFlags: 0

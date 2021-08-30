@@ -5,33 +5,87 @@ using UnityEngine;
 public class MultiTool : MonoBehaviour
 {
     //Variables
+    Keybinds keybinds;
+
     public GameObject bulletPrefab;
+    public GameObject DataExtractorPrefab;
 
     [SerializeField] private GameObject firePoint;
     [SerializeField] private GameObject fireDirection;
 
-    public float SetFireRate;
-
     [SerializeField] private bool facingRight;
-    [SerializeField] private float bulletSpeed;
+    
     private float angle;
-    private float FireRate;
+
+    [Header("Multitool Variables")]
+    [SerializeField] private float setFireRate;
+    [SerializeField] private float bulletSpeed;
+    private float fireRate;
+
+    [SerializeField] private float setExtractorRate;
+    [SerializeField] private float dataExtractorSpeed;
+    private float extractorRate;
+
+    //Keybinds
+    private KeyCode shootKey;
+    private KeyCode extractDataKey;
 
     // Update is called once per frame
     void Update()
     {
+        GetKeyBinds();
         AimDirection();
         Shoot();
+        ExtractData();
 
         //Get parent values
         facingRight = GetComponentInParent<PlayerMovement>().facingRight;     
     }
 
+    private void GetKeyBinds()
+    {
+        keybinds = GetComponentInParent<Keybinds>(); //Define 
+
+        //Assign
+        shootKey = keybinds.shoot;
+        extractDataKey = keybinds.dataExtractor;
+    }
+
+    private void ExtractData()
+    {
+        if (extractorRate <= 0)
+        {
+            if (Input.GetKey(extractDataKey))
+            {
+                GameObject dataExtractor = Instantiate(DataExtractorPrefab, firePoint.transform.position, gameObject.transform.rotation);
+
+                Rigidbody2D dataExtractorRb2d;
+                dataExtractorRb2d = dataExtractor.GetComponent<Rigidbody2D>();
+
+                if (facingRight)
+                {
+                    dataExtractorRb2d.velocity = dataExtractorRb2d.GetRelativeVector(Vector2.right * dataExtractorSpeed);
+                }
+                else
+                {
+                    dataExtractorRb2d.velocity = dataExtractorRb2d.GetRelativeVector(Vector2.left * dataExtractorSpeed);
+                }
+
+                Destroy(DataExtractorPrefab, 2);
+            }
+            extractorRate = setExtractorRate;
+        }
+        else
+        {
+            extractorRate -= Time.deltaTime;
+        }
+    }
+
     private void Shoot()
     {
-        if (FireRate <= 0)
+        if (fireRate <= 0)
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(shootKey))
             {             
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
 
@@ -49,11 +103,11 @@ public class MultiTool : MonoBehaviour
 
                 Destroy(bullet, 2);              
             }
-            FireRate = SetFireRate;
+            fireRate = setFireRate;
         }
         else
         {
-            FireRate -= Time.deltaTime;
+            fireRate -= Time.deltaTime;
         }  
     }
 
