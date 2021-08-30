@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 1146573437708568678, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
       propertyPath: dataExtractor
-      value: 324
+      value: 114
       objectReference: {fileID: 0}
     - target: {fileID: 1146573437708568696, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
