@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //Jumping
-        if (collision.gameObject.CompareTag("Surface"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
         }

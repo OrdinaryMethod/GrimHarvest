@@ -7,14 +7,16 @@ public class MultiTool : MonoBehaviour
     //Variables
     Keybinds keybinds;
 
+    [Header("Prefabs")]
     public GameObject bulletPrefab;
     public GameObject DataExtractorPrefab;
 
+    [Header("Objects")]
     [SerializeField] private GameObject firePoint;
     [SerializeField] private GameObject fireDirection;
 
-    [SerializeField] private bool facingRight;
-    
+    [Header("General Variables")]
+    [SerializeField] private bool facingRight;  
     private float angle;
 
     [Header("Ammo")]

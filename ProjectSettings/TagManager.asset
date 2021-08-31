@@ -8,6 +8,7 @@ TagManager:
   - EnemyParent
   - Surface
   - Ledge
+  - Ground
   layers:
   - Default
   - TransparentFX
