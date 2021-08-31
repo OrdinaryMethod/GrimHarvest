@@ -5,10 +5,13 @@ using UnityEngine;
 public class DataExtractor : MonoBehaviour
 {
     //Variables
+    private Rigidbody2D rb2d;
+
     private bool facingRight;
 
     void Start()
     {
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
         flip();
     }
 
@@ -26,6 +29,14 @@ public class DataExtractor : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        rb2d.velocity = new Vector2(0, 0);
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        //Recollect
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponentInChildren<MultiTool>().dataExtractorAmmo++;
+            Destroy(gameObject);
+        }
     }
 }

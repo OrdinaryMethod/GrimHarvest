@@ -17,11 +17,16 @@ public class MultiTool : MonoBehaviour
     
     private float angle;
 
-    [Header("Multitool Variables")]
+    [Header("Ammo")]
+    public int bulletAmmo;
+    public int dataExtractorAmmo;
+
+    [Header("Shooting Variables")]
     [SerializeField] private float setFireRate;
     [SerializeField] private float bulletSpeed;
     private float fireRate;
 
+    [Header("Data Extractor Variables")]
     [SerializeField] private float setExtractorRate;
     [SerializeField] private float dataExtractorSpeed;
     private float extractorRate;
@@ -55,7 +60,7 @@ public class MultiTool : MonoBehaviour
     {
         if (extractorRate <= 0)
         {
-            if (Input.GetKey(extractDataKey))
+            if (Input.GetKey(extractDataKey) && dataExtractorAmmo > 0)
             {
                 GameObject dataExtractor = Instantiate(DataExtractorPrefab, firePoint.transform.position, gameObject.transform.rotation);
 
@@ -71,7 +76,7 @@ public class MultiTool : MonoBehaviour
                     dataExtractorRb2d.velocity = dataExtractorRb2d.GetRelativeVector(Vector2.left * dataExtractorSpeed);
                 }
 
-                Destroy(DataExtractorPrefab, 2);
+                dataExtractorAmmo--;
             }
             extractorRate = setExtractorRate;
         }
@@ -85,7 +90,7 @@ public class MultiTool : MonoBehaviour
     {
         if (fireRate <= 0)
         {
-            if (Input.GetKey(shootKey))
+            if (Input.GetKey(shootKey) && bulletAmmo > 0)
             {             
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
 
@@ -100,6 +105,8 @@ public class MultiTool : MonoBehaviour
                 {
                     bulletRb2d.velocity = bulletRb2d.GetRelativeVector(Vector2.left * bulletSpeed);
                 }
+
+                bulletAmmo--;
 
                 Destroy(bullet, 2);              
             }

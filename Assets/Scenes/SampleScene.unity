@@ -565,7 +565,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 1146573437708568678, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
       propertyPath: dataExtractor
-      value: 114
+      value: 324
       objectReference: {fileID: 0}
     - target: {fileID: 1146573437708568696, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
@@ -1093,7 +1093,7 @@ PrefabInstance:
     - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
       propertyPath: setExtractorRate
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
         type: 3}
@@ -1106,6 +1106,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6760953718106591882, guid: 0fdbf8b96e8913f42b314fd0fbad5d00,
         type: 3}
+    - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: bulletAmmo
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902461497579842334, guid: e0163772d066d004ab3b3afe9284fe2b,
+        type: 3}
+      propertyPath: dataExtractorAmmo
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1879686712, guid: e0163772d066d004ab3b3afe9284fe2b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e0163772d066d004ab3b3afe9284fe2b, type: 3}
