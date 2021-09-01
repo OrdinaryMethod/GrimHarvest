@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb) //Normal jump
         {
             rb2d.AddForce(new Vector2(0f, 12f), ForceMode2D.Impulse);
+            isGrounded = false;
         }
         else if(Input.GetKey(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {
