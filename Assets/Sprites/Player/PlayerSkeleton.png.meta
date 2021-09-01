@@ -1,7 +1,52 @@
 fileFormatVersion: 2
 guid: d23a1c62db9c29742897eb212a83de74
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 9122140333534780601
+    second: Head
+  - first:
+      213: 485637456373642425
+    second: Forearm
+  - first:
+      213: -4058476560272363507
+    second: Torso
+  - first:
+      213: -3890753740665220277
+    second: PlayerSkeleton_3
+  - first:
+      213: -3416594239764166053
+    second: Shoulder
+  - first:
+      213: -254726093855061074
+    second: Neck
+  - first:
+      213: -9046930451256173856
+    second: Foot
+  - first:
+      213: 2712203268848887912
+    second: Bicept
+  - first:
+      213: 5281425886337910610
+    second: Hand
+  - first:
+      213: -2821533474481985107
+    second: Hip
+  - first:
+      213: -2738042710958817935
+    second: Knee
+  - first:
+      213: 6580313576741855278
+    second: Elbow
+  - first:
+      213: -3530883322820172487
+    second: Ankle
+  - first:
+      213: 4502432905425198629
+    second: Thigh
+  - first:
+      213: 5319837698995681556
+    second: Calve
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +85,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +116,360 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Head
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 846
+        width: 121
+        height: 147
+      alignment: 9
+      pivot: {x: 0.31462893, y: 0.27112356}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc9a9b5d4a589e70800000000000000
+      internalID: 9122140333534780601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forearm
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 862
+        width: 63
+        height: 126
+      alignment: 9
+      pivot: {x: 0.6271537, y: 0.83059984}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b476cc81b45db600800000000000000
+      internalID: 485637456373642425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Torso
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 653
+        width: 140
+        height: 345
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12384617}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0077b732156da7c0800000000000000
+      internalID: -4058476560272363507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSkeleton_3
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 92
+        width: 303
+        height: 861
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4390234614410ac0800000000000000
+      internalID: -3890753740665220277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoulder
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 603
+        width: 112
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5a063d04a1d590d0800000000000000
+      internalID: -3416594239764166053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neck
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 601
+        width: 69
+        height: 90
+      alignment: 9
+      pivot: {x: 0.54643893, y: 0.30418363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab0fbc97f7077cf0800000000000000
+      internalID: -254726093855061074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Foot
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 671
+        width: 126
+        height: 51
+      alignment: 9
+      pivot: {x: 0.30927, y: 0.71990126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea1631ffa8d27280800000000000000
+      internalID: -9046930451256173856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bicept
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 348
+        width: 87
+        height: 129
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7856521}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 868246ec08ea3a520800000000000000
+      internalID: 2712203268848887912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 390
+        width: 78
+        height: 63
+      alignment: 9
+      pivot: {x: 0.6437816, y: 0.6780149}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25749b68cd46b4940800000000000000
+      internalID: 5281425886337910610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hip
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 372
+        width: 134
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9a0ab0146e7d8d0800000000000000
+      internalID: -2821533474481985107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knee
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 373
+        width: 99
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17db37149a4800ad0800000000000000
+      internalID: -2738042710958817935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elbow
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 155
+        width: 89
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20e0648558f15b50800000000000000
+      internalID: 6580313576741855278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ankle
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 167
+        width: 55
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 935e3f74358cffec0800000000000000
+      internalID: -3530883322820172487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thigh
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 66
+        width: 126
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5125108, y: 0.95469546}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e16e06fdadb7e30800000000000000
+      internalID: 4502432905425198629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Calve
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 65
+        width: 67
+        height: 194
+      alignment: 9
+      pivot: {x: 0.524108, y: 0.9556144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4197e57933cd3d940800000000000000
+      internalID: 5319837698995681556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
