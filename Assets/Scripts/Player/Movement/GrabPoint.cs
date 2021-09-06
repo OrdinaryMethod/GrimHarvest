@@ -7,7 +7,7 @@ public class GrabPoint : MonoBehaviour
     //Variables
     PlayerMovement playerMovement;
 
-    private Collider2D ledgeCollider;
+    [HideInInspector] public Collider2D ledgeCollider;
 
     private Rigidbody2D rb2d;
 
@@ -36,12 +36,7 @@ public class GrabPoint : MonoBehaviour
             //Climb up
             if (Input.GetKey(KeyCode.Space) && GetComponentInParent<PlayerMovement>().canClimb)
             {
-                playerMovement.grabbingLedge = false;
-                rb2d.constraints = RigidbodyConstraints2D.None;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-                //Get colliders to ignore
-                Physics2D.IgnoreCollision(ledgeCollider, GetComponent<Collider2D>(), true);
+                
             }
         }
         else
@@ -60,7 +55,11 @@ public class GrabPoint : MonoBehaviour
             playerMovement.grabbingLedge = true;
             playerMovement.canMove = false;
             playerMovement.isGrounded = false;
-            ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore    
+            ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore   
+
+            GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint1.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint1.position.y));
+            GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint2.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint2.position.y));
+            GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint3.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint3.position.y));
         }
         else
         {

@@ -554,7 +554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381931207162923768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.88, y: 1.36, z: 0}
+  m_LocalPosition: {x: 1.32, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2073038376372812982}
@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd86398041eb994ea59fdc44f2566ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ledgeCollider: {fileID: 0}
 --- !u!1 &1393934481563478754
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +613,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393934481563478754}
-  m_LocalRotation: {x: -0, y: -0, z: -0.39365828, w: 0.91925687}
+  m_LocalRotation: {x: -0, y: -0, z: -0.38433978, w: 0.9231917}
   m_LocalPosition: {x: -0.1, y: -0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
@@ -1309,7 +1310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 5
-  playerSpeed: 5
+  playerSpeed: 10
   damage: 3
   knockbackBonus: 2
 --- !u!114 &2073038376372812981
@@ -1325,11 +1326,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {x: 0, y: 0}
+  climbPoints: []
   facingRight: 1
   isGrounded: 0
   grabbingLedge: 0
   canMove: 0
   canClimb: 0
+  normalJump: 23
+  climbingJump: 16
+  climbingSpeed: 25
+  climbingCooldown: 0.2
 --- !u!114 &2073038376372812969
 MonoBehaviour:
   m_ObjectHideFlags: 0

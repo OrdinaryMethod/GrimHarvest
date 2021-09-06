@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerStats playerStats;
 
     public Vector2 playerPosition;
+    public List<Vector2> climbPoints = new List<Vector2>();
 
     private Rigidbody2D rb2d;
 
@@ -23,8 +24,17 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove;
     public bool canClimb;
 
-    
+    [Header("Jumping Values")]
+    [SerializeField] private float normalJump;
+    [SerializeField] private float climbingJump;
 
+    private bool climbingPoints;
+    private int setClimbPoint;
+
+    [Header("Climbing Values")]
+    [SerializeField] private float climbingSpeed;
+    [SerializeField] private float climbingCooldown;
+    
     //Keybinds
     private KeyCode jumpKey;
 
@@ -43,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Initial collision ingores
         Physics2D.IgnoreLayerCollision(0, 9, true);
-
     }
 
     void Update()
@@ -51,27 +60,8 @@ public class PlayerMovement : MonoBehaviour
         GetKeyBinds();
         Move();
         jump();
-        FixTheBugs();
-
-
-        //Player Movement. Check for horizontal movement
-        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
-        {
-            if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight && !canClimb)
-            {
-                //If we're moving right but not facing right, flip the sprite and set     facingRight to true.
-                Flip();
-                facingRight = true;
-            }
-            else if (Input.GetAxisRaw("Horizontal") < 0.5f && facingRight && !canClimb)
-            {
-                //If we're moving left but not facing left, flip the sprite and set facingRight to false.
-                Flip();
-                facingRight = false;
-            }
-
-        }
-
+        ClimbSwitch();
+        FixTheBugs();      
     }
 
     private void GetKeyBinds()
@@ -87,6 +77,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canMove)
         {
+            //Check for horizontal movement
+            if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+            {
+                if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight && !canClimb)
+                {
+                    //If we're moving right but not facing right, flip the sprite and set     facingRight to true.
+                    Flip();
+                    facingRight = true;
+                }
+                else if (Input.GetAxisRaw("Horizontal") < 0.5f && facingRight && !canClimb)
+                {
+                    //If we're moving left but not facing left, flip the sprite and set facingRight to false.
+                    Flip();
+                    facingRight = false;
+                }
+            }
+
             moveHorizontal = Input.GetAxis("Horizontal") * playerSpeed;
             Vector2 Movement = new Vector2(moveHorizontal, 0);
             Movement *= Time.deltaTime;
@@ -100,13 +107,51 @@ public class PlayerMovement : MonoBehaviour
         //big 
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb) //Normal jump
         {
-            rb2d.AddForce(new Vector2(0f, 12f), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector2(0f, normalJump), ForceMode2D.Impulse);
             isGrounded = false;
         }
-        else if(Input.GetKey(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
+        else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {
-            rb2d.AddForce(new Vector2(0f, 15f), ForceMode2D.Impulse);
+            grabbingLedge = false;
+            rb2d.constraints = RigidbodyConstraints2D.None;
+            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            Collider2D ledgeCollider = GetComponentInChildren<GrabPoint>().ledgeCollider;
+
+            //Get colliders to ignore
+            Physics2D.IgnoreCollision(ledgeCollider, GetComponent<Collider2D>(), true);
+
+            StartCoroutine(ClimbUpLedge());
         }
+    }
+
+    IEnumerator ClimbUpLedge()
+    {
+        canMove = false;
+
+        //Assign backup variables
+        float rbMass = rb2d.mass;
+        float rbGravity = rb2d.gravityScale;
+
+        //Set player values to 0
+        rb2d.mass = 0;
+        rb2d.gravityScale = 0;
+        climbingPoints = true;
+
+        //Move to points
+        setClimbPoint = 1;
+        yield return new WaitForSeconds(climbingCooldown);
+        setClimbPoint = 2;
+        yield return new WaitForSeconds(climbingCooldown);
+        setClimbPoint = 3;
+        yield return new WaitForSeconds(climbingCooldown);
+        setClimbPoint = 0;
+        climbingPoints = false;
+
+        rb2d.mass = rbMass;
+        rb2d.gravityScale = rbGravity;
+
+        canMove = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -125,6 +170,26 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    //Minor functions
+    private void ClimbSwitch()
+    {
+        if(climbingPoints)
+        {
+            switch (setClimbPoint)
+            {
+                case 1:
+                    gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[0], climbingSpeed * Time.deltaTime);
+                    break;
+                case 2:
+                    gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[1], climbingSpeed * Time.deltaTime);
+                    break;
+                case 3:
+                    gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[2], climbingSpeed * Time.deltaTime);
+                    break;
+            };
+        }       
     }
 
     void Flip()
