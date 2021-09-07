@@ -24,13 +24,29 @@ public class PlayerAnimController : MonoBehaviour
 
     private void CheckKeys()
     {
+        //Running idle
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             playerAnim.SetBool("running", true);
+            isRunning = true;
         }
         else
         {
             playerAnim.SetBool("running", false);
+            isRunning = false;
+        }
+
+        //Jumping & climbing
+        bool isGrounded = GetComponent<PlayerMovement>().isGrounded;
+        bool canClimb = GetComponent<PlayerMovement>().canClimb;
+
+        if(!isGrounded && !canClimb )
+        {
+            playerAnim.SetBool("jumping", true);
+        }
+        else if(isGrounded && !canClimb)
+        {
+            playerAnim.SetBool("jumping", false);
         }
     }
 }
