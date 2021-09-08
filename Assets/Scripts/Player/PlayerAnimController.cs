@@ -37,14 +37,14 @@ public class PlayerAnimController : MonoBehaviour
         }
 
         //Jumping & climbing
-        bool isGrounded = GetComponent<PlayerMovement>().isGrounded;
+        bool isJumping = GetComponent<PlayerMovement>().isJumping;
         bool canClimb = GetComponent<PlayerMovement>().canClimb;
 
-        if(!isGrounded && !canClimb )
+        if(isJumping)
         {
             playerAnim.SetBool("jumping", true);
         }
-        else if(isGrounded && !canClimb)
+        else if(!isJumping)
         {
             playerAnim.SetBool("jumping", false);
         }

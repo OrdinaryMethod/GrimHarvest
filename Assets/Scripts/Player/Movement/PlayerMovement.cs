@@ -26,15 +26,22 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping Values")]
     [SerializeField] private float normalJump;
-    [SerializeField] private float climbingJump;
+    [SerializeField] private float jumpCooldown;
 
-    private bool climbingPoints;
-    private int setClimbPoint;
+    private bool canJump;
+    
 
     [Header("Climbing Values")]
     [SerializeField] private float climbingSpeed;
     [SerializeField] private float climbingCooldown;
-    
+
+    private bool climbingPoints;
+    private int setClimbPoint;
+
+    [Header("Animation Values")]
+    public bool isJumping;
+    public bool canFlip;
+
     //Keybinds
     private KeyCode jumpKey;
 
@@ -50,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         //Set base values
         canMove = true;
         canClimb = false;
+        canJump = true;
+        canFlip = true;
 
         //Initial collision ingores
         Physics2D.IgnoreLayerCollision(0, 9, true);
@@ -83,14 +92,20 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight && !canClimb)
                 {
                     //If we're moving right but not facing right, flip the sprite and set     facingRight to true.
-                    Flip();
-                    facingRight = true;
+                    if(canFlip)
+                    {
+                        Flip();
+                        facingRight = true;
+                    }                   
                 }
                 else if (Input.GetAxisRaw("Horizontal") < 0.5f && facingRight && !canClimb)
                 {
                     //If we're moving left but not facing left, flip the sprite and set facingRight to false.
-                    Flip();
-                    facingRight = false;
+                    if (canFlip)
+                    {
+                        Flip();
+                        facingRight = false;
+                    }
                 }
             }
 
@@ -105,10 +120,11 @@ public class PlayerMovement : MonoBehaviour
     private void jump()
     {
         //big 
-        if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb) //Normal jump
+        if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb && canJump) //Normal jump
         {
             rb2d.AddForce(new Vector2(0f, normalJump), ForceMode2D.Impulse);
             isGrounded = false;
+            isJumping = true;
         }
         else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {
@@ -121,6 +137,8 @@ public class PlayerMovement : MonoBehaviour
             //Get colliders to ignore
             Physics2D.IgnoreCollision(ledgeCollider, GetComponent<Collider2D>(), true);
 
+            canJump = false;
+
             StartCoroutine(ClimbUpLedge());
         }
     }
@@ -128,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator ClimbUpLedge()
     {
         canMove = false;
+        canFlip = false;
 
         //Assign backup variables
         float rbMass = rb2d.mass;
@@ -141,17 +160,24 @@ public class PlayerMovement : MonoBehaviour
         //Move to points
         setClimbPoint = 1;
         yield return new WaitForSeconds(climbingCooldown);
+        canMove = false;
         setClimbPoint = 2;
         yield return new WaitForSeconds(climbingCooldown);
+        canMove = false;
         setClimbPoint = 3;
         yield return new WaitForSeconds(climbingCooldown);
         setClimbPoint = 0;
-        climbingPoints = false;
+        
 
+        //Re-assign rb values
         rb2d.mass = rbMass;
         rb2d.gravityScale = rbGravity;
 
+        yield return new WaitForSeconds(0.2f);
+        climbingPoints = false;
         canMove = true;
+        canJump = true;
+        canFlip = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -159,8 +185,15 @@ public class PlayerMovement : MonoBehaviour
         //Jumping
         if (collision.gameObject.CompareTag("Surface"))
         {
-            isGrounded = true;
+            isJumping = false;
+            StartCoroutine(GroundPlayer());
         }
+    }
+
+    IEnumerator GroundPlayer()
+    {
+        yield return new WaitForSeconds(jumpCooldown);
+        isGrounded = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
