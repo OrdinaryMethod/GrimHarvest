@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping Values")]
     [SerializeField] private float normalJump;
-    [SerializeField] private float jumpCooldown;
+    [SerializeField] public float jumpCooldown;
 
     private bool canJump;
     
