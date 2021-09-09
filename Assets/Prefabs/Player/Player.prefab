@@ -1334,8 +1334,8 @@ MonoBehaviour:
   grabbingLedge: 0
   canMove: 0
   canClimb: 0
-  normalJump: 30
-  jumpCooldown: 0.1
+  normalJump: 40
+  jumpCooldown: 0.15
   climbingSpeed: 25
   climbingCooldown: 0.2
   isJumping: 0
@@ -1384,6 +1384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRunning: 1
+  hasLanded: 0
 --- !u!95 &1520767513924599317
 Animator:
   serializedVersion: 3

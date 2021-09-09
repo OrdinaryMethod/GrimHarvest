@@ -8,12 +8,16 @@ public class PlayerAnimController : MonoBehaviour
 
     [Header("Animation Conditions")]
     public bool isRunning;
+    public bool hasLanded;
 
 
     // Start is called before the first frame update
     void Start()
     {
         playerAnim = GetComponent<Animator>();
+
+        //Preset values
+        hasLanded = false;
     }
 
     // Update is called once per frame
@@ -44,9 +48,22 @@ public class PlayerAnimController : MonoBehaviour
         {
             playerAnim.SetBool("jumping", true);
         }
-        else if(!isJumping)
+        else 
         {
             playerAnim.SetBool("jumping", false);
         }
+
+        //Landing
+        if(hasLanded)
+        {
+            playerAnim.SetBool("Landing", true);
+            hasLanded = false;
+            //StartCoroutine(StopLandingAnim());
+        }
+        else
+        {
+            playerAnim.SetBool("Landing", false);
+        }
+
     }
 }
