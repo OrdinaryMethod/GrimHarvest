@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 5
-  playerSpeed: 20
+  playerSpeed: 25
   damage: 3
   knockbackBonus: 2
 --- !u!114 &2073038376372812981
@@ -1385,6 +1385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRunning: 1
   hasLanded: 0
+  isFreeFalling: 0
 --- !u!95 &1520767513924599317
 Animator:
   serializedVersion: 3

@@ -11,6 +11,7 @@ public class GroundingPoint : MonoBehaviour
         {
             GetComponentInParent<PlayerMovement>().isJumping = false;
             GetComponentInParent<PlayerAnimController>().hasLanded = true;
+            GetComponentInParent<PlayerAnimController>().isFreeFalling = false;
 
             StartCoroutine(GroundPlayer());
         }
@@ -25,9 +26,10 @@ public class GroundingPoint : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //Jumping
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Surface"))
         {
             GetComponentInParent<PlayerMovement>().isGrounded = false;
+            GetComponentInParent<PlayerAnimController>().isFreeFalling = true;
         }
     }
 }

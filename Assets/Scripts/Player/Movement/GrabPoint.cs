@@ -32,12 +32,6 @@ public class GrabPoint : MonoBehaviour
         if (playerMovement.grabbingLedge)
         {
             rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-
-            //Climb up
-            if (Input.GetKey(KeyCode.Space) && GetComponentInParent<PlayerMovement>().canClimb)
-            {
-                
-            }
         }
         else
         {
@@ -55,6 +49,7 @@ public class GrabPoint : MonoBehaviour
             playerMovement.grabbingLedge = true;
             playerMovement.canMove = false;
             playerMovement.isGrounded = false;
+            GetComponentInParent<PlayerAnimController>().isHanging = true;
             ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore   
 
             GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint1.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint1.position.y));
@@ -76,6 +71,7 @@ public class GrabPoint : MonoBehaviour
             playerMovement.canMove = true;
             playerMovement.isGrounded = false;
             playerMovement.canClimb = false;
+            GetComponentInParent<PlayerAnimController>().isHanging = false;
             StartCoroutine(ResetColliderIgnore());
         }
     }
