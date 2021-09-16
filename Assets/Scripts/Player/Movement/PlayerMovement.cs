@@ -168,8 +168,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         setClimbPoint = 3;
         yield return new WaitForSeconds(climbingCooldown);
-        setClimbPoint = 0;
-        
+        setClimbPoint = 0;   
 
         //Re-assign rb values
         rb2d.mass = rbMass;

@@ -20,7 +20,7 @@ public class GrabPoint : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Get object components
         playerMovement = GetComponentInParent<PlayerMovement>();
