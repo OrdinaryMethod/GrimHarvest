@@ -11,6 +11,7 @@ public class PlayerAnimController : MonoBehaviour
     public bool hasLanded;
     public bool isFreeFalling;
     public bool isHanging;
+    public bool isClimbing;
 
 
     // Start is called before the first frame update
@@ -87,6 +88,17 @@ public class PlayerAnimController : MonoBehaviour
         else
         {
             playerAnim.SetBool("hanging", false);
+        }
+
+        //Climbing
+        if(isClimbing)
+        {
+            playerAnim.SetBool("climbing", true);
+            isClimbing = false;
+        }
+        else
+        {
+            playerAnim.SetBool("climbing", false);
         }
 
     }

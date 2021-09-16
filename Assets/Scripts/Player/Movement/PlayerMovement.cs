@@ -157,6 +157,8 @@ public class PlayerMovement : MonoBehaviour
         rb2d.gravityScale = 0;
         climbingPoints = true;
 
+        //Tell climbing animation to start
+        GetComponent<PlayerAnimController>().isClimbing = true;
         //Move to points
         setClimbPoint = 1;
         yield return new WaitForSeconds(climbingCooldown);

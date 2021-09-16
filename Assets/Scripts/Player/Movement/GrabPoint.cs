@@ -55,6 +55,9 @@ public class GrabPoint : MonoBehaviour
             GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint1.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint1.position.y));
             GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint2.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint2.position.y));
             GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint3.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint3.position.y));
+
+            Transform newPos = collision.gameObject.GetComponent<Ledge>().LandingPos;
+            StartCoroutine(PlayerToLandingPos(newPos));
         }
         else
         {
@@ -74,6 +77,12 @@ public class GrabPoint : MonoBehaviour
             GetComponentInParent<PlayerAnimController>().isHanging = false;
             StartCoroutine(ResetColliderIgnore());
         }
+    }
+
+    IEnumerator PlayerToLandingPos(Transform newPos)
+    {
+        GameObject.Find("Player").transform.position = newPos.position; //Had to do it this way for whatever reason
+        yield return null;
     }
 
     //Give time to register grab before allowing to jump in order to prevent falling off cliff
