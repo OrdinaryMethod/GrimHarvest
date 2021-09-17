@@ -10,11 +10,14 @@ public class PlayerAnimController : MonoBehaviour
 
     private bool canChangeAnim;
     private bool hasLanded;
+    private bool isClimbing;
 
     const string Player_Idle = "Player_Idle";
     const string Player_Run = "Player_Run";
     const string Player_Jump = "Player_Jump";
     const string Player_Land = "Player_Land";
+    const string Player_GrabLedge = "Player_GrabLedge";
+    const string Player_Climb = "Player_Climb";
 
     void Start()
     {
@@ -29,6 +32,7 @@ public class PlayerAnimController : MonoBehaviour
     {
         AnimChanger();
         CheckLanding();
+        CheckClimbing();
     }
 
     private void AnimChanger()
@@ -54,7 +58,14 @@ public class PlayerAnimController : MonoBehaviour
                     StartCoroutine(DelayToLand());
                     playerAnim.Play(Player_Land);
                     break;
-                case "":
+                case "grabbingLedge":
+                    playerAnim.Play(Player_GrabLedge);
+                    break;
+                case "climbing":
+                    Debug.Log("is climbing");
+                    canChangeAnim = false;
+                    StartCoroutine(DelayToClimb());
+                    playerAnim.Play(Player_Climb);
                     break;
             }
         }
@@ -72,6 +83,21 @@ public class PlayerAnimController : MonoBehaviour
     IEnumerator DelayToLand()
     {
         yield return new WaitForSeconds(0.1f);
+        canChangeAnim = true;
+    }
+
+    private void CheckClimbing()
+    {
+        isClimbing = playerMovement.isClimbing;
+        if(isClimbing)
+        {
+            playerMovement.animState = "climbing";
+        }
+    }
+
+    IEnumerator DelayToClimb()
+    {
+        yield return new WaitForSeconds(0.05f);
         canChangeAnim = true;
     }
 }

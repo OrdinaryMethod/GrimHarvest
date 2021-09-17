@@ -23,7 +23,6 @@ public class GroundingPoint : MonoBehaviour
         if (collision.gameObject.CompareTag("Surface"))
         {
             GetComponentInParent<PlayerMovement>().isGrounded = false;
-            GetComponentInParent<PlayerMovement>().hasLanded = true;
             landed = false;
         }
     }

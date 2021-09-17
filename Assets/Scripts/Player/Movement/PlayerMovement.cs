@@ -35,10 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Animation Values")]
     public string animState;
-    public bool hasLanded;
-    public bool isRunning;
-
-    
+    public bool isClimbing;
+ 
 
     //Keybinds
     private KeyCode jumpKey;
@@ -57,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         canClimb = false;
         canJump = true;
         canFlip = true;
-        hasLanded = false;
+        isClimbing = false;
 
         //Initial collision ingores
         Physics2D.IgnoreLayerCollision(0, 9, true);
@@ -70,6 +68,15 @@ public class PlayerMovement : MonoBehaviour
         jump();
         ClimbSwitch();
         FixTheBugs();      
+
+        if(grabbingLedge)
+        {
+            animState = "grabbingLedge";
+        }
+        else if(isClimbing)
+        {
+            animState = "climbing";
+        }
     }
 
     private void GetKeyBinds()
@@ -161,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator ClimbUpLedge()
     {
+        isClimbing = true;
         canMove = false;
         canFlip = false;
 
@@ -187,12 +195,13 @@ public class PlayerMovement : MonoBehaviour
         //Re-assign rb values
         rb2d.mass = rbMass;
         rb2d.gravityScale = rbGravity;
+        isClimbing = false;
 
         yield return new WaitForSeconds(0.2f);
         climbingPoints = false;
         canMove = true;
         canJump = true;
-        canFlip = true;
+        canFlip = true;     
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

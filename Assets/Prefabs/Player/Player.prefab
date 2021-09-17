@@ -1330,15 +1330,17 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0}
   climbPoints: []
   facingRight: 1
+  canFlip: 0
   isGrounded: 0
   grabbingLedge: 0
   canMove: 0
   canClimb: 0
   normalJump: 40
   jumpCooldown: 0
-  climbingSpeed: 25
-  climbingCooldown: 0.2
-  canFlip: 0
+  climbingSpeed: 60
+  climbingCooldown: 0.05
+  animState: 
+  isClimbing: 0
 --- !u!114 &2073038376372812969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,6 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9767cb49711624b49ad131aba2e6d066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  landed: 0
 --- !u!1 &2948966111053681252
 GameObject:
   m_ObjectHideFlags: 0
