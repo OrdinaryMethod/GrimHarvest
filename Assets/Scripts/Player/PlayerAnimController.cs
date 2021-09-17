@@ -18,6 +18,7 @@ public class PlayerAnimController : MonoBehaviour
     const string Player_Land = "Player_Land";
     const string Player_GrabLedge = "Player_GrabLedge";
     const string Player_Climb = "Player_Climb";
+    const string Player_Crouch = "Player_Crouch";
 
     void Start()
     {
@@ -42,15 +43,12 @@ public class PlayerAnimController : MonoBehaviour
             switch (playerMovement.animState)
             {
                 case "idle":
-                    Debug.Log("idle");
                     playerAnim.Play(Player_Idle);
                     break;
                 case "running":
-                    Debug.Log("running");
                     playerAnim.Play(Player_Run);
                     break;
                 case "jumping":
-                    Debug.Log("jumping");
                     playerAnim.Play(Player_Jump);
                     break;
                 case "landing":
@@ -62,10 +60,12 @@ public class PlayerAnimController : MonoBehaviour
                     playerAnim.Play(Player_GrabLedge);
                     break;
                 case "climbing":
-                    Debug.Log("is climbing");
                     canChangeAnim = false;
                     StartCoroutine(DelayToClimb());
                     playerAnim.Play(Player_Climb);
+                    break;
+                case "crouching":
+                    playerAnim.Play(Player_Crouch);
                     break;
             }
         }

@@ -36,10 +36,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animation Values")]
     public string animState;
     public bool isClimbing;
- 
+    private bool isCrouching;
 
     //Keybinds
     private KeyCode jumpKey;
+    private KeyCode crouchKey;
 
     void Start()
     {
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         canJump = true;
         canFlip = true;
         isClimbing = false;
+        isCrouching = false;
 
         //Initial collision ingores
         Physics2D.IgnoreLayerCollision(0, 9, true);
@@ -66,12 +68,14 @@ public class PlayerMovement : MonoBehaviour
         GetKeyBinds();
         Move();
         jump();
+        Crouch();
         ClimbSwitch();
         FixTheBugs();      
 
         if(grabbingLedge)
         {
             animState = "grabbingLedge";
+            canMove = false;
         }
         else if(isClimbing)
         {
@@ -85,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Assign
         jumpKey = keybinds.jump;
+        crouchKey = keybinds.crouch;
     }
 
     //Movement controls
@@ -134,6 +139,29 @@ public class PlayerMovement : MonoBehaviour
             Movement *= Time.deltaTime;
             rb2d.transform.Translate(Movement);
             playerPosition = rb2d.position;
+        }
+    }
+    
+    private void Crouch()
+    {
+        
+        if(Input.GetKey(crouchKey) && isGrounded)
+        {
+            canMove = false;
+            canJump = false;
+            isCrouching = true;
+            animState = "crouching";
+        }
+        else
+        {
+            canMove = true;
+            
+            if(isCrouching)
+            {
+                animState = "idle";
+                isCrouching = false;
+                canJump = true;
+            }
         }
     }
 

@@ -6,6 +6,7 @@ public class Keybinds : MonoBehaviour
 {
     //Movement
     public KeyCode jump;
+    public KeyCode crouch;
 
     //Combat
     public KeyCode attack;
