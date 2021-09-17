@@ -10,13 +10,11 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 playerPosition;
     public List<Vector2> climbPoints = new List<Vector2>();
-
     private Rigidbody2D rb2d;
-
     private float playerSpeed;
     private float moveHorizontal;
-
     public bool facingRight;
+    public bool canFlip;
 
     [Header("Movement Conditions")]
     public bool isGrounded;
@@ -27,20 +25,20 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping Values")]
     [SerializeField] private float normalJump;
     [SerializeField] public float jumpCooldown;
-
     private bool canJump;
-    
 
     [Header("Climbing Values")]
     [SerializeField] private float climbingSpeed;
     [SerializeField] private float climbingCooldown;
-
     private bool climbingPoints;
     private int setClimbPoint;
 
     [Header("Animation Values")]
-    public bool isJumping;
-    public bool canFlip;
+    public string animState;
+    public bool hasLanded;
+    public bool isRunning;
+
+    
 
     //Keybinds
     private KeyCode jumpKey;
@@ -59,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         canClimb = false;
         canJump = true;
         canFlip = true;
+        hasLanded = false;
 
         //Initial collision ingores
         Physics2D.IgnoreLayerCollision(0, 9, true);
@@ -88,7 +87,13 @@ public class PlayerMovement : MonoBehaviour
         {
             //Check for horizontal movement
             if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
-            {
+            {      
+                if(isGrounded)
+                {
+                    animState = "running";
+                }
+                
+
                 if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight && !canClimb)
                 {
                     //If we're moving right but not facing right, flip the sprite and set     facingRight to true.
@@ -108,6 +113,14 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if(isGrounded)
+                {
+                    animState = "idle";
+                }             
+            }
+
 
             moveHorizontal = Input.GetAxis("Horizontal") * playerSpeed;
             Vector2 Movement = new Vector2(moveHorizontal, 0);
@@ -119,12 +132,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void jump()
     {
-        //big 
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb && canJump) //Normal jump
         {
             rb2d.AddForce(new Vector2(0f, normalJump), ForceMode2D.Impulse);
             isGrounded = false;
-            isJumping = true;
         }
         else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {
@@ -140,6 +151,11 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
 
             StartCoroutine(ClimbUpLedge());
+        }
+
+        if(!isGrounded)
+        {
+            animState = "jumping";
         }
     }
 
@@ -157,8 +173,6 @@ public class PlayerMovement : MonoBehaviour
         rb2d.gravityScale = 0;
         climbingPoints = true;
 
-        //Tell climbing animation to start
-        GetComponent<PlayerAnimController>().isClimbing = true;
         //Move to points
         setClimbPoint = 1;
         yield return new WaitForSeconds(climbingCooldown);

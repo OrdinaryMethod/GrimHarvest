@@ -4,102 +4,74 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
+    PlayerMovement playerMovement;
+    GroundingPoint groundingPoint;
     private Animator playerAnim;
 
-    [Header("Animation Conditions")]
-    public bool isRunning;
-    public bool hasLanded;
-    public bool isFreeFalling;
-    public bool isHanging;
-    public bool isClimbing;
+    private bool canChangeAnim;
+    private bool hasLanded;
 
+    const string Player_Idle = "Player_Idle";
+    const string Player_Run = "Player_Run";
+    const string Player_Jump = "Player_Jump";
+    const string Player_Land = "Player_Land";
 
-    // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
+        groundingPoint = GetComponentInChildren<GroundingPoint>();
         playerAnim = GetComponent<Animator>();
 
-        //Preset values
-        hasLanded = false;
-        isHanging = false;
+        canChangeAnim = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CheckKeys();
+        AnimChanger();
+        CheckLanding();
     }
 
-    private void CheckKeys()
+    private void AnimChanger()
     {
-        //Running idle
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (canChangeAnim)
         {
-            playerAnim.SetBool("running", true);
-            isRunning = true;
+            switch (playerMovement.animState)
+            {
+                case "idle":
+                    Debug.Log("idle");
+                    playerAnim.Play(Player_Idle);
+                    break;
+                case "running":
+                    Debug.Log("running");
+                    playerAnim.Play(Player_Run);
+                    break;
+                case "jumping":
+                    Debug.Log("jumping");
+                    playerAnim.Play(Player_Jump);
+                    break;
+                case "landing":
+                    canChangeAnim = false;
+                    StartCoroutine(DelayToLand());
+                    playerAnim.Play(Player_Land);
+                    break;
+                case "":
+                    break;
+            }
         }
-        else
-        {
-            playerAnim.SetBool("running", false);
-            isRunning = false;
-        }
+    }
 
-        //Jumping & climbing
-        bool isJumping = GetComponent<PlayerMovement>().isJumping;
-        bool canClimb = GetComponent<PlayerMovement>().canClimb;
-
-        if(isJumping)
-        {
-            playerAnim.SetBool("jumping", true);
-        }
-        else 
-        {
-            playerAnim.SetBool("jumping", false);
-        }
-
-        //Landing
+    private void CheckLanding()
+    {
+        hasLanded = groundingPoint.landed;
         if(hasLanded)
         {
-            playerAnim.SetBool("Landing", true);
-            playerAnim.SetBool("freefalling", false);
-            isFreeFalling = false;
-            hasLanded = false;
+            playerMovement.animState = "landing";
         }
-        else
-        {
-            playerAnim.SetBool("Landing", false);
-        }
+    }
 
-        //Free fall
-        if(isFreeFalling)
-        {
-            playerAnim.SetBool("freefalling", true);
-        }
-        else
-        {
-            playerAnim.SetBool("freefalling", false);
-        }
-        
-        //Hanging
-        if(isHanging)
-        {
-            playerAnim.SetBool("hanging", true);
-        }
-        else
-        {
-            playerAnim.SetBool("hanging", false);
-        }
-
-        //Climbing
-        if(isClimbing)
-        {
-            playerAnim.SetBool("climbing", true);
-            isClimbing = false;
-        }
-        else
-        {
-            playerAnim.SetBool("climbing", false);
-        }
-
+    IEnumerator DelayToLand()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canChangeAnim = true;
     }
 }

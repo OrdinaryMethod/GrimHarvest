@@ -206,15 +206,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2073038376372812981, guid: 6883c6f6112c54940b75454b1b5168b1,
+        type: 3}
+      propertyPath: jumpCooldown
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073038376372812981, guid: 6883c6f6112c54940b75454b1b5168b1,
+        type: 3}
+      propertyPath: normalJump
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 2073038376372812982, guid: 6883c6f6112c54940b75454b1b5168b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.07
+      value: -6.44
       objectReference: {fileID: 0}
     - target: {fileID: 2073038376372812982, guid: 6883c6f6112c54940b75454b1b5168b1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2073038376372812982, guid: 6883c6f6112c54940b75454b1b5168b1,
         type: 3}

@@ -1260,7 +1260,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1335,10 +1335,9 @@ MonoBehaviour:
   canMove: 0
   canClimb: 0
   normalJump: 40
-  jumpCooldown: 0.15
+  jumpCooldown: 0
   climbingSpeed: 25
   climbingCooldown: 0.2
-  isJumping: 0
   canFlip: 0
 --- !u!114 &2073038376372812969
 MonoBehaviour:
@@ -1383,10 +1382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a3f0b39ff26934ebbde21910fc5471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRunning: 1
-  hasLanded: 0
-  isFreeFalling: 0
-  isHanging: 0
 --- !u!95 &1520767513924599317
 Animator:
   serializedVersion: 3
