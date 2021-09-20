@@ -5,6 +5,7 @@ using UnityEngine;
 public class MultiTool : MonoBehaviour
 {
     //Variables
+    PlayerMovement playerMovement;
     Keybinds keybinds;
 
     [Header("Prefabs")]
@@ -16,8 +17,7 @@ public class MultiTool : MonoBehaviour
     [SerializeField] private GameObject fireDirection;
 
     [Header("General Variables")]
-    [SerializeField] private bool facingRight;  
-    private float angle;
+    [SerializeField] private bool facingRight;
 
     [Header("Ammo")]
     public int bulletAmmo;
@@ -41,7 +41,6 @@ public class MultiTool : MonoBehaviour
     void Update()
     {
         GetKeyBinds();
-        AimDirection();
         Shoot();
         ExtractData();
 
@@ -93,7 +92,7 @@ public class MultiTool : MonoBehaviour
         if (fireRate <= 0)
         {
             if (Input.GetKey(shootKey) && bulletAmmo > 0)
-            {             
+            {
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
 
                 Rigidbody2D bulletRb2d;
@@ -118,35 +117,5 @@ public class MultiTool : MonoBehaviour
         {
             fireRate -= Time.deltaTime;
         }  
-    }
-
-    private void AimDirection()
-    {
-        float angleUpRight = -315;
-        float angleUpLeft = 315;
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            if (facingRight)
-            {
-                angle = angleUpRight;
-            }
-            else
-            {
-                angle = angleUpLeft;
-            }
-        }
-        else
-        {
-            if (facingRight)
-            {
-                angle = -360;
-            }
-            else
-            {
-                angle = 360;
-            }         
-        }
-        transform.eulerAngles = Vector3.forward * angle;
     }
 }

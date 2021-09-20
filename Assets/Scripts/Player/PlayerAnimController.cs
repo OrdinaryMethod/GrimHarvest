@@ -12,6 +12,7 @@ public class PlayerAnimController : MonoBehaviour
     private bool hasLanded;
     private bool isClimbing;
 
+    //Base Animations
     const string Player_Idle = "Player_Idle";
     const string Player_Run = "Player_Run";
     const string Player_Jump = "Player_Jump";
@@ -31,12 +32,12 @@ public class PlayerAnimController : MonoBehaviour
 
     void Update()
     {
-        AnimChanger();
+        BaseAnimChanger();
         CheckLanding();
         CheckClimbing();
     }
 
-    private void AnimChanger()
+    private void BaseAnimChanger()
     {
         if (canChangeAnim)
         {
