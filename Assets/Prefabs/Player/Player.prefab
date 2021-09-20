@@ -1236,7 +1236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073038376372812976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.18, y: 4.38, z: 0}
+  m_LocalPosition: {x: 4.18, y: 2.44, z: 0}
   m_LocalScale: {x: 1.4925774, y: 2.2127295, z: 1}
   m_Children:
   - {fileID: 2073038376087052029}
@@ -1280,8 +1280,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23847882, y: 0.01225533}
-  m_Size: {x: 1.5496911, y: 3.4236333}
+  m_Offset: {x: 0.2093205, y: 0.11061755}
+  m_Size: {x: 1.2581089, y: 3.6203575}
   m_Direction: 0
 --- !u!114 &2073038376372812968
 MonoBehaviour:
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   canClimb: 0
   normalJump: 40
   jumpCooldown: 0
-  climbingSpeed: 60
+  climbingSpeed: 100
   climbingCooldown: 0.05
   animState: 
   isClimbing: 0

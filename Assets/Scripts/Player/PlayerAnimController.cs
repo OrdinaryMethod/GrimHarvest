@@ -22,6 +22,8 @@ public class PlayerAnimController : MonoBehaviour
     const string Player_Crouch = "Player_Crouch";
     const string Player_Idle_AimUp = "Player_Idle_AimUp";
     const string Player_Run_AimUp = "Player_Run_AimUp";
+    const string Player_Jump_AimUp = "Player_Jump_AimUp";
+    const string Player_Crouch_AimUp = "Player_Crouch_AimUp";
 
     void Start()
     {
@@ -76,6 +78,21 @@ public class PlayerAnimController : MonoBehaviour
                 case "runningAimingUp":
                     playerAnim.Play(Player_Run_AimUp);
                     break;
+                case "jumpingAimingUp":
+                    if(hasLanded)
+                    {
+                        canChangeAnim = false;
+                        playerAnim.Play(Player_Land);
+                        StartCoroutine(AimUpJumpDelay());
+                    }
+                    else
+                    {
+                        playerAnim.Play(Player_Jump_AimUp);
+                    }              
+                    break;
+                case "crouchingAimingUp":
+                    playerAnim.Play(Player_Crouch_AimUp);
+                    break;
             }
         }
     }
@@ -87,6 +104,13 @@ public class PlayerAnimController : MonoBehaviour
         {
             playerMovement.animState = "landing";
         }
+    }
+
+    IEnumerator AimUpJumpDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        playerAnim.Play(Player_Jump_AimUp);
+        canChangeAnim = true;
     }
 
     IEnumerator DelayToLand()

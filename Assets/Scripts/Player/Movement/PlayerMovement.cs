@@ -155,12 +155,19 @@ public class PlayerMovement : MonoBehaviour
     private void Crouch()
     {
         
-        if(Input.GetKey(crouchKey) && isGrounded)
+        if(Input.GetKey(crouchKey) && isGrounded && !Input.GetKey(aimUpKey))
         {
             canMove = false;
             canJump = false;
             isCrouching = true;
             animState = "crouching";
+        }
+        else if(Input.GetKey(crouchKey) && isGrounded && Input.GetKey(aimUpKey))
+        {
+            canMove = false;
+            canJump = false;
+            isCrouching = true;
+            animState = "crouchingAimingUp";
         }
         else
         {
@@ -198,9 +205,13 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(ClimbUpLedge());
         }
 
-        if(!isGrounded)
+        if(!isGrounded  && !Input.GetKey(aimUpKey))
         {
             animState = "jumping";
+        }
+        else if(!isGrounded && Input.GetKey(aimUpKey))
+        {
+            animState = "jumpingAimingUp";
         }
     }
 
@@ -227,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(climbingCooldown);
         canMove = false;
         setClimbPoint = 3;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(climbingCooldown);
         setClimbPoint = 0;   
 
         //Re-assign rb values
