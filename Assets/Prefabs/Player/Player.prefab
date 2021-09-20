@@ -776,8 +776,6 @@ MonoBehaviour:
   firePoint: {fileID: 2073038374277753074}
   fireDirection: {fileID: 2073038375779819023}
   facingRight: 1
-  leftArm: {fileID: 4954916680597662533}
-  rightArm: {fileID: 6902473635684445507}
   bulletAmmo: 100
   dataExtractorAmmo: 5
   setFireRate: 0.1
@@ -1302,6 +1300,7 @@ MonoBehaviour:
   attack: 0
   shoot: 323
   dataExtractor: 324
+  aimUp: 101
 --- !u!114 &2073038376372812970
 MonoBehaviour:
   m_ObjectHideFlags: 0

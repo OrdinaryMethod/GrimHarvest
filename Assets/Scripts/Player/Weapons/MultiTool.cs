@@ -5,7 +5,6 @@ using UnityEngine;
 public class MultiTool : MonoBehaviour
 {
     //Variables
-    PlayerMovement playerMovement;
     Keybinds keybinds;
 
     [Header("Prefabs")]

@@ -20,6 +20,8 @@ public class PlayerAnimController : MonoBehaviour
     const string Player_GrabLedge = "Player_GrabLedge";
     const string Player_Climb = "Player_Climb";
     const string Player_Crouch = "Player_Crouch";
+    const string Player_Idle_AimUp = "Player_Idle_AimUp";
+    const string Player_Run_AimUp = "Player_Run_AimUp";
 
     void Start()
     {
@@ -67,6 +69,12 @@ public class PlayerAnimController : MonoBehaviour
                     break;
                 case "crouching":
                     playerAnim.Play(Player_Crouch);
+                    break;
+                case "idleAimingUp":
+                    playerAnim.Play(Player_Idle_AimUp);
+                    break;
+                case "runningAimingUp":
+                    playerAnim.Play(Player_Run_AimUp);
                     break;
             }
         }

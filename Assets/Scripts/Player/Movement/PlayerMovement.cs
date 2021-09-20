@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     //Keybinds
     private KeyCode jumpKey;
     private KeyCode crouchKey;
+    private KeyCode aimUpKey;
 
     void Start()
     {
@@ -90,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         //Assign
         jumpKey = keybinds.jump;
         crouchKey = keybinds.crouch;
+        aimUpKey = keybinds.aimUp;
     }
 
     //Movement controls
@@ -100,9 +102,13 @@ public class PlayerMovement : MonoBehaviour
             //Check for horizontal movement
             if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {      
-                if(isGrounded)
+                if(isGrounded && !Input.GetKey(aimUpKey))
                 {
                     animState = "running";
+                }
+                else if(isGrounded && Input.GetKey(aimUpKey))
+                {
+                    animState = "runningAimingUp";
                 }
                 
 
@@ -127,10 +133,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if(isGrounded)
+                if(isGrounded && !Input.GetKey(aimUpKey))
                 {
                     animState = "idle";
-                }             
+                } 
+                else if(isGrounded && Input.GetKey(aimUpKey))
+                {
+                    animState = "idleAimingUp";
+                }
             }
 
 
@@ -217,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(climbingCooldown);
         canMove = false;
         setClimbPoint = 3;
-        yield return new WaitForSeconds(climbingCooldown);
+        yield return new WaitForSeconds(0);
         setClimbPoint = 0;   
 
         //Re-assign rb values
