@@ -24,6 +24,10 @@ public class PlayerAnimController : MonoBehaviour
     const string Player_Run_AimUp = "Player_Run_AimUp";
     const string Player_Jump_AimUp = "Player_Jump_AimUp";
     const string Player_Crouch_AimUp = "Player_Crouch_AimUp";
+    const string Player_Idle_AimDown = "Player_Idle_AimDown";
+    const string Player_Run_AimDown = "Player_Run_AimDown";
+    const string Player_Jump_AimDown = "Player_Jump_AimDown";
+    const string Player_Crouch_AimDown = "Player_Crouch_AimDown";
 
     void Start()
     {
@@ -45,6 +49,8 @@ public class PlayerAnimController : MonoBehaviour
     {
         if (canChangeAnim)
         {
+            string jumpAimDirection;
+
             switch (playerMovement.animState)
             {
                 case "idle":
@@ -82,8 +88,9 @@ public class PlayerAnimController : MonoBehaviour
                     if(hasLanded)
                     {
                         canChangeAnim = false;
+                        jumpAimDirection = "up";
                         playerAnim.Play(Player_Land);
-                        StartCoroutine(AimUpJumpDelay());
+                        StartCoroutine(AimUpJumpDelay(jumpAimDirection));
                     }
                     else
                     {
@@ -93,6 +100,29 @@ public class PlayerAnimController : MonoBehaviour
                 case "crouchingAimingUp":
                     playerAnim.Play(Player_Crouch_AimUp);
                     break;
+                case "idleAimingDown":
+                    playerAnim.Play(Player_Idle_AimDown);
+                    break;
+                case "runningAimingDown":
+                    playerAnim.Play(Player_Run_AimDown);
+                    break;
+                case "jumpingAimingDown":
+                    if (hasLanded)
+                    {
+                        canChangeAnim = false;
+                        jumpAimDirection = "down";
+                        playerAnim.Play(Player_Land);
+                        StartCoroutine(AimUpJumpDelay(jumpAimDirection));
+                    }
+                    else
+                    {
+                        playerAnim.Play(Player_Jump_AimDown);
+                    }
+                    break;
+                case "crouchingAimingDown":
+                    playerAnim.Play(Player_Crouch_AimDown);
+                    break;
+
             }
         }
     }
@@ -106,10 +136,17 @@ public class PlayerAnimController : MonoBehaviour
         }
     }
 
-    IEnumerator AimUpJumpDelay()
+    IEnumerator AimUpJumpDelay(string aimDirection)
     {
         yield return new WaitForSeconds(0.1f);
-        playerAnim.Play(Player_Jump_AimUp);
+        if(aimDirection == "up")
+        {
+            playerAnim.Play(Player_Jump_AimUp);
+        }
+        else if(aimDirection == "down")
+        {
+            playerAnim.Play(Player_Jump_AimDown);
+        }
         canChangeAnim = true;
     }
 

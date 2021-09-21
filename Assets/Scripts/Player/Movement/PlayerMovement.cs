@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode jumpKey;
     private KeyCode crouchKey;
     private KeyCode aimUpKey;
+    private KeyCode aimDownKey;
 
     void Start()
     {
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         jumpKey = keybinds.jump;
         crouchKey = keybinds.crouch;
         aimUpKey = keybinds.aimUp;
+        aimDownKey = keybinds.aimDown;
     }
 
     //Movement controls
@@ -102,15 +104,18 @@ public class PlayerMovement : MonoBehaviour
             //Check for horizontal movement
             if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {      
-                if(isGrounded && !Input.GetKey(aimUpKey))
+                if(isGrounded && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
                 {
                     animState = "running";
                 }
-                else if(isGrounded && Input.GetKey(aimUpKey))
+                else if(isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
                 {
                     animState = "runningAimingUp";
                 }
-                
+                else if(isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+                {
+                    animState = "runningAimingDown";
+                }
 
                 if (Input.GetAxisRaw("Horizontal") > 0.5f && !facingRight && !canClimb)
                 {
@@ -133,13 +138,17 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if(isGrounded && !Input.GetKey(aimUpKey))
+                if(isGrounded && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
                 {
                     animState = "idle";
                 } 
-                else if(isGrounded && Input.GetKey(aimUpKey))
+                else if(isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
                 {
                     animState = "idleAimingUp";
+                }
+                else if(isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+                {
+                    animState = "idleAimingDown";
                 }
             }
 
@@ -155,19 +164,26 @@ public class PlayerMovement : MonoBehaviour
     private void Crouch()
     {
         
-        if(Input.GetKey(crouchKey) && isGrounded && !Input.GetKey(aimUpKey))
+        if(Input.GetKey(crouchKey) && isGrounded && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
         {
             canMove = false;
             canJump = false;
             isCrouching = true;
             animState = "crouching";
         }
-        else if(Input.GetKey(crouchKey) && isGrounded && Input.GetKey(aimUpKey))
+        else if(Input.GetKey(crouchKey) && isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
         {
             canMove = false;
             canJump = false;
             isCrouching = true;
             animState = "crouchingAimingUp";
+        }
+        else if(Input.GetKey(crouchKey) && isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+        {
+            canMove = false;
+            canJump = false;
+            isCrouching = true;
+            animState = "crouchingAimingDown";
         }
         else
         {
@@ -205,13 +221,17 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(ClimbUpLedge());
         }
 
-        if(!isGrounded  && !Input.GetKey(aimUpKey))
+        if(!isGrounded  && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
         {
             animState = "jumping";
         }
-        else if(!isGrounded && Input.GetKey(aimUpKey))
+        else if(!isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
         {
             animState = "jumpingAimingUp";
+        }
+        else if(!isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+        {
+            animState = "jumpingAimingDown";
         }
     }
 

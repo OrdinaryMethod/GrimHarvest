@@ -13,4 +13,5 @@ public class Keybinds : MonoBehaviour
     public KeyCode shoot;
     public KeyCode dataExtractor;
     public KeyCode aimUp;
+    public KeyCode aimDown;
 }
