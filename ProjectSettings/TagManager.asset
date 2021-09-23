@@ -9,6 +9,7 @@ TagManager:
   - Surface
   - Ledge
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX

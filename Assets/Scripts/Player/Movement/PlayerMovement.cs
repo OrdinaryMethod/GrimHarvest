@@ -259,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         setClimbPoint = 3;
         yield return new WaitForSeconds(climbingCooldown);
-        setClimbPoint = 0;   
+        setClimbPoint = 4;   
 
         //Re-assign rb values
         rb2d.mass = rbMass;
@@ -270,7 +270,8 @@ public class PlayerMovement : MonoBehaviour
         climbingPoints = false;
         canMove = true;
         canJump = true;
-        canFlip = true;     
+        canFlip = true;
+        setClimbPoint = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -298,6 +299,9 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 case 3:
                     gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[2], climbingSpeed * Time.deltaTime);
+                    break;
+                case 4:
+                    climbPoints.Clear();
                     break;
             };
         }       
