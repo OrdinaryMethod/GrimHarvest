@@ -23,9 +23,9 @@ public class PlayerMovement : MonoBehaviour
     public bool canClimb;
 
     [Header("Jumping Values")]
-    [SerializeField] private float normalJump;
-    [SerializeField] public float jumpCooldown;
     private bool canJump;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
     [Header("Climbing Values")]
     [SerializeField] private float climbingSpeed;
@@ -44,11 +44,11 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode aimUpKey;
     private KeyCode aimDownKey;
 
-    void Start()
+    void Awake()
     {
         //Object Components
         rb2d = GetComponent<Rigidbody2D>();
-        playerStats = GetComponent<PlayerStats>(); //This must only be set on start as game mechanics can temporarily change these
+        playerStats = GetComponent<PlayerStats>(); 
 
         //Set base Stats
         playerSpeed = playerStats.playerSpeed;
@@ -67,14 +67,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        GetKeyBinds();
-        Move();
-        jump();
+        GetKeyBinds();     
         Crouch();
         ClimbSwitch();
-        FixTheBugs();      
+        FixTheBugs();
+        Move();
+        
+        //if(rb2d.velocity.y < 0)
+        //{
+        //    rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        //}
+        //else if(rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
+        //{
+        //    rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        //}
 
-        if(grabbingLedge)
+
+        if (grabbingLedge)
         {
             animState = "grabbingLedge";
             canMove = false;
@@ -83,6 +92,30 @@ public class PlayerMovement : MonoBehaviour
         {
             animState = "climbing";
         }
+
+        if (!isGrounded && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
+        {
+            animState = "jumping";
+        }
+        else if (!isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
+        {
+            animState = "jumpingAimingUp";
+        }
+        else if (!isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+        {
+            animState = "jumpingAimingDown";
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(!isCrouching)
+        {
+            Vector2 movement = new Vector2(moveHorizontal * playerSpeed, rb2d.velocity.y);
+            rb2d.velocity = movement;
+        }   
+
+        jump();
     }
 
     private void GetKeyBinds()
@@ -96,7 +129,6 @@ public class PlayerMovement : MonoBehaviour
         aimDownKey = keybinds.aimDown;
     }
 
-    //Movement controls
     private void Move()
     {
         if(canMove)
@@ -152,15 +184,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-
-            moveHorizontal = Input.GetAxis("Horizontal") * playerSpeed;
-            Vector2 Movement = new Vector2(moveHorizontal, 0);
-            Movement *= Time.deltaTime;
-            rb2d.transform.Translate(Movement);
-            playerPosition = rb2d.position;
+             moveHorizontal = Input.GetAxisRaw("Horizontal");
         }
     }
-    
+
     private void Crouch()
     {
         
@@ -202,8 +229,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb && canJump) //Normal jump
         {
-            rb2d.AddForce(new Vector2(0f, normalJump), ForceMode2D.Impulse);
-            isGrounded = false;
+            rb2d.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
         }
         else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {
@@ -221,18 +247,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(ClimbUpLedge());
         }
 
-        if(!isGrounded  && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
-        {
-            animState = "jumping";
-        }
-        else if(!isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
-        {
-            animState = "jumpingAimingUp";
-        }
-        else if(!isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
-        {
-            animState = "jumpingAimingDown";
-        }
+        
     }
 
     IEnumerator ClimbUpLedge()
@@ -259,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         setClimbPoint = 3;
         yield return new WaitForSeconds(climbingCooldown);
-        setClimbPoint = 4;   
+        setClimbPoint = 4;
 
         //Re-assign rb values
         rb2d.mass = rbMass;

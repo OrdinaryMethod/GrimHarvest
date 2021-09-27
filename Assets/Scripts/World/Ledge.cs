@@ -15,11 +15,15 @@ public class Ledge : MonoBehaviour
 
     void Start()
     {
+        gameObject.transform.localScale = new Vector3(20f, 3.5f, 3.5f);
+
         if(isRightLedge)
         {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+
+        
     }
 }
