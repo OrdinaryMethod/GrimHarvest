@@ -3673,7 +3673,7 @@ PrefabInstance:
     - target: {fileID: 2073038376372812981, guid: 6883c6f6112c54940b75454b1b5168b1,
         type: 3}
       propertyPath: lowJumpMultiplier
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2073038376372812982, guid: 6883c6f6112c54940b75454b1b5168b1,
         type: 3}

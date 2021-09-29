@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping Values")]
     private bool canJump;
-    public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
+    public float fallMultiplier;
+    public float lowJumpMultiplier;
 
     [Header("Climbing Values")]
     [SerializeField] private float climbingSpeed;
@@ -73,7 +73,17 @@ public class PlayerMovement : MonoBehaviour
         FixTheBugs();
         Move();
 
-        
+        //if (rb2d.velocity.y < 0)
+        //{
+        //    rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        //}
+        //else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
+        //{
+        //    rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        //}
+
+        jump();
+
 
         if (grabbingLedge)
         {
@@ -111,16 +121,7 @@ public class PlayerMovement : MonoBehaviour
             }          
         }
 
-        if (rb2d.velocity.y < 0)
-        {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        }
-        else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
-        {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        }
-
-        jump();
+        
     }
 
     private void GetKeyBinds()
@@ -241,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb && canJump) //Normal jump
         {
-            rb2d.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
+            rb2d.AddForce(Vector2.up * 25f, ForceMode2D.Impulse);
         }
         else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {
