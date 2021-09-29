@@ -72,36 +72,29 @@ public class PlayerMovement : MonoBehaviour
         ClimbSwitch();
         FixTheBugs();
         Move();
-        
-        //if(rb2d.velocity.y < 0)
-        //{
-        //    rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        //}
-        //else if(rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
-        //{
-        //    rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        //}
 
+        
 
         if (grabbingLedge)
         {
             animState = "grabbingLedge";
             canMove = false;
+            Debug.Log(animState + "movement controller");
         }
         else if(isClimbing)
         {
             animState = "climbing";
         }
 
-        if (!isGrounded && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
+        if (!isGrounded && !Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey) && !grabbingLedge)
         {
             animState = "jumping";
         }
-        else if (!isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
+        else if (!isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey) && !grabbingLedge)
         {
             animState = "jumpingAimingUp";
         }
-        else if (!isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+        else if (!isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey) && !grabbingLedge)
         {
             animState = "jumpingAimingDown";
         }
@@ -111,9 +104,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isCrouching)
         {
-            Vector2 movement = new Vector2(moveHorizontal * playerSpeed, rb2d.velocity.y);
-            rb2d.velocity = movement;
-        }   
+            if(canMove)
+            {
+                Vector2 movement = new Vector2(moveHorizontal * playerSpeed, rb2d.velocity.y);
+                rb2d.velocity = movement;
+            }          
+        }
+
+        if (rb2d.velocity.y < 0)
+        {
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
 
         jump();
     }
@@ -182,6 +187,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     animState = "idleAimingDown";
                 }
+                else if (isGrounded && Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
+                {
+                    animState = "idle";
+                }
             }
 
              moveHorizontal = Input.GetAxisRaw("Horizontal");
@@ -197,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             isCrouching = true;
             animState = "crouching";
+            rb2d.velocity = new Vector2(0, 0);
         }
         else if(Input.GetKey(crouchKey) && isGrounded && Input.GetKey(aimUpKey) && !Input.GetKey(aimDownKey))
         {
@@ -204,6 +214,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             isCrouching = true;
             animState = "crouchingAimingUp";
+            rb2d.velocity = new Vector2(0, 0);
         }
         else if(Input.GetKey(crouchKey) && isGrounded && !Input.GetKey(aimUpKey) && Input.GetKey(aimDownKey))
         {
@@ -211,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             isCrouching = true;
             animState = "crouchingAimingDown";
+            rb2d.velocity = new Vector2(0, 0);
         }
         else
         {
@@ -229,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb && canJump) //Normal jump
         {
-            rb2d.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+            rb2d.AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
         }
         else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
         {

@@ -43,6 +43,7 @@ public class PlayerAnimController : MonoBehaviour
         BaseAnimChanger();
         CheckLanding();
         CheckClimbing();
+        Debug.Log(playerMovement.animState);
     }
 
     private void BaseAnimChanger()
@@ -152,7 +153,7 @@ public class PlayerAnimController : MonoBehaviour
 
     IEnumerator DelayToLand()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         canChangeAnim = true;
     }
 
