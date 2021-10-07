@@ -15,7 +15,7 @@ public class BodyCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.tag == "Surface")
         {
             if (!playerMovement.isGrounded)
             {
@@ -26,12 +26,12 @@ public class BodyCollider : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Wall"))
-        {
-            if (!playerMovement.isGrounded)
-            {
-                playerMovement.grabbingLedge = false;
-            }
-        }
+        //if (collision.gameObject.CompareTag("Surface") || collision.gameObject.CompareTag("Wall"))
+        //{
+        //    if (!playerMovement.isGrounded)
+        //    {
+        //        playerMovement.grabbingLedge = false;
+        //    }
+        //}
     }
 }

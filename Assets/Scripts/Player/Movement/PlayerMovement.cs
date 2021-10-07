@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier;
     public float lowJumpMultiplier;
 
+    [Header("Wall Jumping Values")]
+    [SerializeField] private float xWallForce;
+    [SerializeField] private float yWallForce;
+    [SerializeField] private float wallJumpTime;
+
     [Header("Climbing Values")]
     [SerializeField] private float climbingSpeed;
     [SerializeField] private float climbingCooldown;
@@ -235,13 +240,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void jump()
     {
+        float input = Input.GetAxisRaw("Horizontal");
+
         if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge) //Normal jump
         {
             rb2d.AddForce(Vector2.up * 25f, ForceMode2D.Impulse);
         }
         else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge) //Ledge jump
         {
-            rb2d.AddForce(Vector2.up * 25f, ForceMode2D.Impulse);
+            rb2d.velocity = new Vector2(xWallForce * -input, yWallForce);
         }   
     }
 

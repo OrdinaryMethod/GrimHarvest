@@ -9,7 +9,7 @@ public class GroundingPoint : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Jumping
-        if (collision.gameObject.CompareTag("Surface"))
+        if (collision.gameObject.name == "Tilemap_Ground")
         {
             GetComponentInParent<PlayerMovement>().animState = "landing";
             GetComponentInParent<PlayerMovement>().isGrounded = true;
@@ -20,7 +20,7 @@ public class GroundingPoint : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //Jumping
-        if (collision.gameObject.CompareTag("Surface"))
+        if (collision.gameObject.name == "Tilemap_Ground")
         {
             GetComponentInParent<PlayerMovement>().isGrounded = false;
             landed = false;
