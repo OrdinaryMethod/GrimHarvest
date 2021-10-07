@@ -15,8 +15,6 @@ public class GrabPoint : MonoBehaviour
     void Start()
     {
         rb2d = GetComponentInParent<Rigidbody2D>();
-
-        Physics2D.IgnoreLayerCollision(10, 11, true);
     }
 
     // Update is called once per frame
@@ -24,76 +22,22 @@ public class GrabPoint : MonoBehaviour
     {
         //Get object components
         playerMovement = GetComponentInParent<PlayerMovement>();
-
-        GrabLedge();
-    }
-    private void GrabLedge()
-    {
-        if (playerMovement.grabbingLedge)
-        {
-            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-        else
-        {
-            rb2d.constraints = RigidbodyConstraints2D.None;
-            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Ledges
-        if (collision.gameObject.CompareTag("Ledge"))
-        {
-            StartCoroutine(PreventFallOnClimb());
-            playerMovement.grabbingLedge = true;
-            playerMovement.canMove = false;
-            playerMovement.isGrounded = false;
-            ledgeCollider = collision.gameObject.GetComponent<Collider2D>(); //Get Collider to ignore   
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if(collision.gameObject.CompareTag("Surface"))
+    //    {
+    //        playerMovement.grabbingLedge = true;
+    //    }
+    //}
 
-            GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint1.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint1.position.y));
-            GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint2.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint2.position.y));
-            GetComponentInParent<PlayerMovement>().climbPoints.Add(new Vector2(collision.gameObject.GetComponent<Ledge>().climpPoint3.position.x, collision.gameObject.GetComponent<Ledge>().climpPoint3.position.y));
-
-            Transform newPos = collision.gameObject.GetComponent<Ledge>().LandingPos;
-            StartCoroutine(PlayerToLandingPos(newPos));
-        }
-        else
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        //Ledges
-        if (collision.gameObject.CompareTag("Ledge"))
-        {
-            playerMovement.grabbingLedge = false;
-            playerMovement.canMove = true;
-            playerMovement.isGrounded = false;
-            playerMovement.canClimb = false;
-            StartCoroutine(ResetColliderIgnore());
-        }
-    }
-
-    IEnumerator PlayerToLandingPos(Transform newPos)
-    {
-        GameObject.Find("Player").transform.position = newPos.position; //Had to do it this way for whatever reason
-        yield return null;
-    }
-
-    //Give time to register grab before allowing to jump in order to prevent falling off cliff
-    IEnumerator PreventFallOnClimb()
-    {
-        yield return new WaitForSeconds(0.2f);
-        playerMovement.canClimb = true;
-    }
-
-    //Reset Ledge collider ignore
-    IEnumerator ResetColliderIgnore()
-    {
-        yield return new WaitForSeconds(0.1f);
-        Physics2D.IgnoreCollision(ledgeCollider, GetComponent<Collider2D>(), false);
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    //Ledges
+    //    if (collision.gameObject.CompareTag("Surface"))
+    //    {
+    //        playerMovement.grabbingLedge = false;
+    //    }
+    //}
 }

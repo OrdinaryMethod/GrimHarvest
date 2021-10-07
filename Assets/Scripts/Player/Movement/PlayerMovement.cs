@@ -69,9 +69,8 @@ public class PlayerMovement : MonoBehaviour
     {
         GetKeyBinds();     
         Crouch();
-        ClimbSwitch();
-        FixTheBugs();
         Move();
+        FixTheBugs();
 
         //if (rb2d.velocity.y < 0)
         //{
@@ -88,8 +87,6 @@ public class PlayerMovement : MonoBehaviour
         if (grabbingLedge)
         {
             animState = "grabbingLedge";
-            canMove = false;
-            Debug.Log(animState + "movement controller");
         }
         else if(isClimbing)
         {
@@ -119,9 +116,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 movement = new Vector2(moveHorizontal * playerSpeed, rb2d.velocity.y);
                 rb2d.velocity = movement;
             }          
-        }
-
-        
+        }       
     }
 
     private void GetKeyBinds()
@@ -240,101 +235,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void jump()
     {
-        if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge && !canClimb && canJump) //Normal jump
+        if (Input.GetKeyDown(jumpKey) && isGrounded && !grabbingLedge) //Normal jump
         {
             rb2d.AddForce(Vector2.up * 25f, ForceMode2D.Impulse);
         }
-        else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge && canClimb) //Ledge jump
+        else if(Input.GetKeyDown(jumpKey) && !isGrounded && grabbingLedge) //Ledge jump
         {
-            grabbingLedge = false;
-            rb2d.constraints = RigidbodyConstraints2D.None;
-            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            Collider2D ledgeCollider = GetComponentInChildren<GrabPoint>().ledgeCollider;
-
-            //Get colliders to ignore
-            Physics2D.IgnoreCollision(ledgeCollider, GetComponent<Collider2D>(), true);
-
-            canJump = false;
-
-            StartCoroutine(ClimbUpLedge());
-        }
-
-        
-    }
-
-    IEnumerator ClimbUpLedge()
-    {
-        isClimbing = true;
-        canMove = false;
-        canFlip = false;
-
-        //Assign backup variables
-        float rbMass = rb2d.mass;
-        float rbGravity = rb2d.gravityScale;
-
-        //Set player values to 0
-        rb2d.mass = 0;
-        rb2d.gravityScale = 0;
-        climbingPoints = true;
-
-        //Move to points
-        setClimbPoint = 1;
-        yield return new WaitForSeconds(climbingCooldown);
-        canMove = false;
-        setClimbPoint = 2;
-        yield return new WaitForSeconds(climbingCooldown);
-        canMove = false;
-        setClimbPoint = 3;
-        yield return new WaitForSeconds(climbingCooldown);
-        setClimbPoint = 4;
-
-        //Re-assign rb values
-        rb2d.mass = rbMass;
-        rb2d.gravityScale = rbGravity;
-        isClimbing = false;
-
-        yield return new WaitForSeconds(0.2f);
-        climbingPoints = false;
-        canMove = true;
-        canJump = true;
-        canFlip = true;
-        setClimbPoint = 0;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-    
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-      
+            rb2d.AddForce(Vector2.up * 25f, ForceMode2D.Impulse);
+        }   
     }
 
     //Minor functions
-    private void ClimbSwitch()
-    {
-        if(climbingPoints)
-        {
-            switch (setClimbPoint)
-            {
-                case 1:
-                    gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[0], climbingSpeed * Time.deltaTime);
-                    break;
-                case 2:
-                    gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[1], climbingSpeed * Time.deltaTime);
-                    break;
-                case 3:
-                    gameObject.transform.position = Vector2.MoveTowards(transform.position, climbPoints[2], climbingSpeed * Time.deltaTime);
-                    break;
-                case 4:
-                    climbPoints.Clear();
-                    break;
-            };
-        }       
-    }
-
     void Flip()
     {
         // Switch the way the player is labelled as facing
@@ -348,16 +259,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixTheBugs()
     {
-        //Prevent gripping bugs
-        if (isGrounded)
+        if(isGrounded)
         {
-            canClimb = false;
-        }
-
-        if (isGrounded && grabbingLedge)
-        {
-            isGrounded = false;
-            canClimb = true;
+            grabbingLedge = false;
         }
     }
 }

@@ -43,7 +43,6 @@ public class PlayerAnimController : MonoBehaviour
         BaseAnimChanger();
         CheckLanding();
         CheckClimbing();
-        Debug.Log(playerMovement.animState);
     }
 
     private void BaseAnimChanger()
