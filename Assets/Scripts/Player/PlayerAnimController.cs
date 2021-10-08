@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
-    PlayerMovement playerMovement;
-    GroundingPoint groundingPoint;
+    PlayerController playerController;
     private Animator playerAnim;
 
     private bool canChangeAnim;
@@ -31,8 +30,7 @@ public class PlayerAnimController : MonoBehaviour
 
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        groundingPoint = GetComponentInChildren<GroundingPoint>();
+        playerController = GetComponent<PlayerController>();
         playerAnim = GetComponent<Animator>();
 
         canChangeAnim = true;
@@ -41,8 +39,8 @@ public class PlayerAnimController : MonoBehaviour
     void Update()
     {
         BaseAnimChanger();
-        CheckLanding();
-        CheckClimbing();
+        //CheckLanding();
+        //CheckClimbing();
     }
 
     private void BaseAnimChanger()
@@ -51,7 +49,7 @@ public class PlayerAnimController : MonoBehaviour
         {
             string jumpAimDirection;
 
-            switch (playerMovement.animState)
+            switch (playerController.animState)
             {
                 case "idle":
                     playerAnim.Play(Player_Idle);
@@ -127,14 +125,14 @@ public class PlayerAnimController : MonoBehaviour
         }
     }
 
-    private void CheckLanding()
-    {
-        hasLanded = groundingPoint.landed;
-        if(hasLanded)
-        {
-            playerMovement.animState = "landing";
-        }
-    }
+    //private void CheckLanding()
+    //{
+    //    hasLanded = groundingPoint.landed;
+    //    if(hasLanded)
+    //    {
+    //        playerMovement.animState = "landing";
+    //    }
+    //}
 
     IEnumerator AimUpJumpDelay(string aimDirection)
     {
@@ -156,14 +154,14 @@ public class PlayerAnimController : MonoBehaviour
         canChangeAnim = true;
     }
 
-    private void CheckClimbing()
-    {
-        isClimbing = playerMovement.isClimbing;
-        if(isClimbing)
-        {
-            playerMovement.animState = "climbing";
-        }
-    }
+    //private void CheckClimbing()
+    //{
+    //    isClimbing = playerMovement.isClimbing;
+    //    if(isClimbing)
+    //    {
+    //        playerMovement.animState = "climbing";
+    //    }
+    //}
 
     IEnumerator DelayToClimb()
     {

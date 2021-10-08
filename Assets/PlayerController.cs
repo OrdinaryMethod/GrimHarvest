@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Transform frontCheck;
     public Transform groundCheck;
     public LayerMask whatIsGround;
+    private Keybinds keyBinds;
 
     [Header("Running")]
     private float moveInput;
@@ -29,6 +30,13 @@ public class PlayerController : MonoBehaviour
     public bool facingRight;
     public float checkRadius;
 
+    [Header("Animation State")]
+    public string animState;
+    bool hasLanded;
+
+    [Header("Keybinds")]
+    KeyCode jump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +45,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Get Keybinds
+        keyBinds = gameObject.GetComponent<Keybinds>();
+
         //Get movement input
         moveInput = Input.GetAxisRaw("Horizontal");
 
+        MapKeybinds();
+        AnimationState();
         Running();
         Jumping();
         WallSliding();
@@ -72,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(jump) && isGrounded)
         {
             rb2d.velocity = Vector2.up * jumpForce;
         }
@@ -99,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     void WallJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && wallSliding)
+        if (Input.GetKeyDown(jump) && wallSliding)
         {
             wallJumping = true;
             Invoke("SetWallJumpingToFalse", wallJumpTime);
@@ -137,5 +150,45 @@ public class PlayerController : MonoBehaviour
     void SetWallJumpingToFalse()
     {
         wallJumping = false;
+    }
+
+    void MapKeybinds()
+    {
+        jump = keyBinds.jump;
+    }
+
+    void AnimationState()
+    {
+        //Running & Idle
+        if (isGrounded)
+        {
+            if (moveInput > 0 || moveInput < 0)
+            {
+                animState = "running";
+            }
+            else if (moveInput == 0)
+            {
+                animState = "idle";
+            }
+        }
+        else
+        {
+            animState = "jumping";
+        }
+
+        if (hasLanded)
+        {
+            hasLanded = false;
+            animState = "landing";
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Landing
+        if (collision.gameObject.name == "Tilemap_Ground")
+        {
+            hasLanded = true;
+        }
     }
 }
