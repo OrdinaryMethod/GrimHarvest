@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     {
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
 
-        if (isTouchingFront && !isGrounded && moveInput != 0)
+        if (isTouchingFront && !isGrounded)
         {
             wallSliding = true;
         }
@@ -120,7 +120,18 @@ public class PlayerController : MonoBehaviour
 
         if (wallJumping)
         {
-            rb2d.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+            float wallJumpMultiplier;
+            if(facingRight)
+            {
+                wallJumpMultiplier = 0.5f;
+            }
+            else
+            {
+                wallJumpMultiplier = -0.5f;
+            }
+
+
+            rb2d.velocity = new Vector2(xWallForce * -wallJumpMultiplier, yWallForce);
         }
     }
 
