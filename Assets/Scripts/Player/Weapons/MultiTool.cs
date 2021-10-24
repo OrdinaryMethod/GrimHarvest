@@ -13,7 +13,6 @@ public class MultiTool : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private GameObject firePoint;
-    [SerializeField] private GameObject fireDirection;
 
     [Header("General Variables")]
     [SerializeField] private bool facingRight;
@@ -44,7 +43,7 @@ public class MultiTool : MonoBehaviour
         ExtractData();
 
         //Get parent values
-        facingRight = GetComponentInParent<PlayerMovement>().facingRight;     
+        facingRight = GetComponent<PlayerController>().facingRight;     
     }
 
     private void GetKeyBinds()

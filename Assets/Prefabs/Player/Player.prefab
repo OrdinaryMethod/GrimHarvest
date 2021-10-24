@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3141677232555595111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2583661680491947480}
+  m_Layer: 0
+  m_Name: Lighting_Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2583661680491947480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141677232555595111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6410665989880856213}
+  - {fileID: 1289176150580620426}
+  m_Father: {fileID: 4166731928235367504}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3526196100189323157
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,10 +57,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3526196100189323157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.43, y: 0.16, z: 0}
+  m_LocalPosition: {x: 1.4300003, y: 0.15999985, z: 0}
   m_LocalScale: {x: 10, y: 12, z: 0}
   m_Children: []
-  m_Father: {fileID: 4166731928235367504}
+  m_Father: {fileID: 2583661680491947480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6926546564871981216
@@ -2154,6 +2186,7 @@ GameObject:
   - component: {fileID: 4166731928235367505}
   - component: {fileID: 4166731928235367502}
   - component: {fileID: 4166731928235367506}
+  - component: {fileID: 943494973631047192}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2172,12 +2205,11 @@ Transform:
   m_LocalPosition: {x: 13.97, y: -55.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
-  - {fileID: 6410665989880856213}
+  - {fileID: 2583661680491947480}
   - {fileID: 4166731928479546933}
   - {fileID: 4166731927355195479}
   - {fileID: 4166731928863023095}
   - {fileID: 4166731929161039045}
-  - {fileID: 1289176150580620426}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2268,7 +2300,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ca8b8c879a40664419fc8055a4bcde6c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -2288,7 +2320,7 @@ MonoBehaviour:
   jump: 32
   crouch: 0
   attack: 0
-  shoot: 0
+  shoot: 323
   dataExtractor: 0
   aimUp: 0
   aimDown: 0
@@ -2330,6 +2362,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a3f0b39ff26934ebbde21910fc5471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &943494973631047192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166731928235367501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29ba7ad319e68b4a90c96fec7c09833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5438535669601572156, guid: 80de9b05729210749bc37a5988d9d4a9,
+    type: 3}
+  DataExtractorPrefab: {fileID: 6760953718106591882, guid: 0fdbf8b96e8913f42b314fd0fbad5d00,
+    type: 3}
+  firePoint: {fileID: 4166731928371697991}
+  facingRight: 0
+  bulletAmmo: 100
+  dataExtractorAmmo: 100
+  setFireRate: 0.2
+  bulletSpeed: 200
+  setExtractorRate: 0
+  dataExtractorSpeed: 0
 --- !u!1 &4166731928282246919
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,7 +3130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928863023092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.73, y: 0.39, z: -487.29297}
+  m_LocalPosition: {x: 1.73, y: 2.96, z: -487.29297}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4166731928235367504}
@@ -3237,7 +3293,7 @@ GameObject:
   - component: {fileID: 1289176150580620426}
   - component: {fileID: 2037366051573714798}
   m_Layer: 0
-  m_Name: Light 2D
+  m_Name: FlashLight_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3251,11 +3307,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4303604554271544116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.13, y: 1.22, z: 0}
+  m_LocalPosition: {x: 23.129997, y: 1.2200012, z: 0}
   m_LocalScale: {x: 35, y: 40, z: 0}
   m_Children: []
-  m_Father: {fileID: 4166731928235367504}
-  m_RootOrder: 5
+  m_Father: {fileID: 2583661680491947480}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2037366051573714798
 MonoBehaviour:
