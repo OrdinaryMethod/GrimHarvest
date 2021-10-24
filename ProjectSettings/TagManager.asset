@@ -10,6 +10,7 @@ TagManager:
   - Ledge
   - Ground
   - Wall
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
