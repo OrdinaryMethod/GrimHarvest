@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jumping")]
     public float jumpForce;
-    private bool isGrounded;
+    [SerializeField] private bool isGrounded;
     bool isTouchingFront;
     bool wallSliding;
     public float wallSlidingSpeed;

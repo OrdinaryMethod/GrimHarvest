@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HellHole/HellHole_Entrance.unity
+    guid: a4ec0cf4b408b7b41b304009dfee5b22
+  - enabled: 1
+    path: Assets/Scenes/HellHole/HellHole_UpperBelly.unity
+    guid: 7801ad18540a2884aadae4ba5e3e3cbe
   m_configObjects: {}
