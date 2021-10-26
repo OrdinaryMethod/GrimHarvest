@@ -613,6 +613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: HellHole_Entrance
+  xCord: 148
+  yCord: -234.55
 --- !u!1 &1333576145
 GameObject:
   m_ObjectHideFlags: 0
@@ -4798,8 +4800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aa4236396cc5f4b891c51166fa265f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemyLimit: 10
-  spawnLimitReached: 1
+  xCord: 0
+  yCord: 0
 --- !u!1 &2104878405
 GameObject:
   m_ObjectHideFlags: 0

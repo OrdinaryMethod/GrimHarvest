@@ -5181,7 +5181,7 @@ GameObject:
   - component: {fileID: 444545488}
   m_Layer: 0
   m_Name: SceneTransitioner_UpperBelly
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5213,6 +5213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: HellHole_UpperBelly
+  xCord: -110.85
+  yCord: -35.1
 --- !u!61 &444545488
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9059,8 +9061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aa4236396cc5f4b891c51166fa265f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemyLimit: 10
-  spawnLimitReached: 1
+  xCord: 9.5
+  yCord: 12.5
 --- !u!1 &1283715309
 GameObject:
   m_ObjectHideFlags: 0
@@ -9238,12 +9240,12 @@ PrefabInstance:
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: 147.85
       objectReference: {fileID: 0}
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.2
+      value: -234.54
       objectReference: {fileID: 0}
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}

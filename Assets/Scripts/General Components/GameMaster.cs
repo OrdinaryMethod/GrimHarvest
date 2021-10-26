@@ -1,29 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-    public int maxEnemyLimit;
-    public bool spawnLimitReached;
+    //Variables
+    GameObject player;
+
+    //Zone Spawn Location
+    public float xCord;
+    public float yCord;
+
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
-        ControlEnemySpawns();
+        
+        GameMasterData data = SaveSystem.LoadGameMaster();
+        if(data != null)
+        {
+            xCord = data.xCord;
+            yCord = data.yCord;
+        }
+        
+
+        player = GameObject.Find("Player");
+        player.transform.position = new Vector3(xCord,yCord,0);
     }
 
-    private void ControlEnemySpawns()
-    {
-        int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
-        if (enemyCount >= maxEnemyLimit)
-        {
-            spawnLimitReached = true;
-        }
-        else
-        {
-            spawnLimitReached = false;
-        }
-    }
 }
