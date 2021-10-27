@@ -7,12 +7,18 @@ public class SceneTransitioner : MonoBehaviour
 {
     //Variables
     public string sceneName;
+    public Vector2 playerPos;
+    public bool facingRight;
+    public VectorValue playerMemory;
+   
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.CompareTag("Player") && !collision.isTrigger)
         {
+            playerMemory.initialValue = playerPos;
+            playerMemory.facingRight = facingRight;
+
             SceneManager.LoadSceneAsync(sceneName);
         }
     }

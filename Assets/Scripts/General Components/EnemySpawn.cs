@@ -75,7 +75,7 @@ public class EnemySpawn : MonoBehaviour
 
     private void GameMaster()
     {
-        spawnLimitReached = GameObject.Find("GameMaster").GetComponent<GameMaster>().spawnLimitReached;
+     
     }
     private void OnDrawGizmosSelected()
     {

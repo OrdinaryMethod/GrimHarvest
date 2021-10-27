@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-public class GameMaster : MonoBehaviour
+[System.Serializable]
+public class GameMasterData
 {
 
 }
