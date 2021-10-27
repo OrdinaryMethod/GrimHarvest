@@ -42,7 +42,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+
+        //Values from scriptable object
         transform.position = startingPos.initialValue;
+        if(!startingPos.facingRight)
+        {
+            Flip();
+        }
     }
 
     void Update()

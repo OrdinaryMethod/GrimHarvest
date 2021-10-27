@@ -6,4 +6,5 @@ using UnityEngine;
 public class VectorValue : ScriptableObject
 {
     public Vector2 initialValue;
+    public bool facingRight;
 }

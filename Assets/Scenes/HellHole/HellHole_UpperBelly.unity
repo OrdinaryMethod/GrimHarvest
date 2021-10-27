@@ -613,7 +613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: HellHole_Entrance
-  playerPos: {x: 140, y: -235}
+  playerPos: {x: 165, y: -234}
+  facingRight: 0
   playerMemory: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
 --- !u!1 &1333576145
 GameObject:

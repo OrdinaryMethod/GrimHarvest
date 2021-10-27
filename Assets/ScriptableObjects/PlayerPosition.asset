@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerPosition
   m_EditorClassIdentifier: 
   initialValue: {x: 10, y: 5}
+  facingRight: 1
