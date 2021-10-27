@@ -7,24 +7,16 @@ public class SceneTransitioner : MonoBehaviour
 {
     //Variables
     public string sceneName;
+    public Vector2 playerPos;
+    public VectorValue playerMemory;
+   
 
-    //Zone Spawn Coordinates
-    public float xCord;
-    public float yCord;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.CompareTag("Player") && !collision.isTrigger)
         {
+            playerMemory.initialValue = playerPos;
             SceneManager.LoadSceneAsync(sceneName);
-            GameObject GM = GameObject.Find("GameMaster");
-            if(GM != null)
-            {
-                GM.GetComponent<GameMaster>().xCord = xCord;
-                GM.GetComponent<GameMaster>().yCord = yCord;
-                SaveSystem.SaveGameMaster(GM.GetComponent<GameMaster>());
-            }
-            
         }
     }
 }

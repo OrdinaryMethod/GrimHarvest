@@ -5182,7 +5182,7 @@ GameObject:
   m_Layer: 0
   m_Name: SceneTransitioner_UpperBelly
   m_TagString: MainCamera
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5213,8 +5213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: HellHole_UpperBelly
-  xCord: -110.85
-  yCord: -35.1
+  playerPos: {x: -110, y: -35}
+  playerMemory: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
 --- !u!61 &444545488
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5225,7 +5225,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.9725494, y: 0.32310486}
@@ -9061,8 +9061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aa4236396cc5f4b891c51166fa265f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xCord: 9.5
-  yCord: 12.5
 --- !u!1 &1283715309
 GameObject:
   m_ObjectHideFlags: 0
@@ -9217,6 +9215,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4166731927355195476, guid: 9f6ca363d63ea2649bcc8f66246f7106,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4166731928235367501, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}
       propertyPath: m_Name
@@ -9232,6 +9235,17 @@ PrefabInstance:
       propertyPath: xWallForce
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4166731928235367502, guid: 9f6ca363d63ea2649bcc8f66246f7106,
+        type: 3}
+      propertyPath: facingRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166731928235367502, guid: 9f6ca363d63ea2649bcc8f66246f7106,
+        type: 3}
+      propertyPath: startingPos
+      value: 
+      objectReference: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d,
+        type: 2}
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}
       propertyPath: m_RootOrder
@@ -9240,12 +9254,12 @@ PrefabInstance:
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147.85
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -234.54
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106,
         type: 3}

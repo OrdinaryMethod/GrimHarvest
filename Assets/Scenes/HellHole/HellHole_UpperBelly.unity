@@ -568,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781530994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -289.46, y: 200.5, z: 1}
+  m_LocalPosition: {x: -289.46, y: 200.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 463999849}
@@ -584,7 +584,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.9725494, y: 0.32310486}
@@ -613,8 +613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: HellHole_Entrance
-  xCord: 148
-  yCord: -234.55
+  playerPos: {x: 140, y: -235}
+  playerMemory: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
 --- !u!1 &1333576145
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,8 +4800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aa4236396cc5f4b891c51166fa265f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xCord: 0
-  yCord: 0
 --- !u!1 &2104878405
 GameObject:
   m_ObjectHideFlags: 0

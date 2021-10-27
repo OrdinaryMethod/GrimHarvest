@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask whatIsGround;
     private Keybinds keyBinds;
+    public VectorValue startingPos;
 
     [Header("Running")]
     private float moveInput;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        transform.position = startingPos.initialValue;
     }
 
     void Update()
