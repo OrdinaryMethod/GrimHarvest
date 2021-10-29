@@ -12,17 +12,16 @@ public class PlayerMonitor : MonoBehaviour
     private void Awake()
     {
         playerStats = GetComponent<PlayerStats>(); //Define
-
-        //Assign initial stats
         playerHealth = playerStats.playerHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        //if(playerHealth <= 0)
+        //{
+        //    Destroy(gameObject);
+        //}
+        Debug.Log(playerHealth);
     }
 }
