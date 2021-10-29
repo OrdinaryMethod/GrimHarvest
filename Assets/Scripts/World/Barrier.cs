@@ -6,6 +6,8 @@ public class Barrier : MonoBehaviour
 {
     //Variables
     [SerializeField] private float barrierHealth;
+    [SerializeField] private bool canShoot;
+    [SerializeField] private bool canMelee;
 
     void Update()
     {
@@ -14,11 +16,21 @@ public class Barrier : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Landing
-        if (collision.gameObject.tag == "PlayerBullet")
+        if(canShoot && canMelee)
         {
-            barrierHealth = barrierHealth - (collision.gameObject.GetComponent<Bullet>().bulletDamage);
+            if (collision.gameObject.tag == "PlayerBullet")
+            {
+                barrierHealth = barrierHealth - (collision.gameObject.GetComponent<Bullet>().bulletDamage);
+            }
         }
+        else if(!canShoot && canMelee)
+        {
+            if (collision.gameObject.tag == "PlayerMelee")
+            {
+                
+            }
+        }
+        
     }
 
     private void BarrierHealthCheck()
