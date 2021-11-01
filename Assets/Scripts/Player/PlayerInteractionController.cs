@@ -35,7 +35,7 @@ public class PlayerInteractionController : MonoBehaviour
         keybinds = GetComponent<Keybinds>(); //Define 
 
         //Assign
-        attack = keybinds.attack;
+       
     }
 
     private void GetStats()

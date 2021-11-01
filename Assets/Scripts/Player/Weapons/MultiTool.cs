@@ -31,9 +31,20 @@ public class MultiTool : MonoBehaviour
     [SerializeField] private float dataExtractorSpeed;
     private float extractorRate;
 
+    [Header("Melee Variables")]
+    private float timeBtwAttack;
+    public float startTimeBtwAttack;
+
+    public Transform attackPos;
+    public LayerMask whatIsEnemy;
+    public LayerMask whatIsBarrier;
+    public float attackRange;
+    public int damage;
+
     //Keybinds
     private KeyCode shootKey;
     private KeyCode extractDataKey;
+    private KeyCode meleeAttack;
 
     // Update is called once per frame
     void Update()
@@ -41,6 +52,7 @@ public class MultiTool : MonoBehaviour
         GetKeyBinds();
         Shoot();
         ExtractData();
+        MeleeAttack();
 
         //Get parent values
         facingRight = GetComponent<PlayerController>().facingRight;     
@@ -53,6 +65,7 @@ public class MultiTool : MonoBehaviour
         //Assign
         shootKey = keybinds.shoot;
         extractDataKey = keybinds.dataExtractor;
+        meleeAttack = keybinds.meleeAttack;
     }
 
     private void ExtractData()
@@ -115,5 +128,47 @@ public class MultiTool : MonoBehaviour
         {
             fireRate -= Time.deltaTime;
         }  
+    }
+
+    private void MeleeAttack()
+    {
+        if(Input.GetKey(meleeAttack))
+        {
+            if (timeBtwAttack <= 0)
+            {
+                Debug.Log("You Melee Attack");
+                timeBtwAttack = startTimeBtwAttack;
+
+                //basic enemy
+                Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
+                for (int i = 0; i < enemyCollider.Length; i++)
+                {
+                    Debug.Log("You strike an enemy");
+                    //enemyCollider[i].GetComponentInParent<EnemyController>().playerHealth -= damage;
+                }
+
+                //barriers
+                Collider2D[] barrierCollider = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsBarrier);
+                for (int i = 0; i < barrierCollider.Length; i++)
+                {
+                    if (barrierCollider[i].GetComponentInParent<Barrier>().canMelee)
+                    {
+                        Debug.Log("You strike a barrier");
+                        barrierCollider[i].GetComponentInParent<Barrier>().barrierHealth -= damage;
+                    }
+                }
+            }
+            else
+            {
+                timeBtwAttack -= Time.deltaTime;
+            }
+        }
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 }

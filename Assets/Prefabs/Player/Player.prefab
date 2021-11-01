@@ -109,6 +109,36 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &864946271323979852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3126789930977152385}
+  m_Layer: 3
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3126789930977152385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864946271323979852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.61, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6153978586312025742}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3141677232555595111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,8 +2567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: 32
   crouch: 0
-  attack: 0
-  shoot: 323
+  meleeAttack: 323
+  shoot: 324
   dataExtractor: 0
   aimUp: 0
   aimDown: 0
@@ -2622,6 +2652,16 @@ MonoBehaviour:
   bulletSpeed: 200
   setExtractorRate: 0
   dataExtractorSpeed: 0
+  startTimeBtwAttack: 0.3
+  attackPos: {fileID: 3126789930977152385}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsBarrier:
+    serializedVersion: 2
+    m_Bits: 128
+  attackRange: 3
+  damage: 1
 --- !u!114 &5666595832898114748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3563,6 +3603,7 @@ Transform:
   - {fileID: 4166731927355195479}
   - {fileID: 4166731928863023095}
   - {fileID: 4166731929161039045}
+  - {fileID: 3126789930977152385}
   m_Father: {fileID: 4166731928235367504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

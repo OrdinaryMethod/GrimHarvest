@@ -9,7 +9,7 @@ public class Keybinds : MonoBehaviour
     public KeyCode crouch;
 
     //Combat
-    public KeyCode attack;
+    public KeyCode meleeAttack;
     public KeyCode shoot;
     public KeyCode dataExtractor;
     public KeyCode aimUp;

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Barrier : MonoBehaviour
 {
     //Variables
-    [SerializeField] private float barrierHealth;
+    public float barrierHealth;
     [SerializeField] private bool canShoot;
-    [SerializeField] private bool canMelee;
+    public bool canMelee;
 
     void Update()
     {
@@ -22,15 +22,7 @@ public class Barrier : MonoBehaviour
             {
                 barrierHealth = barrierHealth - (collision.gameObject.GetComponent<Bullet>().bulletDamage);
             }
-        }
-        else if(!canShoot && canMelee)
-        {
-            if (collision.gameObject.tag == "PlayerMelee")
-            {
-                
-            }
-        }
-        
+        }      
     }
 
     private void BarrierHealthCheck()

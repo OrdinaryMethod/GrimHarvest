@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1082277540621630085}
   - component: {fileID: 1082277540621630084}
   - component: {fileID: 1082277540621630086}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: Barrier_test
   m_TagString: Surface
   m_Icon: {fileID: 0}
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrierHealth: 10
+  canShoot: 0
+  canMelee: 0
