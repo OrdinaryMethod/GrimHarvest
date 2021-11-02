@@ -12,13 +12,16 @@ public class PlayerController : MonoBehaviour
     private Keybinds keyBinds;
     public VectorValue startingPos;
 
+    [Header("Droid")]
+    public bool droidActive;
+
     [Header("Running")]
     private float moveInput;
     public float speed;
 
     [Header("Jumping")]
     public float jumpForce;
-    [SerializeField] private bool isGrounded;
+    public bool isGrounded;
     bool isTouchingFront;
     bool wallSliding;
     public float wallSlidingSpeed;
@@ -42,6 +45,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        droidActive = false;
+
 
         //Values from scriptable object
         transform.position = startingPos.initialValue;
@@ -56,25 +61,28 @@ public class PlayerController : MonoBehaviour
         //Get Keybinds
         keyBinds = gameObject.GetComponent<Keybinds>();
 
-        //Get movement input
-        moveInput = Input.GetAxisRaw("Horizontal");
-
-        MapKeybinds();
-        AnimationState();
-        Running();
-        Jumping();
-        WallSliding();
-        WallJumping();
-
-        //Flip character
-        if (moveInput > 0 && !facingRight)
+        if(!droidActive)
         {
-            Flip();
-        }
-        else if (moveInput < 0 && facingRight)
-        {
-            Flip();
-        }
+            //Get movement input
+            moveInput = Input.GetAxisRaw("Horizontal");
+
+            MapKeybinds();
+            AnimationState();
+            Running();
+            Jumping();
+            WallSliding();
+            WallJumping();
+
+            //Flip character
+            if (moveInput > 0 && !facingRight)
+            {
+                Flip();
+            }
+            else if (moveInput < 0 && facingRight)
+            {
+                Flip();
+            }
+        }   
     }
 
     // Update is called once per frame
