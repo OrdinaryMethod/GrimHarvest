@@ -6,10 +6,14 @@ public class DroidController : MonoBehaviour
 {
     [SerializeField] private Transform dockPos;
     private PlayerController playerController;
+    [SerializeField] private GameObject droidLight;
+    public GameObject droidBombPrefab;
+    public Transform bombDropPoint;
 
     private bool droidActive;
     private float moveInputX;
     private float moveInputY;
+    [SerializeField] private float speed;
 
 
     // Start is called before the first frame update
@@ -17,6 +21,7 @@ public class DroidController : MonoBehaviour
     {
         
         droidActive = false;
+        droidLight.SetActive(false); //Light
     }
 
     // Update is called once per frame
@@ -27,11 +32,14 @@ public class DroidController : MonoBehaviour
         if (!droidActive)
         {
             gameObject.transform.position = new Vector3(dockPos.position.x, dockPos.position.y, 0);
+            droidLight.SetActive(false); //Light
         }
         else
         {
             playerController.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
             playerController.animState = "idle";
+            droidLight.SetActive(true); //Light
+            DropBomb();
 
             Movement();
         }
@@ -64,6 +72,14 @@ public class DroidController : MonoBehaviour
     {
         moveInputX = Input.GetAxisRaw("Horizontal");
         moveInputY = Input.GetAxisRaw("Vertical");
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveInputX, moveInputY) * 10;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveInputX, moveInputY) * speed;
+    }
+
+    private void DropBomb()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Instantiate(droidBombPrefab, bombDropPoint.transform.position, gameObject.transform.rotation);
+        }
     }
 }

@@ -13,7 +13,16 @@ public class CameraController : MonoBehaviour
         if(FollowPlayer)
         {
             GameObject player = GameObject.Find("Player");
-            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+            if(!player.GetComponent<PlayerController>().droidActive)
+            {
+                transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+            }
+            else
+            {
+                GameObject droid = GameObject.Find("Droid");
+                transform.position = new Vector3(droid.transform.position.x, droid.transform.position.y, transform.position.z);
+            }
+            
         }
     }
 }
