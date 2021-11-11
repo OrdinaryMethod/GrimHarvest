@@ -6,7 +6,7 @@ public class Barrier : MonoBehaviour
 {
     //Variables
     public float barrierHealth;
-    [SerializeField] private bool canShoot;
+    public bool canShoot;
     public bool canMelee;
 
     void Update()
