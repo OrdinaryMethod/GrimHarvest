@@ -23,7 +23,7 @@ public class DroidBomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, bombTimer);
+        //Destroy(gameObject, bombTimer);
         bombTimer -= Time.deltaTime;
         if(bombTimer <= 0)
         {
@@ -49,10 +49,10 @@ public class DroidBomb : MonoBehaviour
             Collider2D[] triggerCollider = Physics2D.OverlapCircleAll(explosionPos.position, explosionRange, whatIsTrigger);
             for (int i = 0; i < triggerCollider.Length; i++)
             {
+                GameObject hazard = triggerCollider[i].transform.parent.gameObject;
+                hazard.SetActive(false);
                 
             }
-
-            //Destroy(gameObject);
         }
 
 

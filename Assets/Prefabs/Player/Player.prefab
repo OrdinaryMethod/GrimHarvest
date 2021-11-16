@@ -3813,6 +3813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dockPos: {fileID: 5603770706609609856}
   droidLight: {fileID: 940472987}
-  droidBombPrefab: {fileID: 0}
+  droidBombPrefab: {fileID: 6038098888893292127, guid: 446b2255e42550444b034b13a4fbcf1a,
+    type: 3}
   bombDropPoint: {fileID: 2191732554003683243}
   speed: 20

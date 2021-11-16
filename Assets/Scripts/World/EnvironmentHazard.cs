@@ -9,6 +9,10 @@ public class EnvironmentHazard : MonoBehaviour
 
     public Transform hazardPos;
     public LayerMask whatIsPlayer;
+    public GameObject trigger;
+
+    public bool active;
+
     public float hazardRange;
     public int damage;
 
