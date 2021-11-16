@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPos: {fileID: 6625666578052675207}
   bombTimer: 3
+  destroyBombTimer: 3.5
   explosionRange: 1.5
   damage: 3
   whatIsEnemy:

@@ -6,6 +6,7 @@ public class DroidBomb : MonoBehaviour
 {
     [SerializeField] private Transform explosionPos;
     [SerializeField] private float bombTimer;
+    [SerializeField] private float destroyBombTimer;
     [SerializeField] private float explosionRange;
     [SerializeField] private float damage;
 
@@ -23,7 +24,7 @@ public class DroidBomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Destroy(gameObject, bombTimer);
+        Destroy(gameObject, destroyBombTimer);
         bombTimer -= Time.deltaTime;
         if(bombTimer <= 0)
         {
