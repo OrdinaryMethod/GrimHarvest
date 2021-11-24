@@ -1755,11 +1755,9 @@ MonoBehaviour:
   facingRight: 1
   checkRadius: 0.5
   angle: 0
-  direction: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0, w: 0}
-  rArmDefault: {fileID: 4166731928946474983}
-  lArmDefault: {fileID: 4166731928448082140}
-  headDefault: {fileID: 4166731928619318874}
+  rightArm: {fileID: 4166731928946474983}
+  leftArm: {fileID: 4166731928448082140}
+  head: {fileID: 4166731928619318874}
   animState: 
 --- !u!114 &4166731928235367506
 MonoBehaviour:

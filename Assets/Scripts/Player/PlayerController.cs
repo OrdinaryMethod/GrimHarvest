@@ -38,9 +38,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Aiming")]
 
-    [SerializeField] private Transform rArmDefault;
-    [SerializeField] private Transform lArmDefault;
-    [SerializeField] private Transform headDefault;
+    [SerializeField] private Transform rightArm;
+    [SerializeField] private Transform leftArm;
+    [SerializeField] private Transform head;
 
     [Header("Animation State")]
     public string animState;
@@ -198,23 +198,35 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
 
-            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - GameObject.Find("LArm").GetComponent<Transform>().position;
-             
-            float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - leftArm.position;
+            Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - rightArm.position;
+            Vector2 headDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - head.position;
 
-            if(!facingRight)
+            float leftArmAngle = (Mathf.Atan2(leftArmDirection.y, leftArmDirection.x) * Mathf.Rad2Deg);
+            float rightArmAngle = (Mathf.Atan2(rightArmDirection.y, rightArmDirection.x) * Mathf.Rad2Deg);
+            float headAngle = (Mathf.Atan2(headDirection.y, headDirection.x) * Mathf.Rad2Deg);
+
+            if (!facingRight)
             {
-                angle = angle - 180;
+                leftArmAngle = leftArmAngle - 180;
+                rightArmAngle = rightArmAngle - 180;
+                headAngle = headAngle - 180;
             }
   
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-          
-            GameObject.Find("LArm").GetComponent<Transform>().rotation = Quaternion.Slerp(GameObject.Find("LArm").GetComponent<Transform>().rotation, rotation, 50 * Time.deltaTime);
+            Quaternion leftArmRotation = Quaternion.AngleAxis(leftArmAngle, Vector3.forward);
+            Quaternion rightArmRotation = Quaternion.AngleAxis(rightArmAngle, Vector3.forward);
+            Quaternion headRotation = Quaternion.AngleAxis(headAngle, Vector3.forward);
+
+            leftArm.rotation = Quaternion.Slerp(leftArm.rotation, leftArmRotation, 50 * Time.deltaTime);
+            rightArm.rotation = Quaternion.Slerp(rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
+            head.rotation = Quaternion.Slerp(head.rotation, headRotation, 50 * Time.deltaTime);
         }
         else
         {
             canMove = true;
-            GameObject.Find("LArm").GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+            leftArm.rotation = Quaternion.Euler(0, 0, 0);
+            rightArm.rotation = Quaternion.Euler(0, 0, 0);
+            head.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
