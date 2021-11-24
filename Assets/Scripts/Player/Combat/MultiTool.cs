@@ -18,7 +18,6 @@ public class MultiTool : MonoBehaviour
     [SerializeField] private bool facingRight;
 
     [Header("Ammo")]
-    public int bulletAmmo;
     public int dataExtractorAmmo;
 
     [Header("Shooting Variables")]
@@ -55,7 +54,7 @@ public class MultiTool : MonoBehaviour
         MeleeAttack();
 
         //Get parent values
-        facingRight = GetComponent<PlayerController>().facingRight;     
+        facingRight = GetComponent<PlayerController>().facingRight;
     }
 
     private void GetKeyBinds()
@@ -99,35 +98,28 @@ public class MultiTool : MonoBehaviour
     }
 
     private void Shoot()
-    {
-        if (fireRate <= 0)
+    {  
+        
+
+        if (Input.GetKeyDown(shootKey))
         {
-            if (Input.GetKey(shootKey) && bulletAmmo > 0)
+            RaycastHit2D hitInfo;
+
+            if (facingRight)
             {
-                GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, gameObject.transform.rotation);
-
-                Rigidbody2D bulletRb2d;
-                bulletRb2d = bullet.GetComponent<Rigidbody2D>();
-
-                if(facingRight)
-                {
-                    bulletRb2d.velocity = bulletRb2d.GetRelativeVector(Vector2.right * bulletSpeed);
-                }
-                else
-                {
-                    bulletRb2d.velocity = bulletRb2d.GetRelativeVector(Vector2.left * bulletSpeed);
-                }
-
-                bulletAmmo--;
-
-                Destroy(bullet, 2);              
+                hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
             }
-            fireRate = setFireRate;
-        }
-        else
-        {
-            fireRate -= Time.deltaTime;
-        }  
+            else
+            {
+                hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right);
+            }
+
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+                //get component of things to do damage
+            }
+        }          
     }
 
     private void MeleeAttack()

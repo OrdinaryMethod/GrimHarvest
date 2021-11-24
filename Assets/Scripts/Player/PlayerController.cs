@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool droidActive;
 
     [Header("Running")]
+    public bool canMove;
     private float moveInput;
     public float speed;
 
@@ -33,6 +34,13 @@ public class PlayerController : MonoBehaviour
     [Header("Misc")]
     public bool facingRight;
     public float checkRadius;
+    public float angle;
+
+    [Header("Aiming")]
+
+    [SerializeField] private Transform rArmDefault;
+    [SerializeField] private Transform lArmDefault;
+    [SerializeField] private Transform headDefault;
 
     [Header("Animation State")]
     public string animState;
@@ -46,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         droidActive = false;
+        canMove = true;
 
 
         //Values from scriptable object
@@ -68,10 +77,14 @@ public class PlayerController : MonoBehaviour
 
             MapKeybinds();
             AnimationState();
-            Running();
-            Jumping();
+            if(canMove)
+            {
+                Running();
+                Jumping();
+            }         
             WallSliding();
             WallJumping();
+            AimDirection();
 
             //Flip character
             if (moveInput > 0 && !facingRight)
@@ -168,7 +181,6 @@ public class PlayerController : MonoBehaviour
         // Switch the way the player is labelled as facing
         facingRight = !facingRight;
 
-        // Multiply the player's x local scale by -1
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
@@ -177,6 +189,33 @@ public class PlayerController : MonoBehaviour
     void SetWallJumpingToFalse()
     {
         wallJumping = false;
+    }
+
+    void AimDirection()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            canMove = false;
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
+
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - GameObject.Find("LArm").GetComponent<Transform>().position;
+             
+            float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+
+            if(!facingRight)
+            {
+                angle = angle - 180;
+            }
+  
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+          
+            GameObject.Find("LArm").GetComponent<Transform>().rotation = Quaternion.Slerp(GameObject.Find("LArm").GetComponent<Transform>().rotation, rotation, 50 * Time.deltaTime);
+        }
+        else
+        {
+            canMove = true;
+            GameObject.Find("LArm").GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     void MapKeybinds()
