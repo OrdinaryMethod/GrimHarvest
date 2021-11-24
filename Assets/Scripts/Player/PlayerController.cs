@@ -87,14 +87,17 @@ public class PlayerController : MonoBehaviour
             AimDirection();
 
             //Flip character
-            if (moveInput > 0 && !facingRight)
+            if(canMove)
             {
-                Flip();
-            }
-            else if (moveInput < 0 && facingRight)
-            {
-                Flip();
-            }
+                if (moveInput > 0 && !facingRight)
+                {
+                    Flip();
+                }
+                else if (moveInput < 0 && facingRight)
+                {
+                    Flip();
+                }
+            }            
         }   
     }
 
@@ -220,6 +223,19 @@ public class PlayerController : MonoBehaviour
             leftArm.rotation = Quaternion.Slerp(leftArm.rotation, leftArmRotation, 50 * Time.deltaTime);
             rightArm.rotation = Quaternion.Slerp(rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
             head.rotation = Quaternion.Slerp(head.rotation, headRotation, 50 * Time.deltaTime);
+
+
+            Debug.Log(leftArmDirection);
+
+            if (facingRight && leftArmDirection.x < 0)
+            {
+                Flip();
+            }
+            else if (!facingRight && leftArmDirection.x > 0)
+            {
+                Flip();
+            }
+
         }
         else
         {
