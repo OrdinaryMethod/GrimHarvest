@@ -224,9 +224,6 @@ public class PlayerController : MonoBehaviour
             rightArm.rotation = Quaternion.Slerp(rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
             head.rotation = Quaternion.Slerp(head.rotation, headRotation, 50 * Time.deltaTime);
 
-
-            Debug.Log(leftArmDirection);
-
             if (facingRight && leftArmDirection.x < 0)
             {
                 Flip();

@@ -23,7 +23,7 @@ public class MultiTool : MonoBehaviour
     [Header("Shooting Variables")]
     [SerializeField] private float setFireRate;
     [SerializeField] private float bulletSpeed;
-    private float fireRate;
+    public LineRenderer lineRenderer;
 
     [Header("Data Extractor Variables")]
     [SerializeField] private float setExtractorRate;
@@ -49,7 +49,10 @@ public class MultiTool : MonoBehaviour
     void Update()
     {
         GetKeyBinds();
-        Shoot();
+        if (Input.GetKeyDown(shootKey))
+        {
+            StartCoroutine(Shoot());
+        }          
         ExtractData();
         MeleeAttack();
 
@@ -97,29 +100,56 @@ public class MultiTool : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    IEnumerator Shoot()
     {  
-        
-
-        if (Input.GetKeyDown(shootKey))
-        {
+ 
             RaycastHit2D hitInfo;
 
             if (facingRight)
             {
                 hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
+
+                if (hitInfo)
+                {
+                     Debug.Log(hitInfo.transform.name);
+
+                    lineRenderer.SetPosition(0, firePoint.transform.position);
+                    lineRenderer.SetPosition(1, hitInfo.point);
+                }
+                else
+                {
+                    lineRenderer.SetPosition(0, firePoint.transform.position);
+                    lineRenderer.SetPosition(1, firePoint.transform.position + firePoint.transform.right * 100);
+                }
             }
             else
             {
                 hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right);
+                
+
+                if (hitInfo)
+                {
+                    Debug.Log(hitInfo.transform.name);
+
+                    lineRenderer.SetPosition(1, firePoint.transform.position);
+                    lineRenderer.SetPosition(0, hitInfo.point);
+                }
+                else
+                {
+                    lineRenderer.SetPosition(1, firePoint.transform.position);
+                    lineRenderer.SetPosition(0, firePoint.transform.position - firePoint.transform.right * 100);
+                }
             }
 
-            if (hitInfo)
-            {
-                Debug.Log(hitInfo.transform.name);
-                //get component of things to do damage
-            }
-        }          
+            
+
+       lineRenderer.enabled = true;
+
+        yield return new WaitForSeconds(0.02f);
+
+       lineRenderer.enabled = false;
+
+                  
     }
 
     private void MeleeAttack()
