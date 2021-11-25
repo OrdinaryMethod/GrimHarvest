@@ -24,6 +24,7 @@ public class MultiTool : MonoBehaviour
     [SerializeField] private float setFireRate;
     [SerializeField] private float bulletSpeed;
     public LineRenderer lineRenderer;
+    public int shootingDamage;
 
     [Header("Data Extractor Variables")]
     [SerializeField] private float setExtractorRate;
@@ -103,43 +104,64 @@ public class MultiTool : MonoBehaviour
     IEnumerator Shoot()
     {  
  
-            RaycastHit2D hitInfo;
+        RaycastHit2D hitInfo;
 
-            if (facingRight)
+        if (facingRight)
+        {
+            hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
+
+            if (hitInfo)
             {
-                hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
+                Debug.Log(hitInfo.transform.name);
 
-                if (hitInfo)
-                {
-                     Debug.Log(hitInfo.transform.name);
-
-                    lineRenderer.SetPosition(0, firePoint.transform.position);
-                    lineRenderer.SetPosition(1, hitInfo.point);
-                }
-                else
-                {
-                    lineRenderer.SetPosition(0, firePoint.transform.position);
-                    lineRenderer.SetPosition(1, firePoint.transform.position + firePoint.transform.right * 100);
-                }
+                //Spawn line
+                lineRenderer.SetPosition(0, firePoint.transform.position);
+                lineRenderer.SetPosition(1, hitInfo.point);
             }
             else
             {
-                hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right);
+                //Spawn line
+                lineRenderer.SetPosition(0, firePoint.transform.position);
+                lineRenderer.SetPosition(1, firePoint.transform.position + firePoint.transform.right * 100);
+            }
+        }
+        else
+        {
+            hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right);
                 
 
-                if (hitInfo)
-                {
-                    Debug.Log(hitInfo.transform.name);
-
-                    lineRenderer.SetPosition(1, firePoint.transform.position);
-                    lineRenderer.SetPosition(0, hitInfo.point);
-                }
-                else
-                {
-                    lineRenderer.SetPosition(1, firePoint.transform.position);
-                    lineRenderer.SetPosition(0, firePoint.transform.position - firePoint.transform.right * 100);
-                }
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+                    
+                //Spawn line
+                lineRenderer.SetPosition(1, firePoint.transform.position);
+                lineRenderer.SetPosition(0, hitInfo.point);
             }
+            else
+            {
+
+                //Spawn line
+                lineRenderer.SetPosition(1, firePoint.transform.position);
+                lineRenderer.SetPosition(0, firePoint.transform.position - firePoint.transform.right * 100);
+            }
+        }
+
+        //Damage Logic
+        if(hitInfo)
+        {
+            //Barrier
+            Barrier barrier = hitInfo.transform.GetComponent<Barrier>();
+            if(barrier != null)
+            {
+                if(barrier.canShoot)
+                {
+                    barrier.barrierHealth -= shootingDamage;
+                }            
+            }
+            
+        }
+        
 
             
 

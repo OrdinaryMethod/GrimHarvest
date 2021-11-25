@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove;
     private float moveInput;
     public float speed;
+    public float sprintSpeed;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour
     public float angle;
 
     [Header("Aiming")]
-
     [SerializeField] private Transform rightArm;
     [SerializeField] private Transform leftArm;
     [SerializeField] private Transform head;
@@ -110,7 +110,18 @@ public class PlayerController : MonoBehaviour
 
     void Running()
     {
-        rb2d.velocity = new Vector2(moveInput * speed, rb2d.velocity.y);
+        float currentSpeed;
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentSpeed = speed;
+        }
+
+        rb2d.velocity = new Vector2(moveInput * currentSpeed, rb2d.velocity.y);
     }
 
     void Jumping()

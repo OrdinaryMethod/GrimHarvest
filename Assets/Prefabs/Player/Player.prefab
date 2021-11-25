@@ -1876,6 +1876,7 @@ MonoBehaviour:
   droidActive: 0
   canMove: 0
   speed: 25
+  sprintSpeed: 40
   jumpForce: 50
   isGrounded: 0
   wallSlidingSpeed: 5
@@ -1923,6 +1924,7 @@ MonoBehaviour:
   setFireRate: 0.2
   bulletSpeed: 200
   lineRenderer: {fileID: 9141478995379436258}
+  shootingDamage: 1
   setExtractorRate: 0
   dataExtractorSpeed: 0
   startTimeBtwAttack: 0.3
