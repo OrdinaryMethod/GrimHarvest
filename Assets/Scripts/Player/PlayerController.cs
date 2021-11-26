@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Keybinds")]
     KeyCode jump;
+    KeyCode sprint;
+    KeyCode aim;
 
     // Start is called before the first frame update
     void Start()
@@ -104,15 +106,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Improve jumping
         NotFloatyJump();
+    }
+
+    void MapKeybinds()
+    {
+        jump = keyBinds.jump;
+        sprint = keyBinds.sprint;
+        aim = keyBinds.aim;
     }
 
     void Running()
     {
         float currentSpeed;
 
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKey(sprint))
         {
             currentSpeed = sprintSpeed;
         }
@@ -207,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
     void AimDirection()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(aim))
         {
             canMove = false;
             rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
@@ -243,7 +251,6 @@ public class PlayerController : MonoBehaviour
             {
                 Flip();
             }
-
         }
         else
         {
@@ -252,11 +259,6 @@ public class PlayerController : MonoBehaviour
             rightArm.rotation = Quaternion.Euler(0, 0, 0);
             head.rotation = Quaternion.Euler(0, 0, 0);
         }
-    }
-
-    void MapKeybinds()
-    {
-        jump = keyBinds.jump;
     }
 
     void AnimationState()

@@ -7,11 +7,11 @@ public class Keybinds : MonoBehaviour
     //Movement
     public KeyCode jump;
     public KeyCode crouch;
+    public KeyCode sprint;
 
     //Combat
     public KeyCode meleeAttack;
     public KeyCode shoot;
     public KeyCode dataExtractor;
-    public KeyCode aimUp;
-    public KeyCode aimDown;
+    public KeyCode aim;
 }
