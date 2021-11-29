@@ -63,6 +63,7 @@ public class CaveHaunter : MonoBehaviour
         DetermineSpawnPoint();
         HuntPlayer();
         ReturnToPosition();
+        PlayerIsHiding();
     }
 
     void DetermineSpawnPoint()
@@ -100,13 +101,6 @@ public class CaveHaunter : MonoBehaviour
 
     void HuntPlayer()
     {
-        //Check if player is hiding
-        if(_player.GetComponent<PlayerController>().isHidden)
-        {
-            huntingPlayer = false;
-        }
-        
-
         if(huntingPlayer && !findingSpawnLocation)
         {
             transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime); //Find and kill the twat
@@ -132,6 +126,24 @@ public class CaveHaunter : MonoBehaviour
                 _countDownValue = Random.Range(_minCountDownValue, _maxCountDownValue); //Reset countdown to hunt timer
             }
         }
+    }
+
+    void PlayerIsHiding()
+    {
+        if(!findingSpawnLocation)
+        {
+            if (_player.GetComponent<PlayerController>().isHidden)
+            {
+                huntingPlayer = false;
+                returningToSpawnLocation = true;
+            }
+            else
+            {
+                huntingPlayer = true;
+                returningToSpawnLocation = false;
+            }
+        }
+        
     }
 
     IEnumerator TriggerHunt()

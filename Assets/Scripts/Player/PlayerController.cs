@@ -122,16 +122,26 @@ public class PlayerController : MonoBehaviour
 
     void Running()
     {
-        float currentSpeed;
-
-        if(Input.GetKey(sprint))
+        //State
+        if((Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0) && isGrounded)
         {
-            currentSpeed = sprintSpeed;
-            isSprinting = true;
+            isRunning = true;
         }
         else
         {
-            isSprinting = false;
+            isRunning = false;
+        }
+
+        float currentSpeed;
+
+        if(Input.GetKey(sprint) && isGrounded)
+        {
+            currentSpeed = sprintSpeed;
+            isSprinting = true; //State
+        }
+        else
+        {
+            isSprinting = false; //State
             currentSpeed = speed;
         }
 
@@ -146,17 +156,27 @@ public class PlayerController : MonoBehaviour
         {
             rb2d.velocity = Vector2.up * jumpForce;
         }
+
+        //State
+        if(!isGrounded && !isClimbing)
+        {
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
     }
 
     void Crouching()
     {
         if(Input.GetKey(KeyCode.C))
         {
-            isCrouching = true;
+            isCrouching = true; //State
         }
         else
         {
-            isCrouching = false;
+            isCrouching = false; //State
         }
     }
 
@@ -167,10 +187,17 @@ public class PlayerController : MonoBehaviour
         if (isTouchingFront && !isGrounded)
         {
             wallSliding = true;
+
+            //State
+            isClimbing = true;
         }
         else
         {
             wallSliding = false;
+
+
+            //State
+            isClimbing = false;
         }
 
         if (wallSliding)
