@@ -32,6 +32,14 @@ public class PlayerController : MonoBehaviour
     public float yWallForce;
     public float wallJumpTime;
 
+    [Header("States")]
+    public bool isRunning;
+    public bool isSprinting;
+    public bool isJumping;
+    public bool isClimbing;
+    public bool isCrouching;
+    public bool isHidden;
+
     [Header("Misc")]
     public bool facingRight;
     public float checkRadius;
@@ -41,10 +49,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rightArm;
     [SerializeField] private Transform leftArm;
     [SerializeField] private Transform head;
-
-    [Header("Animation State")]
-    public string animState;
-    bool hasLanded;
 
     [Header("Keybinds")]
     KeyCode jump;
@@ -72,18 +76,18 @@ public class PlayerController : MonoBehaviour
         //Get Keybinds
         keyBinds = gameObject.GetComponent<Keybinds>();
 
-        if(!droidActive)
+        if (!droidActive)
         {
             //Get movement input
             moveInput = Input.GetAxisRaw("Horizontal");
 
             MapKeybinds();
-            AnimationState();
             if(canMove)
             {
                 Running();
                 Jumping();
-            }         
+            }
+            Crouching();
             WallSliding();
             WallJumping();
             AimDirection();
@@ -123,9 +127,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(sprint))
         {
             currentSpeed = sprintSpeed;
+            isSprinting = true;
         }
         else
         {
+            isSprinting = false;
             currentSpeed = speed;
         }
 
@@ -139,6 +145,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(jump) && isGrounded)
         {
             rb2d.velocity = Vector2.up * jumpForce;
+        }
+    }
+
+    void Crouching()
+    {
+        if(Input.GetKey(KeyCode.C))
+        {
+            isCrouching = true;
+        }
+        else
+        {
+            isCrouching = false;
         }
     }
 
@@ -258,41 +276,6 @@ public class PlayerController : MonoBehaviour
             leftArm.rotation = Quaternion.Euler(0, 0, 0);
             rightArm.rotation = Quaternion.Euler(0, 0, 0);
             head.rotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
-
-    void AnimationState()
-    {
-        //Running & Idle
-        if (isGrounded)
-        {
-            if (moveInput > 0 || moveInput < 0)
-            {
-                animState = "running";
-            }
-            else if (moveInput == 0)
-            {
-                animState = "idle";
-            }
-        }
-        else
-        {
-            animState = "jumping";
-        }
-
-        if (hasLanded)
-        {
-            hasLanded = false;
-            animState = "landing";
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Landing
-        if (collision.gameObject.name == "Tilemap_Ground")
-        {
-            hasLanded = true;
         }
     }
 }

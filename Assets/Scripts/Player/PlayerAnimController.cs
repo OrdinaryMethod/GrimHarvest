@@ -38,92 +38,92 @@ public class PlayerAnimController : MonoBehaviour
 
     void Update()
     {
-        BaseAnimChanger();
+        //BaseAnimChanger();
         //CheckLanding();
         //CheckClimbing();
     }
 
-    private void BaseAnimChanger()
-    {
-        if (canChangeAnim)
-        {
-            string jumpAimDirection;
+    //private void BaseAnimChanger()
+    //{
+    //    if (canChangeAnim)
+    //    {
+    //        string jumpAimDirection;
 
-            switch (playerController.animState)
-            {
-                case "idle":
-                    playerAnim.Play(Player_Idle);
-                    break;
-                case "running":
-                    playerAnim.Play(Player_Run);
-                    break;
-                case "jumping":
-                    playerAnim.Play(Player_Jump);
-                    break;
-                case "landing":
-                    canChangeAnim = false;
-                    StartCoroutine(DelayToLand());
-                    playerAnim.Play(Player_Land);
-                    break;
-                case "grabbingLedge":
-                    playerAnim.Play(Player_GrabLedge);
-                    break;
-                case "climbing":
-                    canChangeAnim = false;
-                    StartCoroutine(DelayToClimb());
-                    playerAnim.Play(Player_Climb);
-                    break;
-                case "crouching":
-                    playerAnim.Play(Player_Crouch);
-                    break;
-                case "idleAimingUp":
-                    playerAnim.Play(Player_Idle_AimUp);
-                    break;
-                case "runningAimingUp":
-                    playerAnim.Play(Player_Run_AimUp);
-                    break;
-                case "jumpingAimingUp":
-                    if(hasLanded)
-                    {
-                        canChangeAnim = false;
-                        jumpAimDirection = "up";
-                        playerAnim.Play(Player_Land);
-                        StartCoroutine(AimUpJumpDelay(jumpAimDirection));
-                    }
-                    else
-                    {
-                        playerAnim.Play(Player_Jump_AimUp);
-                    }              
-                    break;
-                case "crouchingAimingUp":
-                    playerAnim.Play(Player_Crouch_AimUp);
-                    break;
-                case "idleAimingDown":
-                    playerAnim.Play(Player_Idle_AimDown);
-                    break;
-                case "runningAimingDown":
-                    playerAnim.Play(Player_Run_AimDown);
-                    break;
-                case "jumpingAimingDown":
-                    if (hasLanded)
-                    {
-                        canChangeAnim = false;
-                        jumpAimDirection = "down";
-                        playerAnim.Play(Player_Land);
-                        StartCoroutine(AimUpJumpDelay(jumpAimDirection));
-                    }
-                    else
-                    {
-                        playerAnim.Play(Player_Jump_AimDown);
-                    }
-                    break;
-                case "crouchingAimingDown":
-                    playerAnim.Play(Player_Crouch_AimDown);
-                    break;
+    //        switch (playerController.animState)
+    //        {
+    //            case "idle":
+    //                playerAnim.Play(Player_Idle);
+    //                break;
+    //            case "running":
+    //                playerAnim.Play(Player_Run);
+    //                break;
+    //            case "jumping":
+    //                playerAnim.Play(Player_Jump);
+    //                break;
+    //            case "landing":
+    //                canChangeAnim = false;
+    //                StartCoroutine(DelayToLand());
+    //                playerAnim.Play(Player_Land);
+    //                break;
+    //            case "grabbingLedge":
+    //                playerAnim.Play(Player_GrabLedge);
+    //                break;
+    //            case "climbing":
+    //                canChangeAnim = false;
+    //                StartCoroutine(DelayToClimb());
+    //                playerAnim.Play(Player_Climb);
+    //                break;
+    //            case "crouching":
+    //                playerAnim.Play(Player_Crouch);
+    //                break;
+    //            case "idleAimingUp":
+    //                playerAnim.Play(Player_Idle_AimUp);
+    //                break;
+    //            case "runningAimingUp":
+    //                playerAnim.Play(Player_Run_AimUp);
+    //                break;
+    //            case "jumpingAimingUp":
+    //                if(hasLanded)
+    //                {
+    //                    canChangeAnim = false;
+    //                    jumpAimDirection = "up";
+    //                    playerAnim.Play(Player_Land);
+    //                    StartCoroutine(AimUpJumpDelay(jumpAimDirection));
+    //                }
+    //                else
+    //                {
+    //                    playerAnim.Play(Player_Jump_AimUp);
+    //                }              
+    //                break;
+    //            case "crouchingAimingUp":
+    //                playerAnim.Play(Player_Crouch_AimUp);
+    //                break;
+    //            case "idleAimingDown":
+    //                playerAnim.Play(Player_Idle_AimDown);
+    //                break;
+    //            case "runningAimingDown":
+    //                playerAnim.Play(Player_Run_AimDown);
+    //                break;
+    //            case "jumpingAimingDown":
+    //                if (hasLanded)
+    //                {
+    //                    canChangeAnim = false;
+    //                    jumpAimDirection = "down";
+    //                    playerAnim.Play(Player_Land);
+    //                    StartCoroutine(AimUpJumpDelay(jumpAimDirection));
+    //                }
+    //                else
+    //                {
+    //                    playerAnim.Play(Player_Jump_AimDown);
+    //                }
+    //                break;
+    //            case "crouchingAimingDown":
+    //                playerAnim.Play(Player_Crouch_AimDown);
+    //                break;
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 
     //private void CheckLanding()
     //{

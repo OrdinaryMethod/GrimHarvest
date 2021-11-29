@@ -37,7 +37,6 @@ public class DroidController : MonoBehaviour
         else
         {
             playerController.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            playerController.animState = "idle";
             droidLight.SetActive(true); //Light
             DropBomb();
 

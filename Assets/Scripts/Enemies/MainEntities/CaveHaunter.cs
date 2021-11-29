@@ -100,6 +100,13 @@ public class CaveHaunter : MonoBehaviour
 
     void HuntPlayer()
     {
+        //Check if player is hiding
+        if(_player.GetComponent<PlayerController>().isHidden)
+        {
+            huntingPlayer = false;
+        }
+        
+
         if(huntingPlayer && !findingSpawnLocation)
         {
             transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime); //Find and kill the twat
