@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
         if((Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0) && isGrounded)
         {
             isRunning = true;
+            
         }
         else
         {
