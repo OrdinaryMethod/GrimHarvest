@@ -383,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 217407765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 74672459}
   m_RootOrder: 0
@@ -7972,7 +7972,7 @@ Transform:
   m_GameObject: {fileID: 267568348}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 74672459}
   m_RootOrder: 1
@@ -38094,7 +38094,7 @@ GameObject:
   - component: {fileID: 703363107}
   - component: {fileID: 703363106}
   m_Layer: 0
-  m_Name: SceneTransitioner_Entrance
+  m_Name: NameMeAfterNextArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
