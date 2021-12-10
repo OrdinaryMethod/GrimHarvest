@@ -1217,7 +1217,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022329807, y: 0}
+  m_Offset: {x: -0.022329807, y: -0.16290092}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1228,7 +1228,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9553404, y: 8}
+  m_Size: {x: 1.9553404, y: 7.674198}
   m_EdgeRadius: 0
 --- !u!1 &4166731927586104303
 GameObject:
@@ -1875,8 +1875,8 @@ MonoBehaviour:
   startingPos: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
   droidActive: 0
   canMove: 0
-  speed: 25
-  sprintSpeed: 40
+  speed: 20
+  sprintSpeed: 25
   jumpForce: 50
   isGrounded: 0
   wallSlidingSpeed: 5
