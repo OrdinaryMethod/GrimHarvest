@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - PlayerBullet
   - DroidBomb
+  - EnemyPatrolPoint
   layers:
   - Default
   - TransparentFX
