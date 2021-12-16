@@ -23,6 +23,9 @@ public class EntityAI : MonoBehaviour
     [SerializeField] private Transform _castPoint;
     [SerializeField] float _aggroRange;
 
+    [Header("Misc")]
+    private bool _facingRight;
+
 
 
     // Start is called before the first frame update
@@ -33,6 +36,7 @@ public class EntityAI : MonoBehaviour
         _agent.updateUpAxis = false;
         _determineNewPatrolPoint = false;
         _isResting = false;
+        _facingRight = true;
 
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
 
@@ -41,46 +45,22 @@ public class EntityAI : MonoBehaviour
         _patrolPointMax = _patrolPointObjects.Length;
         _patrolPointSelect = Random.Range(0, _patrolPointMax);
         _selectedPatrolPoint = _patrolPointSelect;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!_isPatrolling)
-        {
-            _agent.SetDestination(_target.position);
-            _agent.speed = 30f;
-
-        }
-        else
-        {
-         
-                _agent.SetDestination(_patrolPointObjects[_selectedPatrolPoint].transform.position);
-            
-        
-            _agent.speed = 20f;
-        }
-
         DetermineNewPatrolPoint();
-
-        if(CanSeePlayer(_aggroRange))
-        {
-            Debug.Log("Player found");
-        }
-        else
-        {
-            Debug.Log("PlayerNotFound");
-        }
+        HuntPlayer();
 
         //Flip
-        if(_rb2d.velocity.x >= 0.01f)
+        if (_agent.velocity.x >= 0.01f && !_facingRight)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            Flip();
         }
-        else if(_rb2d.velocity.x <= -0.01f)
+        else if (_agent.velocity.x <= -0.01f && _facingRight)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            Flip();
         }
     }
 
@@ -90,13 +70,26 @@ public class EntityAI : MonoBehaviour
         {
             _determineNewPatrolPoint = true;
         }
-        
     }
 
     private void DetermineNewPatrolPoint()
     {
- 
-            if (_determineNewPatrolPoint)
+        if (!_isPatrolling)
+        {
+            _agent.SetDestination(_target.position);
+            _agent.speed = 30f;
+
+        }
+        else
+        {
+
+            _agent.SetDestination(_patrolPointObjects[_selectedPatrolPoint].transform.position);
+
+
+            _agent.speed = 20f;
+        }
+
+        if (_determineNewPatrolPoint)
             {
                 if (_patrolPointSelect == _selectedPatrolPoint)
                 {
@@ -111,14 +104,35 @@ public class EntityAI : MonoBehaviour
         
     }
 
+    private void HuntPlayer()
+    {
+        if (CanSeePlayer(_aggroRange))
+        {
+            _isPatrolling = false;
+        }
+    }
+
+    private void ScanForPlayer()
+    {
+
+    }
+
     bool CanSeePlayer(float distance)
     {
         bool val = false;
-        float castDistance = distance;
+        Vector2 endPos;
 
-        Vector2 endPos = _castPoint.position + Vector3.right * distance;
+        if (_facingRight)
+        {
+            endPos = _castPoint.position + Vector3.right * distance;
+        }
+        else
+        {
+            endPos = _castPoint.position + Vector3.left * distance;
+        }
+         
 
-        RaycastHit2D hit = Physics2D.Linecast(_castPoint.position, endPos, 1 << LayerMask.NameToLayer("Default"));
+        RaycastHit2D hit = Physics2D.Raycast(_castPoint.position, endPos);
 
         if(hit.collider != null)
         {
@@ -135,5 +149,15 @@ public class EntityAI : MonoBehaviour
         }
 
         return val;
+    }
+
+    void Flip()
+    {
+        // Switch the way the player is labelled as facing
+        _facingRight = !_facingRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
