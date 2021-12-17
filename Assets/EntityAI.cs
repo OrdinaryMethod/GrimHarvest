@@ -5,19 +5,22 @@ using UnityEngine.AI;
 
 public class EntityAI : MonoBehaviour
 {
+    [Header("Main Settings")]
     [SerializeField] private Transform _target;
+    [SerializeField] private float _patrolSpeed;
+    [SerializeField] private float _chaseSpeed;
     private NavMeshAgent _agent;
-    private Rigidbody2D _rb2d;
-    public Transform enemyGFX;
 
     [Header("Patrol")]
-    private GameObject[] _patrolPointObjects;
     [SerializeField] private bool _isPatrolling;
+    [SerializeField] private int _selectedPatrolPoint;
+    private GameObject[] _patrolPointObjects;
     private int _patrolPointMax;
     private int _patrolPointSelect;
-    [SerializeField] private int _selectedPatrolPoint;
     private bool _determineNewPatrolPoint;
     private bool _isResting;
+    [SerializeField] private float _setTimeToRest;
+    private float _timeToRest;
 
     [Header("Aggro")]
     [SerializeField] private Transform _castPoint;
@@ -35,16 +38,15 @@ public class EntityAI : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _determineNewPatrolPoint = false;
-        _isResting = false;
         _facingRight = true;
-
-        _rb2d = gameObject.GetComponent<Rigidbody2D>();
+        _isResting = false;
 
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint"); 
 
         _patrolPointMax = _patrolPointObjects.Length;
         _patrolPointSelect = Random.Range(0, _patrolPointMax);
         _selectedPatrolPoint = _patrolPointSelect;
+        _timeToRest = _setTimeToRest;
     }
 
     // Update is called once per frame
@@ -69,6 +71,7 @@ public class EntityAI : MonoBehaviour
         if(collision.gameObject.tag == "EnemyPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
         {
             _determineNewPatrolPoint = true;
+            _isResting = true;
         }
     }
 
@@ -77,19 +80,28 @@ public class EntityAI : MonoBehaviour
         if (!_isPatrolling)
         {
             _agent.SetDestination(_target.position);
-            _agent.speed = 30f;
+            _agent.speed = _chaseSpeed;
 
         }
         else
         {
-
             _agent.SetDestination(_patrolPointObjects[_selectedPatrolPoint].transform.position);
-
-
-            _agent.speed = 20f;
+            _agent.speed = _patrolSpeed;
         }
 
         if (_determineNewPatrolPoint)
+        {
+            if(_isResting)
+            {
+                _timeToRest -= Time.deltaTime;
+
+                if(_timeToRest <= 0)
+                {
+                    _isResting = false;
+                    _timeToRest = _setTimeToRest;
+                }
+            }
+            else
             {
                 if (_patrolPointSelect == _selectedPatrolPoint)
                 {
@@ -101,7 +113,7 @@ public class EntityAI : MonoBehaviour
                     _determineNewPatrolPoint = false;
                 }
             }
-        
+        }       
     }
 
     private void HuntPlayer()
@@ -112,11 +124,6 @@ public class EntityAI : MonoBehaviour
         }
     }
 
-    private void ScanForPlayer()
-    {
-
-    }
-
     bool CanSeePlayer(float distance)
     {
         bool val = false;
@@ -124,15 +131,15 @@ public class EntityAI : MonoBehaviour
 
         if (_facingRight)
         {
-            endPos = _castPoint.position + Vector3.right * distance;
+            endPos = _target.position - _castPoint.position;
         }
         else
         {
-            endPos = _castPoint.position + Vector3.left * distance;
+            endPos = _target.position - _castPoint.position;
         }
          
 
-        RaycastHit2D hit = Physics2D.Raycast(_castPoint.position, endPos);
+        RaycastHit2D hit = Physics2D.Raycast(_castPoint.position, endPos, distance);
 
         if(hit.collider != null)
         {
@@ -145,7 +152,7 @@ public class EntityAI : MonoBehaviour
                 val = false;
             }
 
-            Debug.DrawLine(_castPoint.position, endPos, Color.red);
+            //Debug.DrawRay(_castPoint.position, endPos, Color.red);
         }
 
         return val;
