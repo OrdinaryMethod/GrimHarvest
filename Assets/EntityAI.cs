@@ -28,11 +28,12 @@ public class EntityAI : MonoBehaviour
 
     [Header("Misc")]
     private bool _facingRight;
+    private PlayerController _playerController;
 
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
@@ -41,7 +42,8 @@ public class EntityAI : MonoBehaviour
         _facingRight = true;
         _isResting = false;
 
-        _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint"); 
+        _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint");
+        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         _patrolPointMax = _patrolPointObjects.Length;
         _patrolPointSelect = Random.Range(0, _patrolPointMax);
@@ -82,6 +84,10 @@ public class EntityAI : MonoBehaviour
             _agent.SetDestination(_target.position);
             _agent.speed = _chaseSpeed;
 
+            if(_playerController.isHidden)
+            {
+                _isPatrolling = true;
+            }
         }
         else
         {
@@ -99,6 +105,7 @@ public class EntityAI : MonoBehaviour
                 {
                     _isResting = false;
                     _timeToRest = _setTimeToRest;
+                    Debug.Log(_timeToRest);
                 }
             }
             else
@@ -129,21 +136,13 @@ public class EntityAI : MonoBehaviour
         bool val = false;
         Vector2 endPos;
 
-        if (_facingRight)
-        {
-            endPos = _target.position - _castPoint.position;
-        }
-        else
-        {
-            endPos = _target.position - _castPoint.position;
-        }
-         
+        endPos = _target.position - _castPoint.position;
 
         RaycastHit2D hit = Physics2D.Raycast(_castPoint.position, endPos, distance);
 
         if(hit.collider != null)
         {
-            if(hit.collider.gameObject.CompareTag("Player"))
+            if(hit.collider.gameObject.CompareTag("Player") && !_playerController.isHidden)
             {
                 val = true;
             }
