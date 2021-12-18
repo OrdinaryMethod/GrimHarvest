@@ -151,7 +151,7 @@ public class EntityAI : MonoBehaviour
                 val = false;
             }
 
-            //Debug.DrawRay(_castPoint.position, endPos, Color.red);
+            Debug.DrawRay(_castPoint.position, endPos, Color.red);
         }
 
         return val;
