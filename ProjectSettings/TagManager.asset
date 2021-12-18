@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - PlayerBullet
   - DroidBomb
+  - EnemyPatrolPoint
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Surface
   - Ground
   - Trigger
-  - 
+  - Entity
   - 
   - 
   - 
