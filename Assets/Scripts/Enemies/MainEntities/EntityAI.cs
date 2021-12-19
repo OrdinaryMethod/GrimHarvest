@@ -60,7 +60,7 @@ public class EntityAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetermineNewPatrolPoint();
+        Pathing();
         HuntPlayer();
         ListenForNoise();
 
@@ -75,25 +75,7 @@ public class EntityAI : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "EnemyPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
-        {
-            _determineNewPatrolPoint = true;
-            _isResting = true;
-        }
-        else if(collision.gameObject.tag == "NoiseSource")
-        {
-            _timeToRest = _setTimeToRest;
-            _persuingNoise = false;
-            _isPatrolling = true;
-            _determineNewPatrolPoint = true;
-            _isResting = true;
-            Destroy(collision.gameObject);
-        }
-    }
-
-    private void DetermineNewPatrolPoint()
+    private void Pathing()
     {
         if (!_isResting && !_isPatrolling && !_persuingNoise) //Chase Player
         {
@@ -120,8 +102,6 @@ public class EntityAI : MonoBehaviour
             if(_isResting)
             {
                 _timeToRest -= Time.deltaTime;
-
-                Debug.Log("resting");
 
                 if(_timeToRest <= 0)
                 {
@@ -208,6 +188,24 @@ public class EntityAI : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
+        {
+            _determineNewPatrolPoint = true;
+            _isResting = true;
+        }
+        else if (collision.gameObject.tag == "NoiseSource")
+        {
+            _timeToRest = _setTimeToRest;
+            _persuingNoise = false;
+            _isPatrolling = true;
+            _determineNewPatrolPoint = true;
+            _isResting = true;
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()
