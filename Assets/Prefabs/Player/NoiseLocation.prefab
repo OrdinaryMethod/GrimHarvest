@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4250257077018609369}
   - component: {fileID: 4250257077018609368}
+  - component: {fileID: 8350584736898131163}
   m_Layer: 15
   m_Name: NoiseLocation
   m_TagString: NoiseSource
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4250257077018609371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 240.66243, y: -80.94708, z: -145.41249}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,3 +48,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.63288116}
   serializedVersion: 2
   m_Radius: 1.1328812
+--- !u!114 &8350584736898131163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250257077018609371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4196f2e22cb8bf44583612c0c4f7f673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseExpired: 0
+  setTimeToExpire: 2
+  timeToExpire: 0

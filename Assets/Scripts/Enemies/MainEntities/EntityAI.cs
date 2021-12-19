@@ -182,7 +182,11 @@ public class EntityAI : MonoBehaviour
         Collider2D[] noiseCollider = Physics2D.OverlapCircleAll(_hearingPos.position, _hearingRange, _whatIsNoise);
         for (int i = 0; i < noiseCollider.Length; i++)
         {
-            StartCoroutine(PersueNoise(noiseCollider[i].transform));
+            if(!noiseCollider[i].GetComponent<NoiseSource>().noiseExpired)
+            {
+                StartCoroutine(PersueNoise(noiseCollider[i].transform));
+            }
+            
         }
     }
 

@@ -116,6 +116,7 @@ public class MultiTool : MonoBehaviour
         else
         {
             noiseSource.transform.position = transform.position;
+            noiseSource.GetComponent<NoiseSource>().resetNoise = true;
         }
 
         RaycastHit2D hitInfo;
