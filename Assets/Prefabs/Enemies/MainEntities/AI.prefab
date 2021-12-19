@@ -63,6 +63,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children:
   - {fileID: 5050452691022825289}
+  - {fileID: 7876143417176784315}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,11 +191,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89d803a6c5cbe949aa3648b03eef229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  _target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106, type: 3}
   _patrolSpeed: 15
   _chaseSpeed: 30
   _isPatrolling: 1
   _selectedPatrolPoint: 0
-  _setTimeToRest: 0
+  _setTimeToRest: 2
   _castPoint: {fileID: 5050452691022825289}
   _aggroRange: 35
+  _hearingPos: {fileID: 7876143417176784315}
+  _whatIsNoise:
+    serializedVersion: 2
+    m_Bits: 32768
+  _hearingRange: 100
+--- !u!1 &5547668469948299842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7876143417176784315}
+  m_Layer: 0
+  m_Name: HearingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7876143417176784315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5547668469948299842}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0}
+  m_Children: []
+  m_Father: {fileID: 5050452691563420919}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

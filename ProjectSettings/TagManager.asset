@@ -13,6 +13,7 @@ TagManager:
   - PlayerBullet
   - DroidBomb
   - EnemyPatrolPoint
+  - NoiseSource
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Ground
   - Trigger
   - Entity
-  - 
+  - NoiseSource
   - 
   - 
   - 

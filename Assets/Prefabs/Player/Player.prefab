@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021558361082497077}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: DefaultFireDir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126789930977152385}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: MeleeAttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7113380736309460790}
   - component: {fileID: 6439042687665738546}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GeneralLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1098,7 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731927286882912}
   - component: {fileID: 4166731927286882915}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731927586104302}
   - component: {fileID: 4166731927586104305}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RBicept
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731927735291278}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731927924233072}
   - component: {fileID: 4166731927924233075}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928028017510}
   - component: {fileID: 4166731928028017513}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928111650649}
   - component: {fileID: 4166731928111650651}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1611,7 +1611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928149574545}
   - component: {fileID: 4166731928149574544}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1704,7 +1704,7 @@ GameObject:
   - component: {fileID: 4166731928235367506}
   - component: {fileID: 943494973631047192}
   - component: {fileID: 5666595832898114748}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1942,6 +1942,9 @@ MonoBehaviour:
     m_Bits: 128
   attackRange: 3
   damage: 1
+  noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
+    type: 3}
+  shotsFired: 0
 --- !u!114 &5666595832898114748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1964,7 +1967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928371697990}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1995,7 +1998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928375943930}
   - component: {fileID: 4166731928375943933}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2079,7 +2082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928448082140}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2110,7 +2113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928479546933}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2144,7 +2147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928519573420}
   - component: {fileID: 4166731928519573423}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LBicep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2228,7 +2231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928612275282}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2260,7 +2263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928619318874}
   - component: {fileID: 4166731928619318877}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2345,7 +2348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928668326578}
   - component: {fileID: 4166731928668326581}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2428,7 +2431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928824869289}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2459,7 +2462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928863023095}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FrontCheck
   m_TagString: Player
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -2489,7 +2492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928946474983}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2520,7 +2523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731929161039045}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -2550,7 +2553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6153978586312025742}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Components
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2757,7 +2760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5603770706609609856}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: DroidDock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2788,7 +2791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076718143837971441}
   - component: {fileID: 8355814850556519736}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PlayerFlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

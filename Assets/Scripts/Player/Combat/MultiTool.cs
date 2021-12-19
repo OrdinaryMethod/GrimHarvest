@@ -41,6 +41,10 @@ public class MultiTool : MonoBehaviour
     public float attackRange;
     public int damage;
 
+    [Header("Enemy AI")]
+    public GameObject noiseSourcePrefab;
+    public Transform noiseLocation;
+
     //Keybinds
     private KeyCode shootKey;
     private KeyCode extractDataKey;
@@ -102,8 +106,18 @@ public class MultiTool : MonoBehaviour
     }
 
     IEnumerator Shoot()
-    {  
- 
+    {
+        GameObject noiseSource = GameObject.Find("NoiseLocation(Clone)");
+
+        if(noiseSource == null)
+        {
+            GameObject noiseSourceSpawn = Instantiate(noiseSourcePrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            noiseSource.transform.position = transform.position;
+        }
+
         RaycastHit2D hitInfo;
 
         if (facingRight)
@@ -161,17 +175,12 @@ public class MultiTool : MonoBehaviour
             }
             
         }
-        
 
-            
-
-       lineRenderer.enabled = true;
+        lineRenderer.enabled = true;
 
         yield return new WaitForSeconds(0.02f);
 
-       lineRenderer.enabled = false;
-
-                  
+        lineRenderer.enabled = false;
     }
 
     private void MeleeAttack()
