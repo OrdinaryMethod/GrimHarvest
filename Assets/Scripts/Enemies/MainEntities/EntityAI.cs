@@ -84,6 +84,7 @@ public class EntityAI : MonoBehaviour
         }
         else if(collision.gameObject.tag == "NoiseSource")
         {
+            _timeToRest = _setTimeToRest;
             _persuingNoise = false;
             _isPatrolling = true;
             _determineNewPatrolPoint = true;
@@ -94,7 +95,7 @@ public class EntityAI : MonoBehaviour
 
     private void DetermineNewPatrolPoint()
     {
-        if (!_isPatrolling && !_persuingNoise) //Chase Player
+        if (!_isResting && !_isPatrolling && !_persuingNoise) //Chase Player
         {
             _agent.SetDestination(_target.position);
             _agent.speed = _chaseSpeed;
@@ -104,12 +105,12 @@ public class EntityAI : MonoBehaviour
                 _isPatrolling = true;
             }
         }
-        else if (_isPatrolling && !_persuingNoise) //Patrol
+        else if (!_isResting && _isPatrolling && !_persuingNoise) //Patrol
         {
             _agent.SetDestination(_patrolPointObjects[_selectedPatrolPoint].transform.position);
             _agent.speed = _patrolSpeed;
         }
-        else if(!_isPatrolling && _persuingNoise) //Persue noise
+        else if(!_isResting && !_isPatrolling && _persuingNoise) //Persue noise
         {
             _agent.SetDestination(_noisePosition.position);
         }
@@ -120,11 +121,12 @@ public class EntityAI : MonoBehaviour
             {
                 _timeToRest -= Time.deltaTime;
 
+                Debug.Log("resting");
+
                 if(_timeToRest <= 0)
                 {
                     _isResting = false;
                     _timeToRest = _setTimeToRest;
-                    Debug.Log(_timeToRest);
                 }
             }
             else
