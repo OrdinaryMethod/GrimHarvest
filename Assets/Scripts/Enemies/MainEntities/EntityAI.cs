@@ -25,12 +25,13 @@ public class EntityAI : MonoBehaviour
     [Header("Aggro")]
     [SerializeField] private Transform _castPoint;
     [SerializeField] float _aggroRange;
+    [SerializeField] bool _isChasingPlayer;
 
     [Header("Noise Detection")]
     [SerializeField] private Transform _hearingPos;
     [SerializeField] private LayerMask _whatIsNoise;
     [SerializeField] private float _hearingRange;
-    private bool _persuingNoise;
+    [SerializeField] private bool _persuingNoise;
     private Transform _noisePosition;
 
     [Header("Misc")]
@@ -47,6 +48,7 @@ public class EntityAI : MonoBehaviour
         _facingRight = true;
         _isResting = false;
         _persuingNoise = false;
+        _isChasingPlayer = false;
 
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -73,12 +75,20 @@ public class EntityAI : MonoBehaviour
         {
             Flip();
         }
+
+        //Condition Check
+        if(_persuingNoise && _isPatrolling)
+        {
+            _persuingNoise = false;
+        }
     }
 
     private void Pathing()
     {
         if (!_isResting && !_isPatrolling && !_persuingNoise) //Chase Player
         {
+            Debug.Log("Chasing player");
+
             _agent.SetDestination(_target.position);
             _agent.speed = _chaseSpeed;
 
@@ -89,11 +99,17 @@ public class EntityAI : MonoBehaviour
         }
         else if (!_isResting && _isPatrolling && !_persuingNoise) //Patrol
         {
+            Debug.Log("Patrolling");
+
+            _isChasingPlayer = false;
+
             _agent.SetDestination(_patrolPointObjects[_selectedPatrolPoint].transform.position);
             _agent.speed = _patrolSpeed;
         }
         else if(!_isResting && !_isPatrolling && _persuingNoise) //Persue noise
         {
+            Debug.Log("Finding noise");
+
             _agent.SetDestination(_noisePosition.position);
         }
 
@@ -130,6 +146,8 @@ public class EntityAI : MonoBehaviour
         {
             _isPatrolling = false;
             _persuingNoise = false;
+            _isChasingPlayer = true;
+            _isResting = false;
         }
     }
 
@@ -166,7 +184,10 @@ public class EntityAI : MonoBehaviour
         {
             if(!noiseCollider[i].GetComponent<NoiseSource>().noiseExpired)
             {
-                StartCoroutine(PersueNoise(noiseCollider[i].transform));
+                if(!_isChasingPlayer)
+                {
+                    StartCoroutine(PersueNoise(noiseCollider[i].transform));
+                }    
             }
             
         }
@@ -199,11 +220,15 @@ public class EntityAI : MonoBehaviour
         }
         else if (collision.gameObject.tag == "NoiseSource")
         {
-            _timeToRest = _setTimeToRest;
-            _persuingNoise = false;
-            _isPatrolling = true;
-            _determineNewPatrolPoint = true;
-            _isResting = true;
+            if(!_isChasingPlayer)
+            {
+                _timeToRest = _setTimeToRest;
+                _persuingNoise = false;
+                _isPatrolling = true;
+                _determineNewPatrolPoint = true;
+                _isResting = true;
+            }
+            
             Destroy(collision.gameObject);
         }
     }

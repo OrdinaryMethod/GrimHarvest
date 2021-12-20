@@ -1704,6 +1704,7 @@ GameObject:
   - component: {fileID: 4166731928235367506}
   - component: {fileID: 943494973631047192}
   - component: {fileID: 5666595832898114748}
+  - component: {fileID: 1562559300299579521}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1926,9 +1927,10 @@ MonoBehaviour:
   firePoint: {fileID: 4166731928371697991}
   facingRight: 0
   dataExtractorAmmo: 100
-  setFireRate: 0.2
-  bulletSpeed: 200
   lineRenderer: {fileID: 9141478995379436258}
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 98304
   shootingDamage: 1
   setExtractorRate: 0
   dataExtractorSpeed: 0
@@ -1944,7 +1946,7 @@ MonoBehaviour:
   damage: 1
   noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
     type: 3}
-  shotsFired: 0
+  noiseLocation: {fileID: 0}
 --- !u!114 &5666595832898114748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,6 +1960,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 0
+--- !u!114 &1562559300299579521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166731928235367501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637bb9dd41096c84496b2afaa15fe585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _counterPos: {fileID: 3220288924469569888}
+  _whatIsAnomaly:
+    serializedVersion: 2
+    m_Bits: 16384
+  _counterRange: 75
 --- !u!1 &4166731928371697991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2597,7 @@ Transform:
   - {fileID: 3126789930977152385}
   - {fileID: 5603770706609609856}
   - {fileID: 3804048614268042137}
+  - {fileID: 3220288924469569888}
   m_Father: {fileID: 4166731928235367504}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3088,6 +3108,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1862687752337038132}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7249426700456107419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3220288924469569888}
+  m_Layer: 0
+  m_Name: GiegerCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3220288924469569888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7249426700456107419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6153978586312025742}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7735695255020854091
 GameObject:

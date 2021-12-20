@@ -22,6 +22,6 @@ public class PlayerMonitor : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
-        Debug.Log(playerHealth);
+
     }
 }

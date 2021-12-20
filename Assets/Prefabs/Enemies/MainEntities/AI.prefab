@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5050452691022825289}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 5050452691563420915}
   - component: {fileID: 5050452691563420912}
   - component: {fileID: 5050452691563420913}
-  m_Layer: 0
+  - component: {fileID: 4068971684349999043}
+  m_Layer: 14
   m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,17 +194,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106, type: 3}
   _patrolSpeed: 15
-  _chaseSpeed: 30
+  _chaseSpeed: 25
   _isPatrolling: 1
   _selectedPatrolPoint: 0
   _setTimeToRest: 2
   _castPoint: {fileID: 5050452691022825289}
-  _aggroRange: 35
+  _aggroRange: 20
+  isChasingPlayer: 0
   _hearingPos: {fileID: 7876143417176784315}
   _whatIsNoise:
     serializedVersion: 2
     m_Bits: 32768
   _hearingRange: 100
+--- !u!114 &4068971684349999043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050452691563420917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4157dc6a7d2178441ba57fdb3e960d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAnomalous: 1
+  anomalyStrength: 4
 --- !u!1 &5547668469948299842
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7876143417176784315}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: HearingPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
