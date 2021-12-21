@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EntityAI : MonoBehaviour
 {
+    [Header("State")]
+    [SerializeField] private string _entityState;
+
     [Header("Main Settings")]
     [SerializeField] private Transform _target;
     [SerializeField] private float _patrolSpeed;
@@ -12,7 +15,6 @@ public class EntityAI : MonoBehaviour
     private NavMeshAgent _agent;
 
     [Header("Patrol")]
-    [SerializeField] private bool _isPatrolling;
     [SerializeField] private int _selectedPatrolPoint;
     private GameObject[] _patrolPointObjects;
     private int _patrolPointMax;
@@ -25,13 +27,11 @@ public class EntityAI : MonoBehaviour
     [Header("Aggro")]
     [SerializeField] private Transform _castPoint;
     [SerializeField] float _aggroRange;
-    [SerializeField] bool _isChasingPlayer;
 
     [Header("Noise Detection")]
     [SerializeField] private Transform _hearingPos;
     [SerializeField] private LayerMask _whatIsNoise;
     [SerializeField] private float _hearingRange;
-    [SerializeField] private bool _persuingNoise;
     private Transform _noisePosition;
 
     [Header("Misc")]
@@ -41,14 +41,14 @@ public class EntityAI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _entityState = "Patrolling";
+
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _determineNewPatrolPoint = false;
         _facingRight = true;
         _isResting = false;
-        _persuingNoise = false;
-        _isChasingPlayer = false;
 
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -75,41 +75,27 @@ public class EntityAI : MonoBehaviour
         {
             Flip();
         }
-
-        //Condition Check
-        if(_persuingNoise && _isPatrolling)
-        {
-            _persuingNoise = false;
-        }
     }
 
     private void Pathing()
     {
-        if (!_isResting && !_isPatrolling && !_persuingNoise) //Chase Player
+        if (!_isResting && _entityState == "Hunting") //Chase Player
         {
-            Debug.Log("Chasing player");
-
             _agent.SetDestination(_target.position);
             _agent.speed = _chaseSpeed;
 
             if(_playerController.isHidden)
             {
-                _isPatrolling = true;
+                _entityState = "Patrolling";
             }
         }
-        else if (!_isResting && _isPatrolling && !_persuingNoise) //Patrol
+        else if (!_isResting && _entityState == "Patrolling") //Patrol
         {
-            Debug.Log("Patrolling");
-
-            _isChasingPlayer = false;
-
             _agent.SetDestination(_patrolPointObjects[_selectedPatrolPoint].transform.position);
             _agent.speed = _patrolSpeed;
         }
-        else if(!_isResting && !_isPatrolling && _persuingNoise) //Persue noise
+        else if(!_isResting && _entityState == "Investigating") //Persue noise
         {
-            Debug.Log("Finding noise");
-
             _agent.SetDestination(_noisePosition.position);
         }
 
@@ -144,11 +130,10 @@ public class EntityAI : MonoBehaviour
     {
         if (CanSeePlayer(_aggroRange))
         {
-            _isPatrolling = false;
-            _persuingNoise = false;
-            _isChasingPlayer = true;
+            _entityState = "Hunting";
             _isResting = false;
         }
+
     }
 
     bool CanSeePlayer(float distance)
@@ -184,7 +169,7 @@ public class EntityAI : MonoBehaviour
         {
             if(!noiseCollider[i].GetComponent<NoiseSource>().noiseExpired)
             {
-                if(!_isChasingPlayer)
+                if(_entityState != "Hunting")
                 {
                     StartCoroutine(PersueNoise(noiseCollider[i].transform));
                 }    
@@ -196,12 +181,13 @@ public class EntityAI : MonoBehaviour
     IEnumerator PersueNoise(Transform noisePosition)
     {
         _noisePosition = noisePosition;
-        _persuingNoise = true;
-        _isPatrolling = false;
+
+        _entityState = "Investigating";
+
         yield return new WaitForSeconds(0);
     }
 
-    void Flip()
+    private void Flip()
     {
         // Switch the way the player is labelled as facing
         _facingRight = !_facingRight;
@@ -220,11 +206,12 @@ public class EntityAI : MonoBehaviour
         }
         else if (collision.gameObject.tag == "NoiseSource")
         {
-            if(!_isChasingPlayer)
+            if(_entityState != "Hunting")
             {
                 _timeToRest = _setTimeToRest;
-                _persuingNoise = false;
-                _isPatrolling = true;
+
+                _entityState = "Patrolling";
+
                 _determineNewPatrolPoint = true;
                 _isResting = true;
             }
