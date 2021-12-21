@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4068971684349999043}
   m_Layer: 14
   m_Name: AI
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,15 +192,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89d803a6c5cbe949aa3648b03eef229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityState: 
   _target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106, type: 3}
   _patrolSpeed: 15
-  _chaseSpeed: 25
-  _isPatrolling: 1
+  _chaseSpeed: 20
   _selectedPatrolPoint: 0
   _setTimeToRest: 2
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8
   _castPoint: {fileID: 5050452691022825289}
   _aggroRange: 20
-  isChasingPlayer: 0
+  PlayerHidingPos: {fileID: 0}
   _hearingPos: {fileID: 7876143417176784315}
   _whatIsNoise:
     serializedVersion: 2
@@ -219,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAnomalous: 1
-  anomalyStrength: 4
+  anomalyStrength: 200
 --- !u!1 &5547668469948299842
 GameObject:
   m_ObjectHideFlags: 0

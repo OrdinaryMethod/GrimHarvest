@@ -1896,6 +1896,8 @@ MonoBehaviour:
   rightArm: {fileID: 4166731928946474983}
   leftArm: {fileID: 4166731928448082140}
   head: {fileID: 4166731928619318874}
+  noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
+    type: 3}
 --- !u!114 &4166731928235367506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,9 +1930,6 @@ MonoBehaviour:
   facingRight: 0
   dataExtractorAmmo: 100
   lineRenderer: {fileID: 9141478995379436258}
-  _ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 98304
   shootingDamage: 1
   setExtractorRate: 0
   dataExtractorSpeed: 0

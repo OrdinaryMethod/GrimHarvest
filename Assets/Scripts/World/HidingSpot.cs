@@ -9,7 +9,7 @@ public class HidingSpot : MonoBehaviour
     public float hidingRange;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         hidingSpotPos = transform;
     }

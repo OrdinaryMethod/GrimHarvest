@@ -6,5 +6,7 @@ public class AnomalousObject : MonoBehaviour
 {
     [Header("Settings")]
     public bool IsAnomalous;
-    public int anomalyStrength;
+
+    [Range(0.0f, 200.0f)]
+    public float anomalyStrength;
 }

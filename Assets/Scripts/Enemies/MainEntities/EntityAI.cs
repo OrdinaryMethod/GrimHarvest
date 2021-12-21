@@ -10,7 +10,9 @@ public class EntityAI : MonoBehaviour
 
     [Header("Main Settings")]
     [SerializeField] private Transform _target;
+    [Range(0.0f, 50.0f)]
     [SerializeField] private float _patrolSpeed;
+    [Range(0.0f, 50.0f)]
     [SerializeField] private float _chaseSpeed;
     private NavMeshAgent _agent;
 
@@ -21,22 +23,29 @@ public class EntityAI : MonoBehaviour
     private int _patrolPointSelect;
     private bool _determineNewPatrolPoint;
     private bool _isResting;
+    [Range(0.0f, 10.0f)]
     [SerializeField] private float _setTimeToRest;
     private float _timeToRest;
 
     [Header("Aggro")]
+    [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Transform _castPoint;
-    [SerializeField] float _aggroRange;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] private float _aggroRange;
+    public Transform PlayerHidingPos;
+    [SerializeField] private bool _KnowsWherePlayerIsHiding;
 
     [Header("Noise Detection")]
     [SerializeField] private Transform _hearingPos;
     [SerializeField] private LayerMask _whatIsNoise;
+    [Range(0.0f, 1000.0f)]
     [SerializeField] private float _hearingRange;
     private Transform _noisePosition;
 
     [Header("Misc")]
     private bool _facingRight;
     private PlayerController _playerController;
+    private float distanceToPlayer;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,6 +58,7 @@ public class EntityAI : MonoBehaviour
         _determineNewPatrolPoint = false;
         _facingRight = true;
         _isResting = false;
+        _KnowsWherePlayerIsHiding = false;
 
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -65,6 +75,7 @@ public class EntityAI : MonoBehaviour
         Pathing();
         HuntPlayer();
         ListenForNoise();
+        PlayerCantHide();
 
         //Flip
         if (_agent.velocity.x >= 0.01f && !_facingRight)
@@ -83,11 +94,6 @@ public class EntityAI : MonoBehaviour
         {
             _agent.SetDestination(_target.position);
             _agent.speed = _chaseSpeed;
-
-            if(_playerController.isHidden)
-            {
-                _entityState = "Patrolling";
-            }
         }
         else if (!_isResting && _entityState == "Patrolling") //Patrol
         {
@@ -97,6 +103,11 @@ public class EntityAI : MonoBehaviour
         else if(!_isResting && _entityState == "Investigating") //Persue noise
         {
             _agent.SetDestination(_noisePosition.position);
+        }
+        else if(!_isResting && _entityState == "Suspicious")
+        {
+            _agent.SetDestination(_target.position);
+            _agent.speed = _chaseSpeed;
         }
 
         if (_determineNewPatrolPoint)
@@ -130,10 +141,33 @@ public class EntityAI : MonoBehaviour
     {
         if (CanSeePlayer(_aggroRange))
         {
-            _entityState = "Hunting";
-            _isResting = false;
+            if(!_playerController.isHidden)
+            {
+                _entityState = "Hunting";
+                _isResting = false;
+            }   
         }
 
+    }
+
+    private void PlayerCantHide()
+    {
+        if(_entityState == "Hunting" && _playerController.isHidden)
+        {
+            distanceToPlayer = Vector2.Distance(transform.position, _target.position);
+
+            if (distanceToPlayer <= _aggroRange)
+            {
+                _agent.SetDestination(_target.position);
+                _agent.speed = _chaseSpeed;
+
+                Debug.Log(name + " can still see you...");
+            }  
+            else if(distanceToPlayer > _aggroRange)
+            {
+                _entityState = "Suspicious";
+            }
+        }
     }
 
     bool CanSeePlayer(float distance)
@@ -143,11 +177,11 @@ public class EntityAI : MonoBehaviour
 
         endPos = _target.position - _castPoint.position;
 
-        RaycastHit2D hit = Physics2D.Raycast(_castPoint.position, endPos, distance);
+        RaycastHit2D hit = Physics2D.Raycast(_castPoint.position, endPos, distance, _layerMask);
 
         if(hit.collider != null)
         {
-            if(hit.collider.gameObject.CompareTag("Player") && !_playerController.isHidden)
+            if(hit.collider.gameObject.CompareTag("Player"))
             {
                 val = true;
             }
@@ -199,7 +233,16 @@ public class EntityAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "EnemyPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
+        if(collision.gameObject.tag == "Player")
+        {
+            if (_entityState == "Suspicious" && _playerController.isHidden)
+            {
+                _entityState = "Patrolling";
+                _determineNewPatrolPoint = true;
+                _isResting = true;
+            }
+        }
+        else if (collision.gameObject.tag == "EnemyPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
         {
             _determineNewPatrolPoint = true;
             _isResting = true;

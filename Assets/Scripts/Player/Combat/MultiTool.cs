@@ -22,7 +22,6 @@ public class MultiTool : MonoBehaviour
 
     [Header("Shooting Variables")]
     public LineRenderer lineRenderer;
-    [SerializeField] private LayerMask _ignoreLayer;
     public int shootingDamage;
 
     [Header("Data Extractor Variables")]
@@ -122,12 +121,10 @@ public class MultiTool : MonoBehaviour
 
         if (facingRight)
         {
-            hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right, _ignoreLayer);
+            hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
 
             if (hitInfo)
             {
-                Debug.Log(hitInfo.transform.name);
-
                 //Spawn line
                 lineRenderer.SetPosition(0, firePoint.transform.position);
                 lineRenderer.SetPosition(1, hitInfo.point);
@@ -141,13 +138,11 @@ public class MultiTool : MonoBehaviour
         }
         else
         {
-            hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right, _ignoreLayer);
+            hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right);
                 
 
             if (hitInfo)
-            {
-                Debug.Log(hitInfo.transform.name);
-                    
+            {                
                 //Spawn line
                 lineRenderer.SetPosition(1, firePoint.transform.position);
                 lineRenderer.SetPosition(0, hitInfo.point);
