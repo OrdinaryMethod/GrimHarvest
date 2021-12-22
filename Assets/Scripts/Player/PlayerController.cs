@@ -18,18 +18,25 @@ public class PlayerController : MonoBehaviour
     [Header("Running")]
     public bool canMove;
     private float moveInput;
+    [Range(0.0f, 100.0f)]
     public float speed;
+    [Range(0.0f, 100.0f)]
     public float sprintSpeed;
 
     [Header("Jumping")]
+    [Range(0.0f, 100.0f)]
     public float jumpForce;
     public bool isGrounded;
     bool isTouchingFront;
     bool wallSliding;
+    [Range(0.0f, 25.0f)]
     public float wallSlidingSpeed;
     private bool wallJumping;
+    [Range(0.0f, 100.0f)]
     public float xWallForce;
+    [Range(0.0f, 100.0f)]
     public float yWallForce;
+    [Range(0.0f, 1.0f)]
     public float wallJumpTime;
 
     [Header("States")]
@@ -155,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(jump) && isGrounded)
         {
-            rb2d.velocity = Vector2.up * jumpForce;
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 1 * jumpForce);
         }
 
         //State
@@ -240,7 +247,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (10f - 1) * Time.deltaTime;
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (16f - 1) * Time.deltaTime;
         }
     }
 

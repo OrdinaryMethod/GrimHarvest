@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940472988}
   - component: {fileID: 940472989}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DroidLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021558361082497077}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DefaultFireDir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126789930977152385}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MeleeAttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390185159219460442}
   - component: {fileID: 3607490709797908771}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RHip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3804048614268042137}
   - component: {fileID: 9141478995379436258}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerShootingLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4026323978610376186}
   - component: {fileID: 5215861916106405235}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7617141685156823470}
   - component: {fileID: 3062943131015717862}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperTorso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7113380736309460790}
   - component: {fileID: 6439042687665738546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GeneralLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,7 +676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1031149199322759027}
   - component: {fileID: 8606392620953695165}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LowerTorso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5502924680881902096}
   - component: {fileID: 5195596404167325430}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LHip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 964092839495590928}
   - component: {fileID: 8834220219080333636}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RBoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5085537643041949369}
   - component: {fileID: 2464226509227051964}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LBoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4351625340670229448}
   - component: {fileID: 5977207618175296634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LAnkleBrace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1098,7 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731927286882912}
   - component: {fileID: 4166731927286882915}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731927586104302}
   - component: {fileID: 4166731927586104305}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RBicept
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731927735291278}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731927924233072}
   - component: {fileID: 4166731927924233075}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928028017510}
   - component: {fileID: 4166731928028017513}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928111650649}
   - component: {fileID: 4166731928111650651}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1611,7 +1611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928149574545}
   - component: {fileID: 4166731928149574544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1698,14 +1698,14 @@ GameObject:
   - component: {fileID: 4166731928235367500}
   - component: {fileID: 4166731928235367507}
   - component: {fileID: 4166731928235367503}
+  - component: {fileID: 4166731928235367502}
   - component: {fileID: 4166731928235367505}
   - component: {fileID: 6093351206969018232}
-  - component: {fileID: 4166731928235367502}
   - component: {fileID: 4166731928235367506}
   - component: {fileID: 943494973631047192}
   - component: {fileID: 5666595832898114748}
   - component: {fileID: 1562559300299579521}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1821,6 +1821,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &4166731928235367502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166731928235367501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3bd5935b59c234b87d16efd9e878ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontCheck: {fileID: 4166731928863023095}
+  groundCheck: {fileID: 4166731929161039045}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 2048
+  startingPos: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
+  droidActive: 0
+  canMove: 0
+  speed: 17.5
+  sprintSpeed: 25
+  jumpForce: 50
+  isGrounded: 0
+  wallSlidingSpeed: 5
+  xWallForce: 40
+  yWallForce: 45
+  wallJumpTime: 0.2
+  isRunning: 0
+  isSprinting: 0
+  isJumping: 0
+  isClimbing: 0
+  isCrouching: 0
+  isHidden: 0
+  facingRight: 1
+  checkRadius: 0.5
+  angle: 0
+  rightArm: {fileID: 4166731928946474983}
+  leftArm: {fileID: 4166731928448082140}
+  head: {fileID: 4166731928619318874}
 --- !u!114 &4166731928235367505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,48 +1896,6 @@ MonoBehaviour:
   playerSpeed: 0
   damage: 0
   knockbackBonus: 0
---- !u!114 &4166731928235367502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4166731928235367501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3bd5935b59c234b87d16efd9e878ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frontCheck: {fileID: 4166731928863023095}
-  groundCheck: {fileID: 4166731929161039045}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 2048
-  startingPos: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
-  droidActive: 0
-  canMove: 0
-  speed: 20
-  sprintSpeed: 25
-  jumpForce: 50
-  isGrounded: 0
-  wallSlidingSpeed: 5
-  xWallForce: 30
-  yWallForce: 30
-  wallJumpTime: 0.2
-  isRunning: 0
-  isSprinting: 0
-  isJumping: 0
-  isClimbing: 0
-  isCrouching: 0
-  isHidden: 0
-  facingRight: 1
-  checkRadius: 0.5
-  angle: 0
-  rightArm: {fileID: 4166731928946474983}
-  leftArm: {fileID: 4166731928448082140}
-  head: {fileID: 4166731928619318874}
-  noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
-    type: 3}
 --- !u!114 &4166731928235367506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1905,7 +1903,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928235367501}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7a3f0b39ff26934ebbde21910fc5471, type: 3}
   m_Name: 
@@ -1985,7 +1983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928371697990}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2016,7 +2014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928375943930}
   - component: {fileID: 4166731928375943933}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RForearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2100,7 +2098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928448082140}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2131,7 +2129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928479546933}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2165,7 +2163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928519573420}
   - component: {fileID: 4166731928519573423}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LBicep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2249,7 +2247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928612275282}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2281,7 +2279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928619318874}
   - component: {fileID: 4166731928619318877}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2366,7 +2364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166731928668326578}
   - component: {fileID: 4166731928668326581}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2449,7 +2447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928824869289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2480,7 +2478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928863023095}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontCheck
   m_TagString: Player
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -2495,7 +2493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928863023092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7300005, y: 0.18999863, z: 0}
+  m_LocalPosition: {x: 1.7300005, y: 2.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 6153978586312025742}
@@ -2510,7 +2508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731928946474983}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2541,7 +2539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166731929161039045}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -2571,7 +2569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6153978586312025742}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Components
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2610,7 +2608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4430028354914040249}
   - component: {fileID: 8070918285752858768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2695,7 +2693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8809897365883016521}
   - component: {fileID: 143673386438893693}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RCalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2779,7 +2777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5603770706609609856}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DroidDock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2810,7 +2808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076718143837971441}
   - component: {fileID: 8355814850556519736}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerFlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2919,7 +2917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2877282779814472909}
   - component: {fileID: 4846603277854095067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LCalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3004,7 +3002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6994332954782454488}
   - component: {fileID: 545174917309774240}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RAnkleBrace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3087,7 +3085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2191732554003683243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BombDropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3117,7 +3115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3220288924469569888}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GiegerCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3148,7 +3146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7308222111344838919}
   - component: {fileID: 1736072133473222434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3237,7 +3235,7 @@ GameObject:
   - component: {fileID: 7376970797423703607}
   - component: {fileID: 5726150542658083954}
   - component: {fileID: 753848361261050070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Droid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

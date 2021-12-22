@@ -200,10 +200,11 @@ MonoBehaviour:
   _setTimeToRest: 2
   _layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2057
   _castPoint: {fileID: 5050452691022825289}
   _aggroRange: 20
   PlayerHidingPos: {fileID: 0}
+  _KnowsWherePlayerIsHiding: 0
   _hearingPos: {fileID: 7876143417176784315}
   _whatIsNoise:
     serializedVersion: 2
