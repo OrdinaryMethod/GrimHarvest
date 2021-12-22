@@ -147,7 +147,6 @@ public class EntityAI : MonoBehaviour
                 _isResting = false;
             }   
         }
-
     }
 
     private void PlayerCantHide()
