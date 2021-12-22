@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
-    private Rigidbody2D rb2d;
+    private Rigidbody2D _rb2d;
     public Transform frontCheck;
     public Transform groundCheck;
     public LayerMask whatIsGround;
-    private Keybinds keyBinds;
+    private Keybinds _keyBinds;
     public VectorValue startingPos;
 
     [Header("Droid")]
@@ -17,21 +17,23 @@ public class PlayerController : MonoBehaviour
 
     [Header("Running")]
     public bool canMove;
-    private float moveInput;
+    private float _moveInput;
     [Range(0.0f, 100.0f)]
     public float speed;
-    [Range(0.0f, 100.0f)]
-    public float sprintSpeed;
 
     [Header("Jumping")]
     [Range(0.0f, 100.0f)]
     public float jumpForce;
+    [SerializeField] private float _setJumpCooldown;
+    [SerializeField] private float _setGroundedCooldown;
+    private float _jumpCooldown;
+    private float _groundedCooldown;
     public bool isGrounded;
     bool isTouchingFront;
     bool wallSliding;
     [Range(0.0f, 25.0f)]
     public float wallSlidingSpeed;
-    private bool wallJumping;
+    private bool _wallJumping;
     [Range(0.0f, 100.0f)]
     public float xWallForce;
     [Range(0.0f, 100.0f)]
@@ -53,22 +55,21 @@ public class PlayerController : MonoBehaviour
     public float angle;
 
     [Header("Aiming")]
-    [SerializeField] private Transform rightArm;
-    [SerializeField] private Transform leftArm;
-    [SerializeField] private Transform head;
+    [SerializeField] private Transform _rightArm;
+    [SerializeField] private Transform _leftArm;
+    [SerializeField] private Transform _head;
 
     [Header("Keybinds")]
-    KeyCode jump;
-    KeyCode sprint;
-    KeyCode aim;
+    private KeyCode _jump;
+    private KeyCode _sprint;
+    private KeyCode _aim;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
         droidActive = false;
         canMove = true;
-
 
         //Values from scriptable object
         transform.position = startingPos.initialValue;
@@ -81,12 +82,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Get Keybinds
-        keyBinds = gameObject.GetComponent<Keybinds>();
+        _keyBinds = gameObject.GetComponent<Keybinds>();
 
         if (!droidActive)
         {
             //Get movement input
-            moveInput = Input.GetAxisRaw("Horizontal");
+            _moveInput = Input.GetAxisRaw("Horizontal");
 
             MapKeybinds();
             if(canMove)
@@ -102,11 +103,11 @@ public class PlayerController : MonoBehaviour
             //Flip character
             if(canMove)
             {
-                if (moveInput > 0 && !facingRight)
+                if (_moveInput > 0 && !facingRight)
                 {
                     Flip();
                 }
-                else if (moveInput < 0 && facingRight)
+                else if (_moveInput < 0 && facingRight)
                 {
                     Flip();
                 }
@@ -122,9 +123,9 @@ public class PlayerController : MonoBehaviour
 
     void MapKeybinds()
     {
-        jump = keyBinds.jump;
-        sprint = keyBinds.sprint;
-        aim = keyBinds.aim;
+        _jump = _keyBinds.jump;
+        _sprint = _keyBinds.sprint;
+        _aim = _keyBinds.aim;
     }
 
     void Running()
@@ -140,33 +141,30 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        float currentSpeed;
-
-        if(Input.GetKey(sprint) && isGrounded)
-        {
-            currentSpeed = sprintSpeed;
-            isSprinting = true; //State
-        }
-        else
-        {
-            isSprinting = false; //State
-            currentSpeed = speed;
-        }
-
-        rb2d.velocity = new Vector2(moveInput * currentSpeed, rb2d.velocity.y);
+        _rb2d.velocity = new Vector2(_moveInput * speed, _rb2d.velocity.y);
     }
 
     void Jumping()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, transform.localScale, 0, whatIsGround);
 
-        if (Input.GetKeyDown(jump) && isGrounded)
+        _groundedCooldown -= Time.deltaTime;
+
+        if (isGrounded)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, 1 * jumpForce);
+            _jumpCooldown -= Time.deltaTime;
+
+            _groundedCooldown = _setGroundedCooldown;
+        }
+
+        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0)
+        {
+            _jumpCooldown = _setJumpCooldown;
+            _rb2d.velocity = new Vector2(_rb2d.velocity.x, 1 * jumpForce);
         }
 
         //State
-        if(!isGrounded && !isClimbing)
+        if (!isGrounded && !isClimbing)
         {
             isJumping = true;
         }
@@ -210,19 +208,19 @@ public class PlayerController : MonoBehaviour
 
         if (wallSliding)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, Mathf.Clamp(rb2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            _rb2d.velocity = new Vector2(_rb2d.velocity.x, Mathf.Clamp(_rb2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
     }
 
     void WallJumping()
     {
-        if (Input.GetKeyDown(jump) && wallSliding)
+        if (Input.GetKeyDown(_jump) && wallSliding)
         {
-            wallJumping = true;
+            _wallJumping = true;
             Invoke("SetWallJumpingToFalse", wallJumpTime);
         }
 
-        if (wallJumping)
+        if (_wallJumping)
         {
             float wallJumpMultiplier;
             if(facingRight)
@@ -235,19 +233,19 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            rb2d.velocity = new Vector2(xWallForce * -wallJumpMultiplier, yWallForce);
+            _rb2d.velocity = new Vector2(xWallForce * -wallJumpMultiplier, yWallForce);
         }
     }
 
     void NotFloatyJump()
     {
-        if (rb2d.velocity.y < 0)
+        if (_rb2d.velocity.y < 0)
         {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (10.5f - 1) * Time.deltaTime;
+            _rb2d.velocity += Vector2.up * Physics2D.gravity.y * (12f - 1) * Time.deltaTime;
         }
-        else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
+        else if (_rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (16f - 1) * Time.deltaTime;
+            _rb2d.velocity += Vector2.up * Physics2D.gravity.y * (20f - 1) * Time.deltaTime;
         }
     }
 
@@ -263,19 +261,19 @@ public class PlayerController : MonoBehaviour
 
     void SetWallJumpingToFalse()
     {
-        wallJumping = false;
+        _wallJumping = false;
     }
 
     void AimDirection()
     {
-        if (Input.GetKey(aim))
+        if (Input.GetKey(_aim))
         {
             canMove = false;
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
+            _rb2d.velocity = new Vector2(0, _rb2d.velocity.y); //Prevents slowfall
 
-            Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - leftArm.position;
-            Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - rightArm.position;
-            Vector2 headDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - head.position;
+            Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _leftArm.position;
+            Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _rightArm.position;
+            Vector2 headDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _head.position;
 
             float leftArmAngle = (Mathf.Atan2(leftArmDirection.y, leftArmDirection.x) * Mathf.Rad2Deg);
             float rightArmAngle = (Mathf.Atan2(rightArmDirection.y, rightArmDirection.x) * Mathf.Rad2Deg);
@@ -292,9 +290,9 @@ public class PlayerController : MonoBehaviour
             Quaternion rightArmRotation = Quaternion.AngleAxis(rightArmAngle, Vector3.forward);
             Quaternion headRotation = Quaternion.AngleAxis(headAngle, Vector3.forward);
 
-            leftArm.rotation = Quaternion.Slerp(leftArm.rotation, leftArmRotation, 50 * Time.deltaTime);
-            rightArm.rotation = Quaternion.Slerp(rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
-            head.rotation = Quaternion.Slerp(head.rotation, headRotation, 50 * Time.deltaTime);
+            _leftArm.rotation = Quaternion.Slerp(_leftArm.rotation, leftArmRotation, 50 * Time.deltaTime);
+            _rightArm.rotation = Quaternion.Slerp(_rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
+            _head.rotation = Quaternion.Slerp(_head.rotation, headRotation, 50 * Time.deltaTime);
 
             if (facingRight && leftArmDirection.x < 0)
             {
@@ -308,9 +306,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             canMove = true;
-            leftArm.rotation = Quaternion.Euler(0, 0, 0);
-            rightArm.rotation = Quaternion.Euler(0, 0, 0);
-            head.rotation = Quaternion.Euler(0, 0, 0);
+            _leftArm.rotation = Quaternion.Euler(0, 0, 0);
+            _rightArm.rotation = Quaternion.Euler(0, 0, 0);
+            _head.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

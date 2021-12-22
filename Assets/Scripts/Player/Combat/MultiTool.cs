@@ -5,102 +5,59 @@ using UnityEngine;
 public class MultiTool : MonoBehaviour
 {
     //Variables
-    Keybinds keybinds;
-
-    [Header("Prefabs")]
-    public GameObject bulletPrefab;
-    public GameObject DataExtractorPrefab;
+    private Keybinds _keybinds;
 
     [Header("Objects")]
-    [SerializeField] private GameObject firePoint;
+    [SerializeField] private GameObject _firePoint;
 
     [Header("General Variables")]
-    [SerializeField] private bool facingRight;
+    [SerializeField] private bool _facingRight;
 
-    [Header("Ammo")]
-    public int dataExtractorAmmo;
+    //[Header("Ammo")]
 
     [Header("Shooting Variables")]
-    public LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer _lineRenderer;
+    [Range(0.0f, 100.0f)]
     public int shootingDamage;
 
-    [Header("Data Extractor Variables")]
-    [SerializeField] private float setExtractorRate;
-    [SerializeField] private float dataExtractorSpeed;
-    private float extractorRate;
-
     [Header("Melee Variables")]
-    private float timeBtwAttack;
-    public float startTimeBtwAttack;
-
     public Transform attackPos;
     public LayerMask whatIsEnemy;
     public LayerMask whatIsBarrier;
-    public float attackRange;
-    public int damage;
+    [Range(0.0f, 25.0f)]
+    [SerializeField] private float _attackRange;
+    [Range(0.0f, 100.0f)]
+    [SerializeField] private float _meleeDamage;
 
     [Header("Enemy AI")]
     public GameObject noiseSourcePrefab;
     public Transform noiseLocation;
 
     //Keybinds
-    private KeyCode shootKey;
-    private KeyCode extractDataKey;
-    private KeyCode meleeAttack;
+    private KeyCode _shootKey;
+    private KeyCode _meleeAttack;
 
     // Update is called once per frame
     void Update()
     {
+        _facingRight = GetComponent<PlayerController>().facingRight;
+
         GetKeyBinds();
-        if (Input.GetKeyDown(shootKey))
-        {
-            StartCoroutine(Shoot());
-        }          
-        ExtractData();
         MeleeAttack();
 
-        //Get parent values
-        facingRight = GetComponent<PlayerController>().facingRight;
+        if (Input.GetKeyDown(_shootKey))
+        {
+            StartCoroutine(Shoot());
+        }    
     }
 
     private void GetKeyBinds()
     {
-        keybinds = GetComponentInParent<Keybinds>(); //Define 
+        _keybinds = GetComponentInParent<Keybinds>(); //Define 
 
         //Assign
-        shootKey = keybinds.shoot;
-        extractDataKey = keybinds.dataExtractor;
-        meleeAttack = keybinds.meleeAttack;
-    }
-
-    private void ExtractData()
-    {
-        if (extractorRate <= 0)
-        {
-            if (Input.GetKey(extractDataKey) && dataExtractorAmmo > 0)
-            {
-                GameObject dataExtractor = Instantiate(DataExtractorPrefab, firePoint.transform.position, gameObject.transform.rotation);
-
-                Rigidbody2D dataExtractorRb2d;
-                dataExtractorRb2d = dataExtractor.GetComponent<Rigidbody2D>();
-
-                if (facingRight)
-                {
-                    dataExtractorRb2d.velocity = dataExtractorRb2d.GetRelativeVector(Vector2.right * dataExtractorSpeed);
-                }
-                else
-                {
-                    dataExtractorRb2d.velocity = dataExtractorRb2d.GetRelativeVector(Vector2.left * dataExtractorSpeed);
-                }
-
-                dataExtractorAmmo--;
-            }
-            extractorRate = setExtractorRate;
-        }
-        else
-        {
-            extractorRate -= Time.deltaTime;
-        }
+        _shootKey = _keybinds.shoot;
+        _meleeAttack = _keybinds.meleeAttack;
     }
 
     IEnumerator Shoot()
@@ -119,40 +76,40 @@ public class MultiTool : MonoBehaviour
 
         RaycastHit2D hitInfo;
 
-        if (facingRight)
+        if (_facingRight)
         {
-            hitInfo = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.right);
+            hitInfo = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.right);
 
             if (hitInfo)
             {
                 //Spawn line
-                lineRenderer.SetPosition(0, firePoint.transform.position);
-                lineRenderer.SetPosition(1, hitInfo.point);
+                _lineRenderer.SetPosition(0, _firePoint.transform.position);
+                _lineRenderer.SetPosition(1, hitInfo.point);
             }
             else
             {
                 //Spawn line
-                lineRenderer.SetPosition(0, firePoint.transform.position);
-                lineRenderer.SetPosition(1, firePoint.transform.position + firePoint.transform.right * 100);
+                _lineRenderer.SetPosition(0, _firePoint.transform.position);
+                _lineRenderer.SetPosition(1, _firePoint.transform.position + _firePoint.transform.right * 100);
             }
         }
         else
         {
-            hitInfo = Physics2D.Raycast(firePoint.transform.position, -firePoint.transform.right);
+            hitInfo = Physics2D.Raycast(_firePoint.transform.position, -_firePoint.transform.right);
                 
 
             if (hitInfo)
             {                
                 //Spawn line
-                lineRenderer.SetPosition(1, firePoint.transform.position);
-                lineRenderer.SetPosition(0, hitInfo.point);
+                _lineRenderer.SetPosition(1, _firePoint.transform.position);
+                _lineRenderer.SetPosition(0, hitInfo.point);
             }
             else
             {
 
                 //Spawn line
-                lineRenderer.SetPosition(1, firePoint.transform.position);
-                lineRenderer.SetPosition(0, firePoint.transform.position - firePoint.transform.right * 100);
+                _lineRenderer.SetPosition(1, _firePoint.transform.position);
+                _lineRenderer.SetPosition(0, _firePoint.transform.position - _firePoint.transform.right * 100);
             }
         }
 
@@ -171,45 +128,37 @@ public class MultiTool : MonoBehaviour
             
         }
 
-        lineRenderer.enabled = true;
+        _lineRenderer.enabled = true;
 
         yield return new WaitForSeconds(0.02f);
 
-        lineRenderer.enabled = false;
+        _lineRenderer.enabled = false;
     }
 
     private void MeleeAttack()
     {
-        if(Input.GetKey(meleeAttack))
-        {
-            if (timeBtwAttack <= 0)
-            {
-                Debug.Log("You Melee Attack");
-                timeBtwAttack = startTimeBtwAttack;
+        if(Input.GetKeyDown(_meleeAttack))
+        {          
+            Debug.Log("You Melee Attack");
 
-                //basic enemy
-                Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
-                for (int i = 0; i < enemyCollider.Length; i++)
-                {
-                    Debug.Log("You strike an enemy");
-                    //enemyCollider[i].GetComponentInParent<EnemyController>().playerHealth -= damage;
-                }
-
-                //barriers
-                Collider2D[] barrierCollider = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsBarrier);
-                for (int i = 0; i < barrierCollider.Length; i++)
-                {
-                    if (barrierCollider[i].GetComponentInParent<Barrier>().canMelee)
-                    {
-                        Debug.Log("You strike a barrier");
-                        barrierCollider[i].GetComponentInParent<Barrier>().barrierHealth -= damage;
-                    }
-                }
-            }
-            else
+            //basic enemy
+            Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(attackPos.position, _attackRange, whatIsEnemy);
+            for (int i = 0; i < enemyCollider.Length; i++)
             {
-                timeBtwAttack -= Time.deltaTime;
+                Debug.Log("You strike an enemy");
+                //enemyCollider[i].GetComponentInParent<EnemyController>().playerHealth -= damage;
             }
+
+            //barriers
+            Collider2D[] barrierCollider = Physics2D.OverlapCircleAll(attackPos.position, _attackRange, whatIsBarrier);
+            for (int i = 0; i < barrierCollider.Length; i++)
+            {
+                if (barrierCollider[i].GetComponentInParent<Barrier>().canMelee)
+                {
+                    Debug.Log("You strike a barrier");
+                    barrierCollider[i].GetComponentInParent<Barrier>().barrierHealth -= _meleeDamage;
+                }
+            }      
         }
         
     }
@@ -217,6 +166,6 @@ public class MultiTool : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        Gizmos.DrawWireSphere(attackPos.position, _attackRange);
     }
 }

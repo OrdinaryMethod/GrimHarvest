@@ -18,10 +18,7 @@ public class Barrier : MonoBehaviour
     {
         if(canShoot && canMelee)
         {
-            if (collision.gameObject.tag == "PlayerBullet")
-            {
-                barrierHealth = barrierHealth - (collision.gameObject.GetComponent<Bullet>().bulletDamage);
-            }
+           
         }      
     }
 
