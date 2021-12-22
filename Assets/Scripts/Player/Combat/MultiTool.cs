@@ -125,7 +125,6 @@ public class MultiTool : MonoBehaviour
                     barrier.barrierHealth -= shootingDamage;
                 }            
             }
-            
         }
 
         _lineRenderer.enabled = true;

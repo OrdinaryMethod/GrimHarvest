@@ -61,10 +61,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Keybinds")]
     private KeyCode _jump;
-    private KeyCode _sprint;
     private KeyCode _aim;
 
-    // Start is called before the first frame update
     void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
@@ -115,7 +113,6 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         NotFloatyJump();
@@ -124,7 +121,6 @@ public class PlayerController : MonoBehaviour
     void MapKeybinds()
     {
         _jump = _keyBinds.jump;
-        _sprint = _keyBinds.sprint;
         _aim = _keyBinds.aim;
     }
 
@@ -201,7 +197,6 @@ public class PlayerController : MonoBehaviour
         {
             wallSliding = false;
 
-
             //State
             isClimbing = false;
         }
@@ -231,7 +226,6 @@ public class PlayerController : MonoBehaviour
             {
                 wallJumpMultiplier = -0.5f;
             }
-
 
             _rb2d.velocity = new Vector2(xWallForce * -wallJumpMultiplier, yWallForce);
         }

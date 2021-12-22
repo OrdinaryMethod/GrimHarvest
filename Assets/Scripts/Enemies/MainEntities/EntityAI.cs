@@ -104,7 +104,7 @@ public class EntityAI : MonoBehaviour
         {
             _agent.SetDestination(_noisePosition.position);
         }
-        else if(!_isResting && _entityState == "Suspicious")
+        else if(!_isResting && _entityState == "Suspicious") //Search for Player
         {
             _agent.SetDestination(_target.position);
             _agent.speed = _chaseSpeed;
