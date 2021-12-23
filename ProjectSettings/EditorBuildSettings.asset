@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Catacombs/WesternHalls_Catacombs.unity
     guid: d1176f26ebc2c5e4e9475cd34cd59752
+  - enabled: 1
+    path: Assets/Scenes/Catacombs/CentralHalls_Catacombs.unity
+    guid: b3c653b4e8e21d743b5a9e3886c8dd3b
   m_configObjects: {}

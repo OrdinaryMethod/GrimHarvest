@@ -10,7 +10,7 @@ public class GeigerCounter : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float _counterRange;
-
+    public float anomalyStrength;
 
     // Update is called once per frame
     void Update()
@@ -26,10 +26,14 @@ public class GeigerCounter : MonoBehaviour
 
                 if(_anomaly.IsAnomalous)
                 {
-                    Debug.Log("Anomaly Detected! Strength level: " + _anomaly.anomalyStrength);
+                    anomalyStrength = _anomaly.anomalyStrength;
                 }
             }
+        }
 
+        if(anomalyCollider.Length <= 0)
+        {
+            anomalyStrength = 0;
         }
     }
 
