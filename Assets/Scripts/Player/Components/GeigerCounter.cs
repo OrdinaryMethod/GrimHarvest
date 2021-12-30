@@ -12,18 +12,18 @@ public class GeigerCounter : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float _counterRange;
-    public float averageAnomalyStrength;
+    public float anomalyStrength;
     public float distanceToAnomaly;
 
+    [Header("Tracked Variables")]
     public List<string> anomalyNames;
-    public List<float> anomalyStrengths;
-
+    public List<AnomalousObject> anomalyStrengths; //This list will be used to tell engine to refresh counter lists
 
     // Update is called once per frame
     void Update()
     {
         Collider2D[] anomalyCollider = Physics2D.OverlapCircleAll(_counterPos.position, _counterRange, _whatIsAnomaly);
-        for (int i = 0; i < anomalyCollider.Length; i++)
+        for(int i = 0; i < anomalyCollider.Length; i++)
         {
             AnomalousObject _anomaly;
 
@@ -31,29 +31,37 @@ public class GeigerCounter : MonoBehaviour
             {
                 _anomaly = anomalyCollider[i].GetComponent<AnomalousObject>();
 
-                if (_anomaly.IsAnomalous)
+                if(_anomaly.IsAnomalous)
                 {
-                    //anomalyStrength = _anomaly.anomalyStrength;           
-                    //distanceToAnomaly = _anomaly.distanceToAnomaly;
-
                     if(!anomalyNames.Contains(anomalyCollider[i].name))
                     {
                         anomalyNames.Add(anomalyCollider[i].name);
-                        anomalyStrengths.Add(_anomaly.anomalyStrength);
-                    }               
+                        anomalyStrengths.Add(_anomaly);
+                    }    
+
+                    if(anomalyStrengths.Count > 0)
+                    {
+                        anomalyStrengths.Where(w => w.name == _anomaly.name).ToList().ForEach(S => S.anomalyStrength = _anomaly.anomalyStrength);
+                    }
                 }
             }
         }
 
-        //Remove anomalies that are not detected from lists
-        if(anomalyNames.Count > anomalyCollider.Length)
+        if (anomalyNames.Count > anomalyCollider.Length)
         {
             anomalyNames.Clear();
             anomalyStrengths.Clear();
         }
 
-        //Get Average anomaly strength near player
-        averageAnomalyStrength = (anomalyStrengths.Sum(x => x) / anomalyCollider.Length);
+        if(anomalyCollider.Length == 0)
+        {
+            distanceToAnomaly = 0;
+            anomalyStrength = 0;
+        }
+        else
+        {
+            Mathf.RoundToInt(anomalyStrength = anomalyStrengths.Sum(x => x.anomalyStrength));
+        }
     }
 
     private void OnDrawGizmosSelected()

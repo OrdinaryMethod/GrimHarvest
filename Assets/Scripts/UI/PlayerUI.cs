@@ -12,7 +12,8 @@ public class PlayerUI : MonoBehaviour
     private GeigerCounter _geigerCounter;
 
     [Header("Variables")]
-    private float _meterCount;
+    [Range(0.0f, 999.0f)]
+    [SerializeField] private float _geigerCounterMax;
 
     // Start is called before the first frame update
     void Start()
@@ -27,25 +28,19 @@ public class PlayerUI : MonoBehaviour
     }
 
     private void GeigerCounter()
-    {
-        _meterCount = _geigerCounter.distanceToAnomaly;
-
-        if(_geigerCounter.averageAnomalyStrength > 0)
+    {    
+        if(_geigerCounter.anomalyStrength > 0 && _geigerCounter.anomalyStrength <= _geigerCounterMax)
         {
-            //_meterCount = _geigerCounter.strongestAnomalyValue / Mathf.RoundToInt(_geigerCounter.distanceToAnomaly * 2);
+            _geigerCounterMeter.text = Mathf.RoundToInt(_geigerCounter.anomalyStrength) + " rem";
+        }
+        else if(_geigerCounter.anomalyStrength > _geigerCounterMax)
+        {
+            _geigerCounterMeter.text = "WARNING";
         }
         else
         {
-            _meterCount = 0;
-        }
+            _geigerCounterMeter.text = 0 + " rem";
+        } 
 
-        if(_meterCount > 999)
-        {
-           // _meterCount = _geigerCounter.strongestAnomalyValue;
-        }
-
-        _geigerCounterMeter.text = Mathf.RoundToInt(_meterCount) + " rem";
-
-        
     }
 }

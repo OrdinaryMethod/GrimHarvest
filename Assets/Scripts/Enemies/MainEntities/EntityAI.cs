@@ -22,7 +22,7 @@ public class EntityAI : MonoBehaviour
     private int _patrolPointMax;
     private int _patrolPointSelect;
     private bool _determineNewPatrolPoint;
-    private bool _isResting;
+    [SerializeField] private bool _isResting;
     [Range(0.0f, 10.0f)]
     [SerializeField] private float _setTimeToRest;
     private float _timeToRest;
@@ -33,7 +33,6 @@ public class EntityAI : MonoBehaviour
     [Range(0.0f, 100.0f)]
     [SerializeField] private float _aggroRange;
     public Transform PlayerHidingPos;
-    [SerializeField] private bool _KnowsWherePlayerIsHiding;
 
     [Header("Noise Detection")]
     [SerializeField] private Transform _hearingPos;
@@ -58,7 +57,6 @@ public class EntityAI : MonoBehaviour
         _determineNewPatrolPoint = false;
         _facingRight = true;
         _isResting = false;
-        _KnowsWherePlayerIsHiding = false;
 
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -266,6 +264,10 @@ public class EntityAI : MonoBehaviour
             }
             
             Destroy(collision.gameObject);
+        }
+        else if(collision.gameObject.tag == "Entity")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         }
     }
 
