@@ -102,7 +102,14 @@ public class EntityAI : MonoBehaviour
         }
         else if(!_isResting && _entityState == "Investigating") //Persue noise
         {
-            _agent.SetDestination(_noisePosition.position);
+            if(_noisePosition != null)
+            {
+                _agent.SetDestination(_noisePosition.position);
+            }
+            else
+            {
+                _entityState = "Patrolling";
+            }
         }
         else if(!_isResting && _entityState == "Suspicious") //Search for Player
         {

@@ -7,6 +7,13 @@ public class AnomalousObject : MonoBehaviour
     [Header("Settings")]
     public bool IsAnomalous;
 
-    [Range(0.0f, 200.0f)]
+    [Range(0.0f, 999.0f)]
     public float anomalyStrength;
+
+    public float distanceToAnomaly;
+
+    void Update()
+    {
+        distanceToAnomaly = Vector2.Distance(transform.position,GameObject.Find("Player").transform.position);
+    }
 }
