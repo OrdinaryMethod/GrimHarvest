@@ -7,7 +7,7 @@ public class PlayerAnimController : MonoBehaviour
     PlayerController playerController;
     private Animator playerAnim;
 
-    private bool canChangeAnim;
+    //private bool canChangeAnim;
     private bool hasLanded;
     private bool isClimbing;
 
@@ -33,7 +33,7 @@ public class PlayerAnimController : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         playerAnim = GetComponent<Animator>();
 
-        canChangeAnim = true;
+        //canChangeAnim = true;
     }
 
     void Update()
@@ -145,13 +145,13 @@ public class PlayerAnimController : MonoBehaviour
         {
             playerAnim.Play(Player_Jump_AimDown);
         }
-        canChangeAnim = true;
+        //canChangeAnim = true;
     }
 
     IEnumerator DelayToLand()
     {
         yield return new WaitForSeconds(0.1f);
-        canChangeAnim = true;
+        //canChangeAnim = true;
     }
 
     //private void CheckClimbing()
@@ -166,6 +166,6 @@ public class PlayerAnimController : MonoBehaviour
     IEnumerator DelayToClimb()
     {
         yield return new WaitForSeconds(0.05f);
-        canChangeAnim = true;
+       // canChangeAnim = true;
     }
 }

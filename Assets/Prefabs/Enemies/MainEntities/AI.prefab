@@ -169,7 +169,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 30
-  m_Acceleration: 45
+  m_Acceleration: 100
   avoidancePriority: 99
   m_AngularSpeed: 120
   m_StoppingDistance: 5
@@ -194,9 +194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityState: 
   _target: {fileID: 4166731928235367504, guid: 9f6ca363d63ea2649bcc8f66246f7106, type: 3}
-  _patrolSpeed: 15
-  _chaseSpeed: 20
+  _patrolSpeed: 10
+  _chaseSpeed: 15
   _selectedPatrolPoint: 0
+  _isResting: 0
   _setTimeToRest: 2
   _layerMask:
     serializedVersion: 2
@@ -204,7 +205,6 @@ MonoBehaviour:
   _castPoint: {fileID: 5050452691022825289}
   _aggroRange: 20
   PlayerHidingPos: {fileID: 0}
-  _KnowsWherePlayerIsHiding: 0
   _hearingPos: {fileID: 7876143417176784315}
   _whatIsNoise:
     serializedVersion: 2
@@ -223,7 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAnomalous: 1
+  setAnomalyStrength: 0
   anomalyStrength: 200
+  distanceToAnomaly: 0
 --- !u!1 &5547668469948299842
 GameObject:
   m_ObjectHideFlags: 0
