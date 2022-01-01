@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     private float _jumpCooldown;
     private float _groundedCooldown;
     public bool isGrounded;
-    bool isTouchingFront;
-    bool wallSliding;
+    private bool _isTouchingFront;
+    private bool _wallSliding;
     [Range(0.0f, 25.0f)]
     public float wallSlidingSpeed;
     private bool _wallJumping;
@@ -184,24 +184,24 @@ public class PlayerController : MonoBehaviour
 
     void WallSliding()
     {
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+        _isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
 
-        if (isTouchingFront && !isGrounded)
+        if (_isTouchingFront && !isGrounded)
         {
-            wallSliding = true;
+            _wallSliding = true;
 
             //State
             isClimbing = true;
         }
         else
         {
-            wallSliding = false;
+            _wallSliding = false;
 
             //State
             isClimbing = false;
         }
 
-        if (wallSliding)
+        if (_wallSliding)
         {
             _rb2d.velocity = new Vector2(_rb2d.velocity.x, Mathf.Clamp(_rb2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     void WallJumping()
     {
-        if (Input.GetKeyDown(_jump) && wallSliding)
+        if (Input.GetKeyDown(_jump) && _wallSliding)
         {
             _wallJumping = true;
             Invoke("SetWallJumpingToFalse", wallJumpTime);
