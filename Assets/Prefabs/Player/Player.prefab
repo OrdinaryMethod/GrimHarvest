@@ -1893,10 +1893,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07674224ddd1974f9dfbb00b28d3b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 10
-  playerSpeed: 0
-  damage: 0
-  knockbackBonus: 0
+  playerHealth: 3
+  playerSpeed: 20
+  shootingDamage: 1
+  damage: 1
 --- !u!114 &4166731928235367506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1924,7 +1924,6 @@ MonoBehaviour:
   _firePoint: {fileID: 4166731928371697991}
   _facingRight: 0
   _lineRenderer: {fileID: 9141478995379436258}
-  shootingDamage: 1
   attackPos: {fileID: 3126789930977152385}
   whatIsEnemy:
     serializedVersion: 2
@@ -1967,6 +1966,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   _counterRange: 75
+  anomalyStrength: 0
+  distanceToAnomaly: 0
+  anomalyNames: []
+  anomalyStrengths: []
 --- !u!1 &4166731928371697991
 GameObject:
   m_ObjectHideFlags: 0

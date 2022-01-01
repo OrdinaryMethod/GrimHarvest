@@ -6,6 +6,8 @@ public class MultiTool : MonoBehaviour
 {
     //Variables
     private Keybinds _keybinds;
+    private PlayerStats _playerStats;
+    private PlayerController _playerController;
 
     [Header("Objects")]
     [SerializeField] private GameObject _firePoint;
@@ -17,8 +19,7 @@ public class MultiTool : MonoBehaviour
 
     [Header("Shooting Variables")]
     [SerializeField] private LineRenderer _lineRenderer;
-    [Range(0.0f, 100.0f)]
-    public int shootingDamage;
+    private int _shootingDamage;
 
     [Header("Melee Variables")]
     public Transform attackPos;
@@ -40,11 +41,24 @@ public class MultiTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _facingRight = GetComponent<PlayerController>().facingRight;
+        //Components
+        _playerStats = GetComponent<PlayerStats>();
+        _playerController = GetComponent<PlayerController>();
 
-        GetKeyBinds();
-        MeleeAttack();
+        //Variables
+        if(_playerStats != null || _playerController != null)
+        {
+            _facingRight = _playerController.facingRight;
+            _shootingDamage = _playerStats.shootingDamage;
 
+            GetKeyBinds();
+            MeleeAttack();
+        }
+        else
+        {
+            Debug.LogError("A component on the MultiTool scripts is null.");
+        }
+        
         if (Input.GetKeyDown(_shootKey))
         {
             StartCoroutine(Shoot());
@@ -122,7 +136,7 @@ public class MultiTool : MonoBehaviour
             {
                 if(barrier.canShoot)
                 {
-                    barrier.barrierHealth -= shootingDamage;
+                    barrier.barrierHealth -= _shootingDamage;
                 }            
             }
         }
