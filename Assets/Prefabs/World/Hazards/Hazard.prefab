@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6130506864328446399}
   - component: {fileID: 8717587756785302025}
   m_Layer: 0
-  m_Name: GasHazard
+  m_Name: Hazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
