@@ -5,8 +5,8 @@ public class WorldObjectSpawner : EditorWindow
 {
     string objectBaseName = "";
     int objectID = 1;
-    float objectScale;
-    float spawnRadius;
+    float objectScale = 1;
+    float spawnRadius = 0.5f;
 
     GameObject hidingSpotPrefab;
     GameObject barrierPrefab;
@@ -27,9 +27,9 @@ public class WorldObjectSpawner : EditorWindow
         spawnRadius = EditorGUILayout.FloatField("Spawn Radius", spawnRadius);
 
         GUILayout.Label("Objects to Spawn", EditorStyles.boldLabel);
-        hidingSpotPrefab = EditorGUILayout.ObjectField("HidingSpot Prefab", hidingSpotPrefab, typeof(GameObject), false) as GameObject;
-        barrierPrefab = EditorGUILayout.ObjectField("Barrier Prefab", barrierPrefab, typeof(GameObject), false) as GameObject;
-        hazardPrefab = EditorGUILayout.ObjectField("Barrier Prefab", hazardPrefab, typeof(GameObject), false) as GameObject;
+        hidingSpotPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/HidingSpots/HidingSpot.prefab", typeof(GameObject));
+        barrierPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Barriers/Barrier.prefab", typeof(GameObject));
+        hazardPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Hazards/Hazard.prefab", typeof(GameObject));
 
         if (GUILayout.Button("Spawn Hiding Spot"))
         {
@@ -47,11 +47,6 @@ public class WorldObjectSpawner : EditorWindow
 
     private void SpawnHidingSpot()
     {
-        if (hidingSpotPrefab == null)
-        {
-            Debug.LogError("Hiding spot needs a prefab assigned.");
-            return;
-        }
         if (objectBaseName == string.Empty)
         {
             Debug.LogError("Please enter a base name for the object.");
@@ -70,11 +65,6 @@ public class WorldObjectSpawner : EditorWindow
 
     private void SpawnBarrier()
     {
-        if(barrierPrefab == null)
-        {
-            Debug.LogError("Barrier needs a prefab assigned.");
-            return;
-        }
         if(objectBaseName == string.Empty)
         {
             Debug.LogError("Please enter a base name for the object.");
