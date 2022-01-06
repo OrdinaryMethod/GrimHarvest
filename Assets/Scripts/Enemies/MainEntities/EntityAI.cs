@@ -58,7 +58,7 @@ public class EntityAI : MonoBehaviour
         _facingRight = true;
         _isResting = false;
 
-        _patrolPointObjects = GameObject.FindGameObjectsWithTag("EnemyPatrolPoint");
+        _patrolPointObjects = GameObject.FindGameObjectsWithTag("EntityPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         _patrolPointMax = _patrolPointObjects.Length;
@@ -70,10 +70,21 @@ public class EntityAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Pathing();
-        HuntPlayer();
-        ListenForNoise();
-        PlayerCantHide();
+        if(_patrolPointObjects.Length == 0)
+        {
+            Debug.LogError("Please setup entity patrol points within this scene.");
+        }
+        else if(_target == null)
+        {
+            Debug.LogError("Please assign the entity ai a target in it's inspector.");
+        }
+        else
+        {
+            Pathing();
+            HuntPlayer();
+            ListenForNoise();
+            PlayerCantHide();
+        }
 
         //Flip
         if (_agent.velocity.x >= 0.01f && !_facingRight)
@@ -246,7 +257,7 @@ public class EntityAI : MonoBehaviour
                 _isResting = true;
             }
         }
-        else if (collision.gameObject.tag == "EnemyPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
+        else if (collision.gameObject.tag == "EntityPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
         {
             _determineNewPatrolPoint = true;
             _isResting = true;
