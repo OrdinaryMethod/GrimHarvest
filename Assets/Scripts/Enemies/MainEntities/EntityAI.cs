@@ -18,7 +18,7 @@ public class EntityAI : MonoBehaviour
 
     [Header("Patrol")]
     [SerializeField] private int _selectedPatrolPoint;
-    private GameObject[] _patrolPointObjects;
+    [SerializeField] private GameObject[] _patrolPointObjects;
     private int _patrolPointMax;
     private int _patrolPointSelect;
     private bool _determineNewPatrolPoint;
@@ -45,6 +45,7 @@ public class EntityAI : MonoBehaviour
     private bool _facingRight;
     private PlayerController _playerController;
     private float distanceToPlayer;
+    private GameObject[] _entityColliders;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,17 +55,25 @@ public class EntityAI : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _determineNewPatrolPoint = false;
+        _determineNewPatrolPoint = true;
         _facingRight = true;
         _isResting = false;
 
+        _target = GameObject.Find("Player").transform;
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EntityPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _entityColliders = GameObject.FindGameObjectsWithTag("Entity");
 
         _patrolPointMax = _patrolPointObjects.Length;
         _patrolPointSelect = Random.Range(0, _patrolPointMax);
         _selectedPatrolPoint = _patrolPointSelect;
         _timeToRest = _setTimeToRest;
+
+        //Ignore fellow entity AI collisions
+        foreach(GameObject entity in _entityColliders)
+        {
+            Physics2D.IgnoreCollision(entity.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     // Update is called once per frame
@@ -276,10 +285,8 @@ public class EntityAI : MonoBehaviour
             
             Destroy(collision.gameObject);
         }
-        else if(collision.gameObject.tag == "Entity")
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-        }
+
+        Debug.Log(collision.name);
     }
 
     private void OnDrawGizmosSelected()
