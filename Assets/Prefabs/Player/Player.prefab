@@ -1705,6 +1705,7 @@ GameObject:
   - component: {fileID: 943494973631047192}
   - component: {fileID: 5666595832898114748}
   - component: {fileID: 1562559300299579521}
+  - component: {fileID: 2999584166302093849}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1970,6 +1971,18 @@ MonoBehaviour:
   distanceToAnomaly: 0
   anomalyNames: []
   anomalyStrengths: []
+--- !u!114 &2999584166302093849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166731928235367501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f877b0efca4604388fd7e07e7584d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4166731928371697991
 GameObject:
   m_ObjectHideFlags: 0

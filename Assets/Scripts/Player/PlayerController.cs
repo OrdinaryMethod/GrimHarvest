@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private float _jumpCooldown;
     private float _groundedCooldown;
     public bool isGrounded;
-    private bool _isTouchingFront;
+    [HideInInspector] public bool isTouchingFront;
     private bool _wallSliding;
     [Range(0.0f, 25.0f)]
     public float wallSlidingSpeed;
@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
         //Get Keybinds
         _keyBinds = gameObject.GetComponent<Keybinds>();
 
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+
         if (!droidActive)
         {
             //Get movement input
@@ -94,8 +96,6 @@ public class PlayerController : MonoBehaviour
                 Jumping();
             }
             Crouching();
-            WallSliding();
-            WallJumping();
             AimDirection();
 
             //Flip character
@@ -182,55 +182,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void WallSliding()
-    {
-        _isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
-
-        if (_isTouchingFront && !isGrounded)
-        {
-            _wallSliding = true;
-
-            //State
-            isClimbing = true;
-        }
-        else
-        {
-            _wallSliding = false;
-
-            //State
-            isClimbing = false;
-        }
-
-        if (_wallSliding)
-        {
-            _rb2d.velocity = new Vector2(_rb2d.velocity.x, Mathf.Clamp(_rb2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
-        }
-    }
-
-    void WallJumping()
-    {
-        if (Input.GetKeyDown(_jump) && _wallSliding)
-        {
-            _wallJumping = true;
-            Invoke("SetWallJumpingToFalse", wallJumpTime);
-        }
-
-        if (_wallJumping)
-        {
-            float wallJumpMultiplier;
-            if(facingRight)
-            {
-                wallJumpMultiplier = 0.5f;
-            }
-            else
-            {
-                wallJumpMultiplier = -0.5f;
-            }
-
-            _rb2d.velocity = new Vector2(xWallForce * -wallJumpMultiplier, yWallForce);
-        }
-    }
-
     void NotFloatyJump()
     {
         if (_rb2d.velocity.y < 0)
@@ -251,11 +202,6 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-    }
-
-    void SetWallJumpingToFalse()
-    {
-        _wallJumping = false;
     }
 
     void AimDirection()
