@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
-    private Rigidbody2D _rb2d;
+    public Rigidbody2D rb2d;
     public Transform frontCheck;
     public Transform groundCheck;
     public LayerMask whatIsGround;
@@ -30,16 +30,6 @@ public class PlayerController : MonoBehaviour
     private float _groundedCooldown;
     public bool isGrounded;
     [HideInInspector] public bool isTouchingFront;
-    private bool _wallSliding;
-    [Range(0.0f, 25.0f)]
-    public float wallSlidingSpeed;
-    private bool _wallJumping;
-    [Range(0.0f, 100.0f)]
-    public float xWallForce;
-    [Range(0.0f, 100.0f)]
-    public float yWallForce;
-    [Range(0.0f, 1.0f)]
-    public float wallJumpTime;
 
     [Header("States")]
     public bool isRunning;
@@ -65,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         droidActive = false;
         canMove = true;
 
@@ -137,7 +127,7 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        _rb2d.velocity = new Vector2(_moveInput * speed, _rb2d.velocity.y);
+        rb2d.velocity = new Vector2(_moveInput * speed, rb2d.velocity.y);
     }
 
     void Jumping()
@@ -156,7 +146,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0)
         {
             _jumpCooldown = _setJumpCooldown;
-            _rb2d.velocity = new Vector2(_rb2d.velocity.x, 1 * jumpForce);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 1 * jumpForce);
         }
 
         //State
@@ -184,13 +174,13 @@ public class PlayerController : MonoBehaviour
 
     void NotFloatyJump()
     {
-        if (_rb2d.velocity.y < 0)
+        if (rb2d.velocity.y < 0)
         {
-            _rb2d.velocity += Vector2.up * Physics2D.gravity.y * (12f - 1) * Time.deltaTime;
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (12f - 1) * Time.deltaTime;
         }
-        else if (_rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
+        else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            _rb2d.velocity += Vector2.up * Physics2D.gravity.y * (20f - 1) * Time.deltaTime;
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (20f - 1) * Time.deltaTime;
         }
     }
 
@@ -209,7 +199,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(_aim))
         {
             canMove = false;
-            _rb2d.velocity = new Vector2(0, _rb2d.velocity.y); //Prevents slowfall
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
 
             Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _leftArm.position;
             Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _rightArm.position;

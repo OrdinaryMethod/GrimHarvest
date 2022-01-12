@@ -5,7 +5,6 @@ using UnityEngine;
 public class WallClimbing : MonoBehaviour
 {
     private PlayerController _playerController;
-    private Rigidbody2D _rb2d;
     private Keybinds _keyBinds;
 
     [Header("Settings")]
@@ -27,10 +26,9 @@ public class WallClimbing : MonoBehaviour
     private KeyCode _jump; 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         _playerController = GetComponent<PlayerController>();
-        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -74,7 +72,7 @@ public class WallClimbing : MonoBehaviour
 
         if (_wallSliding)
         {
-            _rb2d.velocity = new Vector2(_rb2d.velocity.x, Mathf.Clamp(_rb2d.velocity.y, -_wallSlidingSpeed, float.MaxValue));
+            _playerController.rb2d.velocity = new Vector2(_playerController.rb2d.velocity.x, Mathf.Clamp(_playerController.rb2d.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
     }
 
@@ -97,7 +95,7 @@ public class WallClimbing : MonoBehaviour
             {
                 wallJumpMultiplier = -0.5f;
             }
-            _rb2d.velocity = new Vector2(_xWallForce * -wallJumpMultiplier, _yWallForce);
+            _playerController.rb2d.velocity = new Vector2(_xWallForce * -wallJumpMultiplier, _yWallForce);
         }
     }
 
