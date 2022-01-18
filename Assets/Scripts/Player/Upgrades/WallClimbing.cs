@@ -6,6 +6,7 @@ public class WallClimbing : MonoBehaviour
 {
     private PlayerController _playerController;
     private Keybinds _keyBinds;
+    private Rigidbody2D _rb2d;
 
     [Header("Settings")]
     [SerializeField] private bool _wallSliding;
@@ -26,9 +27,10 @@ public class WallClimbing : MonoBehaviour
     private KeyCode _jump; 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _playerController = GetComponent<PlayerController>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,24 @@ public class WallClimbing : MonoBehaviour
             MapKeybinds();
             WallSliding();
             WallJumping();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (_wallJumping)
+        {
+            float wallJumpMultiplier;
+            if (_playerController.facingRight)
+            {
+                wallJumpMultiplier = 0.5f;
+            }
+            else
+            {
+                wallJumpMultiplier = -0.5f;
+            }
+
+            _rb2d.velocity = new Vector2(_xWallForce * -wallJumpMultiplier, _yWallForce);
         }
     }
 
@@ -72,7 +92,7 @@ public class WallClimbing : MonoBehaviour
 
         if (_wallSliding)
         {
-            _playerController.rb2d.velocity = new Vector2(_playerController.rb2d.velocity.x, Mathf.Clamp(_playerController.rb2d.velocity.y, -_wallSlidingSpeed, float.MaxValue));
+            _rb2d.velocity = new Vector2(_rb2d.velocity.x, Mathf.Clamp(_rb2d.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
     }
 
@@ -84,19 +104,7 @@ public class WallClimbing : MonoBehaviour
             Invoke("SetWallJumpingToFalse", _wallJumpTime);
         }
 
-        if (_wallJumping)
-        {
-            float wallJumpMultiplier;
-            if (_playerController.facingRight)
-            {
-                wallJumpMultiplier = 0.5f;
-            }
-            else
-            {
-                wallJumpMultiplier = -0.5f;
-            }
-            _playerController.rb2d.velocity = new Vector2(_xWallForce * -wallJumpMultiplier, _yWallForce);
-        }
+        
     }
 
     void SetWallJumpingToFalse()

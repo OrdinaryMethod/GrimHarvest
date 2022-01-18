@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DroidController : MonoBehaviour
 {
-    [SerializeField] private Transform dockPos;
+    private NavMeshAgent _agent;
+
+    private Transform dockPos;
     private PlayerController playerController;
     [SerializeField] private GameObject droidLight;
     public GameObject droidBombPrefab;
@@ -17,9 +20,13 @@ public class DroidController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+
+        dockPos = GameObject.Find("DroidDock").transform;
         droidActive = false;
         droidLight.SetActive(false); //Light
     }
@@ -27,11 +34,11 @@ public class DroidController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerController = GetComponentInParent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         if (!droidActive)
         {
-            gameObject.transform.position = new Vector3(dockPos.position.x, dockPos.position.y, 0);
+            _agent.SetDestination(dockPos.position);
             droidLight.SetActive(false); //Light
         }
         else
