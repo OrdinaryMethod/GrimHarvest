@@ -13,7 +13,7 @@ public class DroidController : MonoBehaviour
     public GameObject droidBombPrefab;
     public Transform bombDropPoint;
 
-    private bool droidActive;
+    [SerializeField] private bool droidActive;
     private float moveInputX;
     private float moveInputY;
     [SerializeField] private float speed;
@@ -29,6 +29,8 @@ public class DroidController : MonoBehaviour
         dockPos = GameObject.Find("DroidDock").transform;
         droidActive = false;
         droidLight.SetActive(false); //Light
+
+        Physics2D.IgnoreLayerCollision(17, 3);
     }
 
     // Update is called once per frame
@@ -38,22 +40,22 @@ public class DroidController : MonoBehaviour
 
         if (!droidActive)
         {
+            _agent.enabled = true;
             _agent.SetDestination(dockPos.position);
             droidLight.SetActive(false); //Light
         }
         else
         {
-            playerController.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            _agent.enabled = false;
+            GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             droidLight.SetActive(true); //Light
             DropBomb();
-
             Movement();
         }
 
         playerController.droidActive = droidActive;
 
-        ActivateDroid();
-        
+        ActivateDroid();   
     }
 
     private void ActivateDroid()
@@ -62,7 +64,7 @@ public class DroidController : MonoBehaviour
         {
             if(!droidActive)
             {
-                if(playerController.isGrounded)
+                if (playerController.isGrounded)
                 {
                     droidActive = true;
                 }                    
