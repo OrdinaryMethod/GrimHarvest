@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
-    public Rigidbody2D rb2d;
+    [HideInInspector] public Rigidbody2D rb2d;
     public Transform frontCheck;
     public Transform groundCheck;
     public LayerMask whatIsGround;
@@ -45,9 +45,12 @@ public class PlayerController : MonoBehaviour
     public float angle;
 
     [Header("Aiming")]
+    [SerializeField] private float _rightArmDefaultAngle;
+    [SerializeField] private float _leftArmDefaultAngle;
+    [SerializeField] private float _neckDefaultAngle;
     [SerializeField] private Transform _rightArm;
     [SerializeField] private Transform _leftArm;
-    [SerializeField] private Transform _head;
+    [SerializeField] private Transform _neck;
 
     [Header("Keybinds")]
     private KeyCode _jump;
@@ -203,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
             Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _leftArm.position;
             Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _rightArm.position;
-            Vector2 headDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _head.position;
+            Vector2 headDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _neck.position;
 
             float leftArmAngle = (Mathf.Atan2(leftArmDirection.y, leftArmDirection.x) * Mathf.Rad2Deg);
             float rightArmAngle = (Mathf.Atan2(rightArmDirection.y, rightArmDirection.x) * Mathf.Rad2Deg);
@@ -222,7 +225,7 @@ public class PlayerController : MonoBehaviour
 
             _leftArm.rotation = Quaternion.Slerp(_leftArm.rotation, leftArmRotation, 50 * Time.deltaTime);
             _rightArm.rotation = Quaternion.Slerp(_rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
-            _head.rotation = Quaternion.Slerp(_head.rotation, headRotation, 50 * Time.deltaTime);
+            _neck.rotation = Quaternion.Slerp(_neck.rotation, headRotation, 50 * Time.deltaTime);
 
             if (facingRight && leftArmDirection.x < 0)
             {
@@ -236,9 +239,19 @@ public class PlayerController : MonoBehaviour
         else
         {
             canMove = true;
-            _leftArm.rotation = Quaternion.Euler(0, 0, 0);
-            _rightArm.rotation = Quaternion.Euler(0, 0, 0);
-            _head.rotation = Quaternion.Euler(0, 0, 0);
+            if (facingRight)
+            {
+                _leftArm.rotation = Quaternion.Euler(0, 0, _leftArmDefaultAngle);
+                _rightArm.rotation = Quaternion.Euler(0, 0, _rightArmDefaultAngle);
+                _neck.rotation = Quaternion.Euler(0, 0, _neckDefaultAngle);
+            }
+            else
+            {
+                _leftArm.rotation = Quaternion.Euler(0, 0, -_leftArmDefaultAngle);
+                _rightArm.rotation = Quaternion.Euler(0, 0, -_rightArmDefaultAngle);
+                _neck.rotation = Quaternion.Euler(0, 0, -_neckDefaultAngle);
+            }
+
         }
     }
 }
