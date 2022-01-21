@@ -1,0 +1,591 @@
+fileFormatVersion: 2
+guid: 6c5b9d3c8fb494a49ae068698cb6d81b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2422132661057484654
+    second: Taron_Head
+  - first:
+      213: 7556281028456775471
+    second: Taron_LeftArm
+  - first:
+      213: -5150790943117927526
+    second: Taron_RightArm
+  - first:
+      213: 3412585124125138563
+    second: Taron_UpperTorso
+  - first:
+      213: 8493421797551990396
+    second: Taron_RightForarm
+  - first:
+      213: -1147431004300991496
+    second: Taron_RightHand
+  - first:
+      213: -4032145724241900239
+    second: Taron_LeftLeg
+  - first:
+      213: -7638433901737116413
+    second: Taron_LeftCalf
+  - first:
+      213: 4285746677332476524
+    second: Taron_LeftForarm
+  - first:
+      213: 6554357850290904541
+    second: Taron_LeftHand
+  - first:
+      213: -9134126520678389492
+    second: Taron_10
+  - first:
+      213: 5060907912231353520
+    second: Taron_11
+  - first:
+      213: -1125262536776402598
+    second: Taron_LowerTorso
+  - first:
+      213: -270272370430504851
+    second: Taron_13
+  - first:
+      213: 4154915621979949136
+    second: Taron_14
+  - first:
+      213: 2180319799283417768
+    second: Taron_RightLeg
+  - first:
+      213: 5281146119556552262
+    second: Taron_RightCalf
+  - first:
+      213: -6541748740742880418
+    second: Taron_LeftHip
+  - first:
+      213: 8957749240676599027
+    second: Taron_RightHip
+  - first:
+      213: -3396529452235936055
+    second: Taron_Ankle
+  - first:
+      213: 8238089852413891037
+    second: Taron_Boot
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Taron_Head
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 822
+        width: 264
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67f33d72d42d9120800000000000000
+      internalID: 2422132661057484654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LeftArm
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 797
+        width: 161
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f703c7f8d4dd860800000000000000
+      internalID: 7556281028456775471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_RightArm
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 801
+        width: 161
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b18236de6b488b0800000000000000
+      internalID: -5150790943117927526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_UpperTorso
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 491
+        width: 258
+        height: 280
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ed249f610fb5f20800000000000000
+      internalID: 3412585124125138563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_RightForarm
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 625
+        width: 270
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7665a2ff12bed570800000000000000
+      internalID: 8493421797551990396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_RightHand
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 651
+        width: 151
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f3ae58b4918310f0800000000000000
+      internalID: -1147431004300991496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LeftLeg
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 521
+        width: 125
+        height: 235
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d83f7b3d0fa08c0800000000000000
+      internalID: -4032145724241900239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LeftCalf
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 537
+        width: 102
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d78a626d4def590800000000000000
+      internalID: -7638433901737116413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LeftForarm
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 449
+        width: 272
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6286bb65e70a7b30800000000000000
+      internalID: 4285746677332476524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LeftHand
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 489
+        width: 151
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddd1650db1c5fa50800000000000000
+      internalID: 6554357850290904541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_10
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 339
+        width: 162
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c096d79f2501d3180800000000000000
+      internalID: -9134126520678389492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LowerTorso
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 115
+        width: 219
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5933684fa34260f0800000000000000
+      internalID: -1125262536776402598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_13
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 257
+        width: 103
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6013e706bccf3cf0800000000000000
+      internalID: -270272370430504851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_14
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 261
+        width: 95
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05806d79eb939a930800000000000000
+      internalID: 4154915621979949136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_RightLeg
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 227
+        width: 125
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a20a0d3e4d024e10800000000000000
+      internalID: 2180319799283417768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_RightCalf
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 250
+        width: 102
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646d91f3a666a4940800000000000000
+      internalID: 5281146119556552262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_LeftHip
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 86
+        width: 81
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5369221e2a0735a0800000000000000
+      internalID: -6541748740742880418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_RightHip
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 85
+        width: 81
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4cd856971505c70800000000000000
+      internalID: 8957749240676599027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_Ankle
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 89
+        width: 67
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce2352757a1dd0d0800000000000000
+      internalID: -3396529452235936055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taron_Boot
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 67
+        width: 157
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd151e0d213935270800000000000000
+      internalID: 8238089852413891037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
