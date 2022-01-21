@@ -45,9 +45,6 @@ public class PlayerController : MonoBehaviour
     public float angle;
 
     [Header("Aiming")]
-    [SerializeField] private float _rightArmDefaultAngle;
-    [SerializeField] private float _leftArmDefaultAngle;
-    [SerializeField] private float _neckDefaultAngle;
     [SerializeField] private Transform _rightArm;
     [SerializeField] private Transform _leftArm;
     [SerializeField] private Transform _neck;
@@ -218,7 +215,7 @@ public class PlayerController : MonoBehaviour
                 rightArmAngle = rightArmAngle - 180;
                 headAngle = headAngle - 180;
             }
-  
+
             Quaternion leftArmRotation = Quaternion.AngleAxis(leftArmAngle, Vector3.forward);
             Quaternion rightArmRotation = Quaternion.AngleAxis(rightArmAngle, Vector3.forward);
             Quaternion headRotation = Quaternion.AngleAxis(headAngle, Vector3.forward);
@@ -239,19 +236,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             canMove = true;
-            if (facingRight)
-            {
-                _leftArm.rotation = Quaternion.Euler(0, 0, _leftArmDefaultAngle);
-                _rightArm.rotation = Quaternion.Euler(0, 0, _rightArmDefaultAngle);
-                _neck.rotation = Quaternion.Euler(0, 0, _neckDefaultAngle);
-            }
-            else
-            {
-                _leftArm.rotation = Quaternion.Euler(0, 0, -_leftArmDefaultAngle);
-                _rightArm.rotation = Quaternion.Euler(0, 0, -_rightArmDefaultAngle);
-                _neck.rotation = Quaternion.Euler(0, 0, -_neckDefaultAngle);
-            }
-
+            _leftArm.rotation = Quaternion.Euler(0, 0, 0);
+            _rightArm.rotation = Quaternion.Euler(0, 0, 0);
+            _neck.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }
