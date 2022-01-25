@@ -39,6 +39,18 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
+    m_Name: UpperBody
+    m_StateMachine: {fileID: -5931610029104276787}
+    m_Mask: {fileID: 0}
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 1
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 1
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+  - serializedVersion: 5
     m_Name: LowerBody
     m_StateMachine: {fileID: 1792353118612760713}
     m_Mask: {fileID: 0}
@@ -46,18 +58,6 @@ AnimatorController:
     - serializedVersion: 2
       m_State: {fileID: 5434130727168024027}
       m_Motion: {fileID: 7400000, guid: 0a5079ac1a5506549832d19f55aceaeb, type: 2}
-    m_Behaviours: []
-    m_BlendingMode: 1
-    m_SyncedLayerIndex: -1
-    m_DefaultWeight: 0
-    m_IKPass: 0
-    m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
-  - serializedVersion: 5
-    m_Name: UpperBody
-    m_StateMachine: {fileID: -5931610029104276787}
-    m_Mask: {fileID: 0}
-    m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1
     m_SyncedLayerIndex: -1
