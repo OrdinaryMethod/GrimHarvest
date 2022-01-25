@@ -1376,16 +1376,16 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.08317016, g: 0.8396226, b: 0.14358278, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.990566, g: 0.92374927, b: 0.81768423, a: 1}
+      key1: {r: 0.990566, g: 0.92374927, b: 0.81768423, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 65150
-      ctime1: 65150
+      ctime0: 0
+      ctime1: 65535
       ctime2: 0
       ctime3: 0
       ctime4: 0
@@ -2610,6 +2610,7 @@ GameObject:
   - component: {fileID: 4166731928235367500}
   - component: {fileID: 4166731928235367507}
   - component: {fileID: 4166731928235367503}
+  - component: {fileID: 4525520977234935913}
   - component: {fileID: 4166731928235367505}
   - component: {fileID: 6093351206969018232}
   - component: {fileID: 4166731928235367502}
@@ -2700,7 +2701,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928235367501}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5553c8b1b1227474b85898141f1afe5b, type: 2}
   m_CullingMode: 0
@@ -2732,6 +2733,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &4525520977234935913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166731928235367501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a3f0b39ff26934ebbde21910fc5471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4166731928235367505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2833,6 +2846,7 @@ MonoBehaviour:
   noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
     type: 3}
   noiseLocation: {fileID: 0}
+  isShooting: 0
 --- !u!114 &2999584166302093849
 MonoBehaviour:
   m_ObjectHideFlags: 0

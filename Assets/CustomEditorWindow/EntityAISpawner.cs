@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 public class EntityAISpawner : EditorWindow
@@ -85,3 +86,4 @@ public class EntityAISpawner : EditorWindow
         entityPatrolPointID++;
     }
 }
+#endif

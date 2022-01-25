@@ -15,8 +15,6 @@ public class PlayerCombatController : MonoBehaviour
     [Header("General Variables")]
     [SerializeField] private bool _facingRight;
 
-    //[Header("Ammo")]
-
     [Header("Shooting Variables")]
     [SerializeField] private LineRenderer _lineRenderer;
     private int _shootingDamage;
@@ -33,6 +31,9 @@ public class PlayerCombatController : MonoBehaviour
     [Header("Enemy AI")]
     public GameObject noiseSourcePrefab;
     public Transform noiseLocation;
+
+    [Header("Animation")]
+    public bool isShooting;
 
     //Keybinds
     private KeyCode _shootKey;
@@ -76,6 +77,8 @@ public class PlayerCombatController : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        isShooting = true;
+
         GameObject noiseSource = GameObject.Find("NoiseLocation(Clone)");
 
         if(noiseSource == null)
