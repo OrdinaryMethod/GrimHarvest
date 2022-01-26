@@ -17,6 +17,7 @@ public class PlayerAnimController : MonoBehaviour
 
     void Update()
     {
+        //Shooting
         if (playerCombatController.isShooting)
         {
             playerAnimator.SetBool("isShooting", true);
@@ -25,6 +26,16 @@ public class PlayerAnimController : MonoBehaviour
         else
         {
             playerAnimator.SetBool("isShooting", false);
+        }
+
+        //Running
+        if(playerController.isRunning)
+        {
+            playerAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isRunning", false);
         }
     }
 }
