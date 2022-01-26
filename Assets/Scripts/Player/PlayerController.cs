@@ -82,9 +82,9 @@ public class PlayerController : MonoBehaviour
             MapKeybinds();
             if(canMove)
             {
-                Running();
-                Jumping();
+                Running();   
             }
+            Jumping();
             Crouching();
             AimDirection();
 
@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour
         if((Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0) && isGrounded)
         {
             isRunning = true;
-            
         }
         else
         {
@@ -145,19 +144,17 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0)
         {
+            isJumping = true;
+            StartCoroutine(ResetJumpBool());
             _jumpCooldown = _setJumpCooldown;
             rb2d.velocity = new Vector2(rb2d.velocity.x, 1 * jumpForce);
         }
+    }
 
-        //State
-        if (!isGrounded && !isClimbing)
-        {
-            isJumping = true;
-        }
-        else
-        {
-            isJumping = false;
-        }
+    IEnumerator ResetJumpBool()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isJumping = false;
     }
 
     void Crouching()
@@ -198,6 +195,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(_aim))
         {
+            isRunning = false;
             canMove = false;
             rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
 

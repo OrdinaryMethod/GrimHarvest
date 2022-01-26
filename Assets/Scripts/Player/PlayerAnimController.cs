@@ -37,5 +37,27 @@ public class PlayerAnimController : MonoBehaviour
         {
             playerAnimator.SetBool("isRunning", false);
         }
+
+        //Jumping
+        if(!playerController.isGrounded && playerController.isJumping)
+        {
+            playerAnimator.SetBool("isGrounded", false);
+            playerAnimator.SetBool("isJumping", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isGrounded", true);
+            playerAnimator.SetBool("isJumping", false);
+        }
+
+        //Free fall
+        if(!playerController.isGrounded && !playerController.isJumping)
+        {
+            playerAnimator.SetBool("isFreeFalling", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isFreeFalling", false);
+        }
     }
 }
