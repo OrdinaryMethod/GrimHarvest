@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     void Jumping()
     {
-        isGrounded = Physics2D.OverlapBox(groundCheck.position, transform.localScale, 0, whatIsGround);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, new Vector2(2,2), 0, whatIsGround);
 
         _groundedCooldown -= Time.deltaTime;
 
