@@ -159,14 +159,21 @@ public class PlayerController : MonoBehaviour
 
     void Crouching()
     {
-        if(Input.GetKey(KeyCode.C))
+        if(isGrounded)
         {
-            isCrouching = true; //State
-        }
-        else
-        {
-            isCrouching = false; //State
-        }
+            if (Input.GetKey(KeyCode.C))
+            {
+                isCrouching = true; //State
+                canMove = false;
+
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            }
+            else
+            {
+                isCrouching = false; //State
+                canMove = true;
+            }
+        }   
     }
 
     void NotFloatyJump()
@@ -233,7 +240,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            canMove = true;
+            if(!isCrouching)
+            {
+                canMove = true;
+            }
+            
             _leftArm.rotation = Quaternion.Euler(0, 0, 0);
             _rightArm.rotation = Quaternion.Euler(0, 0, 0);
             _neck.rotation = Quaternion.Euler(0, 0, 0);

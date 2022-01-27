@@ -59,5 +59,15 @@ public class PlayerAnimController : MonoBehaviour
         {
             playerAnimator.SetBool("isFreeFalling", false);
         }
+
+        //Crouching
+        if(playerController.isCrouching)
+        {
+            playerAnimator.SetBool("isCrouching", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isCrouching", false);
+        }
     }
 }
