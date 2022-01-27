@@ -4,70 +4,82 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
-    private PlayerController playerController;
-    private PlayerCombatController playerCombatController;
-    private Animator playerAnimator;
+    private PlayerController _playerController;
+    private PlayerCombatController _playerCombatController;
+    private Animator _playerAnimator;
+    private WallClimbing _wallClimbing;
 
     void Awake()
     {
-        playerController = GetComponent<PlayerController>();
-        playerCombatController = GetComponent<PlayerCombatController>();
-        playerAnimator = GetComponent<Animator>();
+        _playerController = GetComponent<PlayerController>();
+        _playerCombatController = GetComponent<PlayerCombatController>();
+        _playerAnimator = GetComponent<Animator>();
+        _wallClimbing = GetComponent<WallClimbing>();
     }
 
     void Update()
     {
         //Shooting
-        if (playerCombatController.isShooting)
+        if (_playerCombatController.isShooting)
         {
-            playerAnimator.SetBool("isShooting", true);
-            playerCombatController.isShooting = false;
+            _playerAnimator.SetBool("isShooting", true);
+            _playerCombatController.isShooting = false;
         }
         else
         {
-            playerAnimator.SetBool("isShooting", false);
+            _playerAnimator.SetBool("isShooting", false);
         }
 
         //Running
-        if(playerController.isRunning)
+        if(_playerController.isRunning)
         {
-            playerAnimator.SetBool("isRunning", true);
+            _playerAnimator.SetBool("isRunning", true);
         }
         else
         {
-            playerAnimator.SetBool("isRunning", false);
+            _playerAnimator.SetBool("isRunning", false);
         }
 
         //Jumping
-        if(!playerController.isGrounded && playerController.isJumping)
+        if(!_playerController.isGrounded && _playerController.isJumping)
         {
-            playerAnimator.SetBool("isGrounded", false);
-            playerAnimator.SetBool("isJumping", true);
+            _playerAnimator.SetBool("isGrounded", false);
+            _playerAnimator.SetBool("isJumping", true);
         }
         else
         {
-            playerAnimator.SetBool("isGrounded", true);
-            playerAnimator.SetBool("isJumping", false);
+            _playerAnimator.SetBool("isGrounded", true);
+            _playerAnimator.SetBool("isJumping", false);
         }
 
         //Free fall
-        if(!playerController.isGrounded && !playerController.isJumping)
+        if(!_playerController.isGrounded && !_playerController.isJumping)
         {
-            playerAnimator.SetBool("isFreeFalling", true);
+            _playerAnimator.SetBool("isFreeFalling", true);
         }
         else
         {
-            playerAnimator.SetBool("isFreeFalling", false);
+            _playerAnimator.SetBool("isFreeFalling", false);
         }
 
         //Crouching
-        if(playerController.isCrouching)
+        if(_playerController.isCrouching)
         {
-            playerAnimator.SetBool("isCrouching", true);
+            _playerAnimator.SetBool("isCrouching", true);
         }
         else
         {
-            playerAnimator.SetBool("isCrouching", false);
+            _playerAnimator.SetBool("isCrouching", false);
+        }
+
+        //Wall Grabbing
+        if(_wallClimbing.wallSliding)
+        {
+            _playerAnimator.SetBool("isWallGrabbing", true);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isWallGrabbing", false);
         }
     }
 }

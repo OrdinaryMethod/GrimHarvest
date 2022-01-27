@@ -9,7 +9,7 @@ public class WallClimbing : MonoBehaviour
     private Rigidbody2D _rb2d;
 
     [Header("Settings")]
-    [SerializeField] private bool _wallSliding;
+    public bool wallSliding;
     [Range(0.0f, 25.0f)]
     [SerializeField] private float _wallSlidingSpeed;
     [SerializeField] private bool _wallJumping;
@@ -20,7 +20,7 @@ public class WallClimbing : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float _wallJumpTime;
 
-    [SerializeField] private bool _isTouchingFront;
+    public bool _isTouchingFront;
     [SerializeField] private bool _isGrounded;
  
     [Header("Keybinds")]
@@ -77,20 +77,20 @@ public class WallClimbing : MonoBehaviour
     {
         if (_isTouchingFront && !_isGrounded)
         {
-            _wallSliding = true;
+            wallSliding = true;
 
             //State
             _playerController.isClimbing = true;
         }
         else
         {
-            _wallSliding = false;
+            wallSliding = false;
 
             //State
             _playerController.isClimbing = false;
         }
 
-        if (_wallSliding)
+        if (wallSliding)
         {
             _rb2d.velocity = new Vector2(_rb2d.velocity.x, Mathf.Clamp(_rb2d.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
@@ -98,7 +98,7 @@ public class WallClimbing : MonoBehaviour
 
     void WallJumping()
     {
-        if (Input.GetKeyDown(_jump) && _wallSliding)
+        if (Input.GetKeyDown(_jump) && wallSliding)
         {
             _wallJumping = true;
             Invoke("SetWallJumpingToFalse", _wallJumpTime);
