@@ -19,6 +19,8 @@ public class PlayerAnimController : MonoBehaviour
 
     void Update()
     {
+        VariableCheck();
+
         //Shooting
         if (_playerCombatController.isShooting)
         {
@@ -56,10 +58,12 @@ public class PlayerAnimController : MonoBehaviour
         if(!_playerController.isGrounded && !_playerController.isJumping)
         {
             _playerAnimator.SetBool("isFreeFalling", true);
+            _playerAnimator.SetBool("isGrounded", false);
         }
         else
         {
             _playerAnimator.SetBool("isFreeFalling", false);
+            _playerAnimator.SetBool("isGrounded", true);
         }
 
         //Crouching
@@ -81,5 +85,13 @@ public class PlayerAnimController : MonoBehaviour
         {
             _playerAnimator.SetBool("isWallGrabbing", false);
         }
+    }
+
+    private void VariableCheck()
+    {
+        //if(_playerAnimator.GetBool("isFreeFalling") == true)
+        //{
+        //    _playerAnimator.SetBool("isGrounded", false);
+        //}
     }
 }
