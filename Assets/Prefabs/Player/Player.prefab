@@ -2865,7 +2865,7 @@ MonoBehaviour:
   _xWallForce: 40
   _yWallForce: 45
   _wallJumpTime: 0.2
-  _isTouchingFront: 0
+  isTouchingFront: 0
   _isGrounded: 0
 --- !u!114 &5666595832898114748
 MonoBehaviour:
@@ -2991,7 +2991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928863023092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.46, y: 3.62, z: 0}
+  m_LocalPosition: {x: 1.46, y: 3.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 6153978586312025742}
@@ -3021,7 +3021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731929161039042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -4.88, z: 0}
+  m_LocalPosition: {x: 0.21, y: -4.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 6153978586312025742}

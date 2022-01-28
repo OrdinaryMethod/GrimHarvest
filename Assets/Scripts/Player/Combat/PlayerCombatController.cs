@@ -8,7 +8,6 @@ public class PlayerCombatController : MonoBehaviour
     private Keybinds _keybinds;
     private PlayerStats _playerStats;
     private PlayerController _playerController;
-    private WallClimbing _wallClimbing;
 
     [Header("Objects")]
     [SerializeField] private GameObject _firePoint;
@@ -40,11 +39,6 @@ public class PlayerCombatController : MonoBehaviour
     private KeyCode _shootKey;
     private KeyCode _meleeAttack;
 
-    void Awake()
-    {
-        _wallClimbing = GetComponent<WallClimbing>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -68,7 +62,7 @@ public class PlayerCombatController : MonoBehaviour
         
         if (Input.GetKeyDown(_shootKey))
         {
-            if(!_wallClimbing.wallSliding)
+            if(!_playerController.isTouchingFront)
             {
                 StartCoroutine(Shoot());
             }  

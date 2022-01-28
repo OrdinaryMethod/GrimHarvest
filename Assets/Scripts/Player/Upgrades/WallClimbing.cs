@@ -20,7 +20,7 @@ public class WallClimbing : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float _wallJumpTime;
 
-    public bool _isTouchingFront;
+    public bool isTouchingFront;
     [SerializeField] private bool _isGrounded;
  
     [Header("Keybinds")]
@@ -39,7 +39,7 @@ public class WallClimbing : MonoBehaviour
         //Get Keybinds
         _keyBinds = gameObject.GetComponent<Keybinds>();
 
-        _isTouchingFront = _playerController.isTouchingFront;
+        isTouchingFront = _playerController.isTouchingFront;
         _isGrounded = _playerController.isGrounded;
 
         if(!_playerController.droidActive)
@@ -75,7 +75,7 @@ public class WallClimbing : MonoBehaviour
 
     void WallSliding()
     {
-        if (_isTouchingFront && !_isGrounded)
+        if (isTouchingFront && !_isGrounded)
         {
             wallSliding = true;
 

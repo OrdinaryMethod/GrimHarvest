@@ -85,7 +85,7 @@ public class PlayerAnimController : MonoBehaviour
         }
 
         //Stopped
-        if(_wallClimbing._isTouchingFront && _playerController.isGrounded)
+        if(_playerController.isTouchingFront && _playerController.isGrounded)
         {
             _playerAnimator.SetBool("isStopped", true);
         }
