@@ -19,8 +19,6 @@ public class PlayerAnimController : MonoBehaviour
 
     void Update()
     {
-        VariableCheck();
-
         //Shooting
         if (_playerCombatController.isShooting)
         {
@@ -85,13 +83,15 @@ public class PlayerAnimController : MonoBehaviour
         {
             _playerAnimator.SetBool("isWallGrabbing", false);
         }
-    }
 
-    private void VariableCheck()
-    {
-        //if(_playerAnimator.GetBool("isFreeFalling") == true)
-        //{
-        //    _playerAnimator.SetBool("isGrounded", false);
-        //}
+        //Stopped
+        if(_wallClimbing._isTouchingFront && _playerController.isGrounded)
+        {
+            _playerAnimator.SetBool("isStopped", true);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isStopped", false);
+        }
     }
 }
