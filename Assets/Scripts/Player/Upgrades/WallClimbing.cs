@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WallClimbing : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private ObtainedUpgrades _obtainedUpgrades;
+
     private PlayerController _playerController;
     private Keybinds _keyBinds;
     private Rigidbody2D _rb2d;
@@ -39,15 +42,26 @@ public class WallClimbing : MonoBehaviour
         //Get Keybinds
         _keyBinds = gameObject.GetComponent<Keybinds>();
 
-        isTouchingFront = _playerController.isTouchingFront;
-        _isGrounded = _playerController.isGrounded;
-
-        if(!_playerController.droidActive)
+        if(_obtainedUpgrades != null)
         {
-            MapKeybinds();
-            WallSliding();
-            WallJumping();
+            if(_obtainedUpgrades.wallClimbing)
+            {
+                isTouchingFront = _playerController.isTouchingFront;
+                _isGrounded = _playerController.isGrounded;
+
+                if (!_playerController.droidActive)
+                {
+                    MapKeybinds();
+                    WallSliding();
+                    WallJumping();
+                }
+            }  
         }
+        else
+        {
+            Debug.LogError("Wall Climbing script is missing obtained items reference!");
+        }
+        
     }
 
     void FixedUpdate()

@@ -2859,6 +2859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f877b0efca4604388fd7e07e7584d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obtainedUpgrades: {fileID: 11400000, guid: c374d2fab753fc042887b6585145b655, type: 2}
   wallSliding: 0
   _wallSlidingSpeed: 5
   _wallJumping: 0
