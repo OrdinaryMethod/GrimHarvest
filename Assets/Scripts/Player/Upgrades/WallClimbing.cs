@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WallClimbing : MonoBehaviour
 {
-    [Header("Settings")]
     [SerializeField] private ObtainedUpgrades _obtainedUpgrades;
 
     private PlayerController _playerController;
