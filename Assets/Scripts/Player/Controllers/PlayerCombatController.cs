@@ -62,7 +62,7 @@ public class PlayerCombatController : MonoBehaviour
         
         if (Input.GetKeyDown(_shootKey))
         {
-            if(!_playerController.isTouchingFront)
+            if(!_playerController.isTouchingFront && !_playerController.isHidden)
             {
                 StartCoroutine(Shoot());
             }  

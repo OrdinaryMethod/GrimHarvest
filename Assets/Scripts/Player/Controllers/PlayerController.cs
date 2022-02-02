@@ -82,14 +82,17 @@ public class PlayerController : MonoBehaviour
             _moveInput = Input.GetAxisRaw("Horizontal");
 
             MapKeybinds();
+
             if(canMove)
             {
                 Running();   
             }
+
             Jumping();
             Crouching();
             AimDirection();
-            
+
+                 
             //Flip character
             if(canMove)
             {
@@ -204,7 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(_aim))
         {
-            if(!_wallClimbing.wallSliding)
+            if(!_wallClimbing.wallSliding && !isTouchingFront && !isHidden)
             {
                 isRunning = false;
                 canMove = false;
