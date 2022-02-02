@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7693398122497877579}
   m_Layer: 0
   m_Name: Armor_RightCalf
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 2635435285558181467}
   m_Layer: 0
   m_Name: Armor_RightArm
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ SpriteRenderer:
   m_SortingOrder: -6
   m_Sprite: {fileID: -5150790943117927526, guid: 6c5b9d3c8fb494a49ae068698cb6d81b,
     type: 3}
-  m_Color: {r: 0.5, g: 0.48349056, b: 0.48349056, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 3867727232764338603}
   m_Layer: 0
   m_Name: Armor_LeftKnee
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 3830608161344574234}
   m_Layer: 0
   m_Name: Armor_RightLeg
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 4572792659100540996}
   m_Layer: 0
   m_Name: Armor_RightBoot
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 4017685959386919614}
   m_Layer: 0
   m_Name: Armor_LeftBoot
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 3116314317127241532}
   m_Layer: 0
   m_Name: Armor_LeftHand
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 3232854471347603417}
   m_Layer: 0
   m_Name: Armor_UpperTorso
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1186,7 +1186,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 3412585124125138563, guid: 6c5b9d3c8fb494a49ae068698cb6d81b,
     type: 3}
-  m_Color: {r: 0.8396226, g: 0.7010057, b: 0.7010057, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1706,7 +1706,7 @@ GameObject:
   - component: {fileID: 2911356230974407452}
   m_Layer: 0
   m_Name: Armor_RightAnkle
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1875,7 +1875,7 @@ GameObject:
   - component: {fileID: 433687594308068136}
   m_Layer: 0
   m_Name: Armor_Neck
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1960,7 +1960,7 @@ GameObject:
   - component: {fileID: 977417089010440811}
   m_Layer: 0
   m_Name: Armor_LeftLeg
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2410,7 +2410,7 @@ GameObject:
   - component: {fileID: 7142773112193991368}
   m_Layer: 0
   m_Name: Armor_RightHip
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2494,7 +2494,7 @@ GameObject:
   - component: {fileID: 9164695773504563578}
   m_Layer: 0
   m_Name: Armor_LowerTorso
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2556,7 +2556,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1125262536776402598, guid: 6c5b9d3c8fb494a49ae068698cb6d81b,
     type: 3}
-  m_Color: {r: 0.7264151, g: 0.70928264, b: 0.70928264, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2635,7 +2635,7 @@ GameObject:
   - component: {fileID: 4166731928111650651}
   m_Layer: 3
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3025,6 +3025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7403bd357bc35334a982e9580ff3a7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerArmor: []
 --- !u!1 &4166731928371697991
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,7 +3164,7 @@ GameObject:
   - component: {fileID: 5468115962520974689}
   m_Layer: 0
   m_Name: Armor_LeftCalf
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3285,7 +3286,7 @@ GameObject:
   - component: {fileID: 3920208993572235315}
   m_Layer: 0
   m_Name: Armor_LeftArm
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3508,7 +3509,7 @@ GameObject:
   - component: {fileID: 6044189962691194285}
   m_Layer: 0
   m_Name: Armor_RightHand
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3570,7 +3571,7 @@ SpriteRenderer:
   m_SortingOrder: -4
   m_Sprite: {fileID: -1147431004300991496, guid: 6c5b9d3c8fb494a49ae068698cb6d81b,
     type: 3}
-  m_Color: {r: 0.5566038, g: 0.54872733, b: 0.54872733, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3592,7 +3593,7 @@ GameObject:
   - component: {fileID: 8182590670917193713}
   m_Layer: 0
   m_Name: Armor_LeftForarm
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3824,7 +3825,7 @@ GameObject:
   - component: {fileID: 2998860992595960218}
   m_Layer: 0
   m_Name: Armor_RightKnee
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3938,7 +3939,7 @@ GameObject:
   - component: {fileID: 2152105546111888349}
   m_Layer: 0
   m_Name: Armor_RightForarm
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4000,7 +4001,7 @@ SpriteRenderer:
   m_SortingOrder: -5
   m_Sprite: {fileID: 8493421797551990396, guid: 6c5b9d3c8fb494a49ae068698cb6d81b,
     type: 3}
-  m_Color: {r: 0.49056602, g: 0.40494835, b: 0.40494835, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4107,7 +4108,7 @@ GameObject:
   - component: {fileID: 5175107866753157572}
   m_Layer: 0
   m_Name: Armor_LeftHip
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4448,7 +4449,7 @@ GameObject:
   - component: {fileID: 4774332201997156291}
   m_Layer: 0
   m_Name: Armor_Head
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4532,7 +4533,7 @@ GameObject:
   - component: {fileID: 7403732213114960992}
   m_Layer: 0
   m_Name: Armor_LeftAnkle
-  m_TagString: Untagged
+  m_TagString: PlayerArmor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

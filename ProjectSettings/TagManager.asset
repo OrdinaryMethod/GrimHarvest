@@ -16,6 +16,7 @@ TagManager:
   - NoiseSource
   - Entity
   - EntityPatrolPoint
+  - PlayerArmor
   layers:
   - Default
   - TransparentFX
