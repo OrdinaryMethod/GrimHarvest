@@ -18,6 +18,7 @@ public class PlayerCombatController : MonoBehaviour
     [Header("Shooting Variables")]
     [SerializeField] private LineRenderer _lineRenderer;
     private int _shootingDamage;
+    public bool lineRendererActive;
 
     [Header("Melee Variables")]
     public Transform attackPos;
@@ -148,10 +149,12 @@ public class PlayerCombatController : MonoBehaviour
         }
 
         _lineRenderer.enabled = true;
+        lineRendererActive = true;
 
         yield return new WaitForSeconds(0.02f);
 
         _lineRenderer.enabled = false;
+        lineRendererActive = false;
     }
 
     private void MeleeAttack()
