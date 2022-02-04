@@ -206,7 +206,6 @@ public class PlayerController : MonoBehaviour
     void AimDirection()
     {
         float mouseDistance = Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)); //This prevents body parts from doing goofy shit when mouse is too close to player
-        Debug.Log(mouseDistance);
 
         if (Input.GetKey(_aim))
         {
