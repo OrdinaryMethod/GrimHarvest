@@ -1,52 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DroidController : MonoBehaviour
 {
-    [SerializeField] private Transform dockPos;
+    private NavMeshAgent _agent;
+
+    private Transform dockPos;
     private PlayerController playerController;
     [SerializeField] private GameObject droidLight;
     public GameObject droidBombPrefab;
     public Transform bombDropPoint;
 
-    private bool droidActive;
+    [SerializeField] private bool droidActive;
     private float moveInputX;
     private float moveInputY;
     [SerializeField] private float speed;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+
+        dockPos = GameObject.Find("DroidDock").transform;
         droidActive = false;
         droidLight.SetActive(false); //Light
+
+        Physics2D.IgnoreLayerCollision(17, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerController = GetComponentInParent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         if (!droidActive)
         {
-            gameObject.transform.position = new Vector3(dockPos.position.x, dockPos.position.y, 0);
+            _agent.enabled = true;
+            _agent.SetDestination(dockPos.position);
             droidLight.SetActive(false); //Light
         }
         else
         {
-            playerController.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            _agent.enabled = false;
+            GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             droidLight.SetActive(true); //Light
             DropBomb();
-
             Movement();
         }
 
         playerController.droidActive = droidActive;
 
-        ActivateDroid();
-        
+        ActivateDroid();   
     }
 
     private void ActivateDroid()
@@ -55,7 +64,7 @@ public class DroidController : MonoBehaviour
         {
             if(!droidActive)
             {
-                if(playerController.isGrounded)
+                if (playerController.isGrounded)
                 {
                     droidActive = true;
                 }                    

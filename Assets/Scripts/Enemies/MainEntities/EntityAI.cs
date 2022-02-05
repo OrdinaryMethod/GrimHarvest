@@ -231,8 +231,7 @@ public class EntityAI : MonoBehaviour
                 {
                     StartCoroutine(PersueNoise(noiseCollider[i].transform));
                 }    
-            }
-            
+            }    
         }
     }
 
@@ -285,8 +284,6 @@ public class EntityAI : MonoBehaviour
             
             Destroy(collision.gameObject);
         }
-
-        Debug.Log(collision.name);
     }
 
     private void OnDrawGizmosSelected()

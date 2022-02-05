@@ -10,7 +10,6 @@ public class SceneTransitioner : MonoBehaviour
     public Vector2 playerPos;
     public bool facingRight;
     public VectorValue playerMemory;
-   
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,6 +19,8 @@ public class SceneTransitioner : MonoBehaviour
             playerMemory.facingRight = facingRight;
 
             SceneManager.LoadSceneAsync(sceneName);
+
+            
         }
     }
 }

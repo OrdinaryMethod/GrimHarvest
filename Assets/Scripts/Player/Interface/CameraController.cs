@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                GameObject droid = GameObject.Find("Droid");
+                GameObject droid = GameObject.Find("Droid(Clone)");
                 transform.position = new Vector3(droid.transform.position.x, droid.transform.position.y, transform.position.z);
             }
             
