@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _rightArm;
     [SerializeField] private Transform _leftArm;
     [SerializeField] private Transform _neck;
+    public bool isAiming;
 
     [Header("Keybinds")]
     private KeyCode _jump;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
         _wallClimbing = GetComponent<WallClimbing>();
         droidActive = false;
         canMove = true;
+        isAiming = false;
 
         //Values from scriptable object
         transform.position = startingPos.initialValue;
@@ -147,7 +149,7 @@ public class PlayerController : MonoBehaviour
             _groundedCooldown = _setGroundedCooldown;
         }
 
-        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0 && !isCrouching)
+        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0 && !isCrouching && !isAiming)
         {
             isJumping = true;
             StartCoroutine(ResetJumpBool());
@@ -213,6 +215,7 @@ public class PlayerController : MonoBehaviour
             {
                 isRunning = false;
                 canMove = false;
+                isAiming = true;
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
 
                 Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _leftArm.position;
@@ -256,7 +259,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(!isCrouching)
+            isAiming = false;
+
+            if (!isCrouching)
             {
                 canMove = true;
             }

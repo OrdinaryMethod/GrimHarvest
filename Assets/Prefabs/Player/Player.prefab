@@ -501,7 +501,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -3123,6 +3123,7 @@ MonoBehaviour:
   _rightArm: {fileID: 6657935577342551669}
   _leftArm: {fileID: 6689226154985443016}
   _neck: {fileID: 2381568790550027136}
+  isAiming: 0
 --- !u!114 &943494973631047192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3167,7 +3168,7 @@ MonoBehaviour:
   _obtainedUpgrades: {fileID: 11400000, guid: c374d2fab753fc042887b6585145b655, type: 2}
   wallSliding: 0
   _wallSlidingSpeed: 5
-  _wallJumping: 0
+  wallJumping: 0
   _xWallForce: 40
   _yWallForce: 45
   _wallJumpTime: 0.2
@@ -3611,7 +3612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1076718143837971441
 Transform:
   m_ObjectHideFlags: 0
@@ -3643,7 +3644,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.902
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000

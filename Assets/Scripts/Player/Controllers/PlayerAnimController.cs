@@ -84,6 +84,16 @@ public class PlayerAnimController : MonoBehaviour
             _playerAnimator.SetBool("isWallGrabbing", false);
         }
 
+        //Wall Jumping
+        if(_wallClimbing.wallJumping)
+        {
+            _playerAnimator.SetBool("isWallJumping", true);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isWallJumping", false);
+        }
+
         //Stopped
         if(_playerController.isTouchingFront && _playerController.isGrounded)
         {

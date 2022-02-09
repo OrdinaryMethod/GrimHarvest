@@ -14,7 +14,7 @@ public class WallClimbing : MonoBehaviour
     public bool wallSliding;
     [Range(0.0f, 25.0f)]
     [SerializeField] private float _wallSlidingSpeed;
-    [SerializeField] private bool _wallJumping;
+    public bool wallJumping;
     [Range(0.0f, 100.0f)]
     [SerializeField] private float _xWallForce;
     [Range(0.0f, 100.0f)]
@@ -65,7 +65,7 @@ public class WallClimbing : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_wallJumping)
+        if (wallJumping)
         {
             float wallJumpMultiplier;
             if (_playerController.facingRight)
@@ -113,7 +113,7 @@ public class WallClimbing : MonoBehaviour
     {
         if (Input.GetKeyDown(_jump) && wallSliding)
         {
-            _wallJumping = true;
+            wallJumping = true;
             Invoke("SetWallJumpingToFalse", _wallJumpTime);
         }
 
@@ -122,6 +122,6 @@ public class WallClimbing : MonoBehaviour
 
     void SetWallJumpingToFalse()
     {
-        _wallJumping = false;
+        wallJumping = false;
     }
 }
