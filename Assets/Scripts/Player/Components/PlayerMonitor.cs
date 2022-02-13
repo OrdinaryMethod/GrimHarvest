@@ -23,7 +23,6 @@ public class PlayerMonitor : MonoBehaviour
         {
             Debug.LogError("A component on the Player Monitor is null");
         }
-        
     }
 
     // Update is called once per frame

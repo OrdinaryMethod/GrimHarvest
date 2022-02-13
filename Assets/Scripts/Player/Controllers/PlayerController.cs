@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Keybinds _keyBinds;
     public VectorValue startingPos;
     private WallClimbing _wallClimbing;
+    [SerializeField] private GameObject _playerFlashLight;
 
     [Header("Droid")]
     public bool droidActive;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         _wallClimbing = GetComponent<WallClimbing>();
+        _playerFlashLight = GameObject.Find("PlayerFlashLight");
         droidActive = false;
         canMove = true;
         isAiming = false;
@@ -106,7 +108,20 @@ public class PlayerController : MonoBehaviour
                 {
                     Flip();
                 }
-            }            
+            }    
+            
+            //Control Flashlight
+            if(_playerFlashLight != null)
+            {
+                if(isHidden)
+                {
+                    _playerFlashLight.SetActive(false);
+                }
+                else
+                {
+                    _playerFlashLight.SetActive(true);
+                }
+            }
         }   
     }
 
@@ -168,7 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded)
         {
-            if (Input.GetKey(KeyCode.C))
+            if (Input.GetKey(KeyCode.S))
             {
                 isCrouching = true; //State
                 canMove = false;
