@@ -11,7 +11,6 @@ public class DungeonEntrance : MonoBehaviour
 
     [SerializeField] private List<string> _dungeonScenes;
 
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
         dungeonMasterData.dungeonStarted = true;
