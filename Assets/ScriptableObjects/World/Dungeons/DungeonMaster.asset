@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32aebf49614991a4cbbeb078c20d4d1d, type: 3}
   m_Name: DungeonMaster
   m_EditorClassIdentifier: 
-  dungeonStarted: 0
-  dungeonName: 
-  currentLevel: 0
-  maxLevel: 0
-  dungeonScenes: []
+  dungeonStarted: 1
+  dungeonName: UpperCatacombs
+  currentLevel: 1
+  maxLevel: 3
+  dungeonScenes:
+  - TestScene1
+  - TestScene2
+  - TestScene3
