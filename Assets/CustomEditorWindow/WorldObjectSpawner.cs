@@ -12,6 +12,7 @@ public class WorldObjectSpawner : EditorWindow
     GameObject hidingSpotPrefab;
     GameObject barrierPrefab;
     GameObject hazardPrefab;
+    GameObject SceneTransitionerPrefab;
 
     [MenuItem("Tools/World Object Spawner")]
     public static void ShowWindow()
@@ -31,6 +32,7 @@ public class WorldObjectSpawner : EditorWindow
         hidingSpotPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/HidingSpots/HidingSpot.prefab", typeof(GameObject));
         barrierPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Barriers/Barrier.prefab", typeof(GameObject));
         hazardPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Hazards/Hazard.prefab", typeof(GameObject));
+        SceneTransitionerPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/SceneTransitioners/SceneTransitioner.prefab", typeof(GameObject));
 
         if (GUILayout.Button("Spawn Hiding Spot"))
         {
@@ -43,6 +45,10 @@ public class WorldObjectSpawner : EditorWindow
         else if(GUILayout.Button("Spawn Hazard"))
         {
             SpawnHazard();
+        }
+        else if (GUILayout.Button("Scene Transitioner"))
+        {
+            SpawnSceneTransitioner();
         }
     }
 
@@ -100,6 +106,28 @@ public class WorldObjectSpawner : EditorWindow
 
         GameObject newObject = Instantiate(hazardPrefab, spawnPos, Quaternion.identity);
         newObject.name = objectBaseName + objectID;
+        newObject.transform.localScale = Vector3.one * objectScale;
+
+        objectID++;
+    }
+    private void SpawnSceneTransitioner()
+    {
+        if (SceneTransitionerPrefab == null)
+        {
+            Debug.LogError("Scene Transitioner needs a prefab assigned.");
+            return;
+        }
+        if (objectBaseName == string.Empty)
+        {
+            Debug.LogError("Please enter a base name for the object.");
+            return;
+        }
+
+        Vector2 spawnCircle = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPos = new Vector3(spawnCircle.x, 0f, spawnCircle.y);
+
+        GameObject newObject = Instantiate(SceneTransitionerPrefab, spawnPos, Quaternion.identity);
+        newObject.name = objectBaseName + " (" + objectID + ")";
         newObject.transform.localScale = Vector3.one * objectScale;
 
         objectID++;

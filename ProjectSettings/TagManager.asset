@@ -17,6 +17,7 @@ TagManager:
   - Entity
   - EntityPatrolPoint
   - PlayerArmor
+  - SceneTransitioner
   layers:
   - Default
   - TransparentFX

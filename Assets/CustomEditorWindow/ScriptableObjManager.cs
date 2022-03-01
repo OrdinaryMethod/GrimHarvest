@@ -24,7 +24,7 @@ public class ScriptableObjManager : EditorWindow
     private void OnGUI()
     {
         GUILayout.Label("Player Spawn Position", EditorStyles.boldLabel);
-        vectorValue = (VectorValue)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/PlayerPosition.asset", typeof(VectorValue));
+        vectorValue = (VectorValue)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Player/PlayerPosition.asset", typeof(VectorValue));
         spawnPos = EditorGUILayout.Vector2Field("Initial Value", spawnPos);
         facingRight = EditorGUILayout.Toggle("Facing Right", facingRight);
     
@@ -33,7 +33,7 @@ public class ScriptableObjManager : EditorWindow
             SaveSpawnPosition();
         }
         GUILayout.Label("Obtained Upgrades", EditorStyles.boldLabel);
-        obtainedUpgrades = (ObtainedUpgrades)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/ObtainedUpgrades.asset", typeof(ObtainedUpgrades));
+        obtainedUpgrades = (ObtainedUpgrades)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Player/ObtainedUpgrades.asset", typeof(ObtainedUpgrades));
         wallClimbing = EditorGUILayout.Toggle("Wall Climbing", wallClimbing);
 
         if (GUILayout.Button("Save Obtained Upgrades"))
