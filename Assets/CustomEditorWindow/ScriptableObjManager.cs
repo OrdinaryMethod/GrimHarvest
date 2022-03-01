@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class ScriptableObjManager : EditorWindow
 {
     VectorValue vectorValue;
     ObtainedUpgrades obtainedUpgrades;
+    DungeonMasterData dungeonMasterData;
 
     //Spawn Position
     Vector2 spawnPos;
@@ -13,7 +15,6 @@ public class ScriptableObjManager : EditorWindow
 
     //Obtained Upgrades
     bool wallClimbing;
-
 
     [MenuItem("Tools/Manage Scriptable Objects")]
     public static void ShowWindow()
@@ -32,6 +33,7 @@ public class ScriptableObjManager : EditorWindow
         {
             SaveSpawnPosition();
         }
+
         GUILayout.Label("Obtained Upgrades", EditorStyles.boldLabel);
         obtainedUpgrades = (ObtainedUpgrades)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Player/ObtainedUpgrades.asset", typeof(ObtainedUpgrades));
         wallClimbing = EditorGUILayout.Toggle("Wall Climbing", wallClimbing);
@@ -39,6 +41,14 @@ public class ScriptableObjManager : EditorWindow
         if (GUILayout.Button("Save Obtained Upgrades"))
         {
             SaveObtainedUpgrades();
+        }
+
+        GUILayout.Label("Dungeon Master Data", EditorStyles.boldLabel);
+        dungeonMasterData = (DungeonMasterData)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/World/Dungeons/DungeonMaster.asset", typeof(DungeonMasterData));
+        
+        if (GUILayout.Button("Reset Dungeon Master Data"))
+        {
+            ResetDungeonMasterData();
         }
     }
 
@@ -51,6 +61,15 @@ public class ScriptableObjManager : EditorWindow
     private void SaveObtainedUpgrades()
     {
         obtainedUpgrades.wallClimbing = wallClimbing;
+    }
+
+    private void ResetDungeonMasterData()
+    {
+        dungeonMasterData.dungeonStarted = false;
+        dungeonMasterData.dungeonName = null;
+        dungeonMasterData.currentLevel = 0;
+        dungeonMasterData.maxLevel = 0;
+        dungeonMasterData.dungeonScenes = null;
     }
 }
 #endif
