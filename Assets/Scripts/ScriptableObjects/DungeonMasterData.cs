@@ -13,6 +13,7 @@ public class DungeonMasterData : ScriptableObject
 
     [Header("Dungeons")]
     public List<string> dungeonScenes;
+    public List<string> completedScenes;
 
 
 }

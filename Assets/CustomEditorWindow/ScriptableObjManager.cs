@@ -69,7 +69,8 @@ public class ScriptableObjManager : EditorWindow
         dungeonMasterData.dungeonName = null;
         dungeonMasterData.currentLevel = 0;
         dungeonMasterData.maxLevel = 0;
-        dungeonMasterData.dungeonScenes = null;
+        dungeonMasterData.dungeonScenes.Clear();
+        dungeonMasterData.completedScenes.Clear();
     }
 }
 #endif
