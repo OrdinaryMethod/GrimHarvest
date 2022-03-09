@@ -128,7 +128,6 @@ public class WorldObjectSpawner : EditorWindow
 
         GameObject newObject = Instantiate(SceneTransitionerPrefab, spawnPos, Quaternion.identity);
         newObject.name = objectBaseName + " (" + objectID + ")";
-        newObject.transform.localScale = Vector3.one * objectScale;
 
         objectID++;
     }

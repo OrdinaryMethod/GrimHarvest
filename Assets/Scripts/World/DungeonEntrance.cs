@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DungeonEntrance : MonoBehaviour
 {
     [SerializeField] private DungeonMasterData _dungeonMasterData;
+    [SerializeField] private DungeonSceneData _dungeonSceneData;
 
     [SerializeField] private string _dungeonName;
 
@@ -16,6 +17,12 @@ public class DungeonEntrance : MonoBehaviour
     void Start()
     {
         _selectScene = false;
+
+        foreach(string i in _dungeonSceneData.dungeonScenesRepo)
+        {
+            Debug.Log("Scene " + i + " collected");
+            _dungeonScenes.Add(i);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
