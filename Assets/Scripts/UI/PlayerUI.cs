@@ -8,10 +8,14 @@ public class PlayerUI : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private Text _geigerCounterMeter;
     [SerializeField] private Text _healthMeter;
+    [SerializeField] private Text _statusTextDisplay;
 
     [Header("Game Objects")]
     private GeigerCounter _geigerCounter;
     private PlayerMonitor _playerMonitor;
+
+    [Header("Scriptable Objects")]
+    [SerializeField] private DungeonMasterData _dungeonMasterData;
 
     [Header("Variables")]
     [Range(0.0f, 999.0f)]
@@ -27,14 +31,15 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_geigerCounter != null || _playerMonitor != null)
+        if(_geigerCounter != null || _playerMonitor != null || _statusTextDisplay != null || _dungeonMasterData != null)
         {
             GeigerCounter();
             PlayerHealth();
+            StatusText();
         }
         else
         {
-            Debug.LogError("A UI Element is null.");
+            Debug.LogError("A UI Element or object is null.");
         }
     }
 
@@ -62,6 +67,14 @@ public class PlayerUI : MonoBehaviour
         if(_playerMonitor.playerHealth <= 0)
         {
             _healthMeter.text = "Git Gud";
+        }
+    }
+
+    private void StatusText()
+    {
+        if(_dungeonMasterData.dungeonStarted)
+        {
+            _statusTextDisplay.text = "Dungeon in progress.";
         }
     }
 }

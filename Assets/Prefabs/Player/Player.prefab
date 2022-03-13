@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54867197935209853}
-  m_LocalRotation: {x: -0, y: -0, z: -0.9967177, w: -0.08095604}
-  m_LocalPosition: {x: 2.5525703, y: 0.3418473, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99917966, w: -0.040497575}
+  m_LocalPosition: {x: 3.28, y: 0.6, z: 0}
+  m_LocalScale: {x: 0.4722, y: 0.5649, z: 0}
   m_Children:
   - {fileID: 4458429427341334588}
   m_Father: {fileID: 4166731928111650649}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 175.358}
 --- !u!212 &5811742096910950377
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2838,16 +2838,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928111650646}
-  m_LocalRotation: {x: -0, y: -0, z: -0.13522717, w: -0.9908146}
-  m_LocalPosition: {x: 0.62, y: 0.51, z: 0}
-  m_LocalScale: {x: 0.32574072, y: 0.39503196, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.059595883, w: -0.9982226}
+  m_LocalPosition: {x: 0.14, y: 0.01, z: 0}
+  m_LocalScale: {x: 0.927951, y: 1.0439758, z: 0}
   m_Children:
   - {fileID: 6378743087553396910}
   - {fileID: 1076718143837971441}
   - {fileID: 4166731928371697990}
   m_Father: {fileID: 680083875328187834}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -344.456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -353.167}
 --- !u!212 &4166731928111650651
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2889,7 +2889,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 8589602148977863026, guid: 42098ec4068b1a34282aa55a803ae217,
+  m_Sprite: {fileID: 8786971457424272921, guid: b529bc18d397ca345b7d43742716214e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3103,6 +3103,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   startingPos: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
+  _playerFlashLight: {fileID: 0}
   droidActive: 0
   canMove: 0
   speed: 20
@@ -3256,8 +3257,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166731928371697991}
-  m_LocalRotation: {x: 0, y: -0, z: 0.08095604, w: -0.9967177}
-  m_LocalPosition: {x: 21.21, y: -1.57, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.01, y: 0.46, z: 0}
   m_LocalScale: {x: 3.3922365, y: 2.8256195, z: 0}
   m_Children:
   - {fileID: 4021558361082497077}
