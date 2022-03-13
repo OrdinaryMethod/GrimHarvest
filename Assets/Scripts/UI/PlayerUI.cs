@@ -9,6 +9,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Text _geigerCounterMeter;
     [SerializeField] private Text _healthMeter;
     [SerializeField] private Text _statusTextDisplay;
+    [SerializeField] private Text _ZoneTextDisplay;
 
     [Header("Game Objects")]
     private GeigerCounter _geigerCounter;
@@ -21,21 +22,29 @@ public class PlayerUI : MonoBehaviour
     [Range(0.0f, 999.0f)]
     [SerializeField] private float _geigerCounterMax;
 
+    [Range(1.0f, 10.0f)]
+    [SerializeField] private float _setZoneTextTimer;
+    private float _zoneTextTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         _geigerCounter = GameObject.Find("Player").GetComponent<GeigerCounter>();
         _playerMonitor = GameObject.Find("Player").GetComponent<PlayerMonitor>();
+
+        _ZoneTextDisplay.enabled = true;
+        _zoneTextTimer = _setZoneTextTimer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_geigerCounter != null || _playerMonitor != null || _statusTextDisplay != null || _dungeonMasterData != null)
+        if(_geigerCounter != null || _playerMonitor != null || _statusTextDisplay != null || _dungeonMasterData != null || _ZoneTextDisplay != null)
         {
             GeigerCounter();
             PlayerHealth();
             StatusText();
+            ZoneText();
         }
         else
         {
@@ -71,10 +80,30 @@ public class PlayerUI : MonoBehaviour
     }
 
     private void StatusText()
+    {    
+         _statusTextDisplay.text = "Sane.";
+    }
+
+    private void ZoneText()
     {
         if(_dungeonMasterData.dungeonStarted)
         {
-            _statusTextDisplay.text = "Dungeon in progress.";
+            _ZoneTextDisplay.text = _dungeonMasterData.dungeonName;
         }
+        else
+        {
+            _ZoneTextDisplay.text = "Over World";
+        }
+
+        if(_zoneTextTimer > 0f)
+        {
+            _ZoneTextDisplay.enabled = true;
+            _zoneTextTimer -= Time.deltaTime;
+        }
+        else
+        {
+            _ZoneTextDisplay.enabled = false;
+        }
+        
     }
 }
