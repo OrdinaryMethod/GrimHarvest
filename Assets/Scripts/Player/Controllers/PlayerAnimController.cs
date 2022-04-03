@@ -30,6 +30,17 @@ public class PlayerAnimController : MonoBehaviour
             _playerAnimator.SetBool("isShooting", false);
         }
 
+        //Melee
+        if(_playerCombatController.isMelee)
+        {
+            _playerAnimator.SetBool("isMelee", true);
+            _playerCombatController.isMelee = false;
+        }
+        else
+        {
+            _playerAnimator.SetBool("isMelee", false);
+        }
+
         //Running
         if(_playerController.isRunning)
         {

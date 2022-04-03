@@ -10,6 +10,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Text _healthMeter;
     [SerializeField] private Text _statusTextDisplay;
     [SerializeField] private Text _ZoneTextDisplay;
+    [SerializeField] private Text _subZoneTextDisplay;
 
     [Header("Game Objects")]
     private GeigerCounter _geigerCounter;
@@ -89,20 +90,24 @@ public class PlayerUI : MonoBehaviour
         if(_dungeonMasterData.dungeonStarted)
         {
             _ZoneTextDisplay.text = _dungeonMasterData.dungeonName;
+            _subZoneTextDisplay.text = "Floor " + _dungeonMasterData.currentLevel.ToString();
         }
         else
         {
             _ZoneTextDisplay.text = "Over World";
+            _subZoneTextDisplay.text = "";
         }
 
         if(_zoneTextTimer > 0f)
         {
             _ZoneTextDisplay.enabled = true;
+            _subZoneTextDisplay.enabled = true;
             _zoneTextTimer -= Time.deltaTime;
         }
         else
         {
             _ZoneTextDisplay.enabled = false;
+            _subZoneTextDisplay.enabled = false;
         }
         
     }

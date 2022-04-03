@@ -21,6 +21,7 @@ public class PlayerCombatController : MonoBehaviour
     public bool lineRendererActive;
 
     [Header("Melee Variables")]
+    [HideInInspector] public bool isMelee;
     public Transform attackPos;
     public LayerMask whatIsEnemy;
     public LayerMask whatIsBarrier;
@@ -160,8 +161,8 @@ public class PlayerCombatController : MonoBehaviour
     private void MeleeAttack()
     {
         if(Input.GetKeyDown(_meleeAttack))
-        {          
-            Debug.Log("You Melee Attack");
+        {
+            isMelee = true;
 
             //basic enemy
             Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(attackPos.position, _attackRange, whatIsEnemy);
