@@ -160,7 +160,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void MeleeAttack()
     {
-        if(Input.GetKeyDown(_meleeAttack))
+        if(Input.GetKeyDown(_meleeAttack) && !_playerController.isTouchingFront)
         {
             isMelee = true;
 

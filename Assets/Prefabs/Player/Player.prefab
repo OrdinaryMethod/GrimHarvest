@@ -3121,7 +3121,7 @@ MonoBehaviour:
   facingRight: 1
   checkRadius: 0.5
   angle: 0
-  _rightArm: {fileID: 6657935577342551669}
+  _rightArm: {fileID: 0}
   _leftArm: {fileID: 6689226154985443016}
   _neck: {fileID: 2381568790550027136}
   isAiming: 0

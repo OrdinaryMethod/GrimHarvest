@@ -234,26 +234,26 @@ public class PlayerController : MonoBehaviour
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y); //Prevents slowfall
 
                 Vector2 leftArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _leftArm.position;
-                Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _rightArm.position;
+                //Vector2 rightArmDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _rightArm.position;
                 Vector2 headDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _neck.position;
 
                 float leftArmAngle = (Mathf.Atan2(leftArmDirection.y, leftArmDirection.x) * Mathf.Rad2Deg);
-                float rightArmAngle = (Mathf.Atan2(rightArmDirection.y, rightArmDirection.x) * Mathf.Rad2Deg);
+                //float rightArmAngle = (Mathf.Atan2(rightArmDirection.y, rightArmDirection.x) * Mathf.Rad2Deg);
                 float headAngle = (Mathf.Atan2(headDirection.y, headDirection.x) * Mathf.Rad2Deg);
 
                 if (!facingRight)
                 {
                     leftArmAngle = leftArmAngle - 180;
-                    rightArmAngle = rightArmAngle - 180;
+                    //rightArmAngle = rightArmAngle - 180;
                     headAngle = headAngle - 180;
                 }
 
                 Quaternion leftArmRotation = Quaternion.AngleAxis(leftArmAngle, Vector3.forward);
-                Quaternion rightArmRotation = Quaternion.AngleAxis(rightArmAngle, Vector3.forward);
+                //Quaternion rightArmRotation = Quaternion.AngleAxis(rightArmAngle, Vector3.forward);
                 Quaternion headRotation = Quaternion.AngleAxis(headAngle, Vector3.forward);
 
                 _leftArm.rotation = Quaternion.Slerp(_leftArm.rotation, leftArmRotation, 50 * Time.deltaTime);
-                _rightArm.rotation = Quaternion.Slerp(_rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
+                //_rightArm.rotation = Quaternion.Slerp(_rightArm.rotation, rightArmRotation, 50 * Time.deltaTime);
                 _neck.rotation = Quaternion.Slerp(_neck.rotation, headRotation, 50 * Time.deltaTime);
 
                 if (facingRight && leftArmDirection.x < 0)
@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 _leftArm.rotation = Quaternion.Euler(0, 0, 0);
-                _rightArm.rotation = Quaternion.Euler(0, 0, 0);
+                //_rightArm.rotation = Quaternion.Euler(0, 0, 0);
                 _neck.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
@@ -282,7 +282,7 @@ public class PlayerController : MonoBehaviour
             }
             
             _leftArm.rotation = Quaternion.Euler(0, 0, 0);
-            _rightArm.rotation = Quaternion.Euler(0, 0, 0);
+            //_rightArm.rotation = Quaternion.Euler(0, 0, 0);
             _neck.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
