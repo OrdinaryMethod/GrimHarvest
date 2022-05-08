@@ -202,11 +202,11 @@ public class PlayerController : MonoBehaviour
     {
         if (rb2d.velocity.y < 0)
         {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (12f - 1) * Time.deltaTime;
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (50f - 1) * Time.deltaTime;
         }
         else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (20f - 1) * Time.deltaTime;
+            rb2d.velocity += Vector2.up * Physics2D.gravity.y * (25f - 1) * Time.deltaTime;
         }
     }
 
