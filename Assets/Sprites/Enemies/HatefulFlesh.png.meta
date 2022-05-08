@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -220,6 +221,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      HatefulFlesh_3: -2372300895571105609
+      HatefulFlesh_1: -4323050997380951572
+      HatefulFlesh_0: -5962829581977252662
+      HatefulFlesh_2: 3222308350093906369
+      HatefulFlesh_4: 8041516806163253166
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

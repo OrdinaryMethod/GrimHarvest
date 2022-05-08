@@ -33,6 +33,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -108,7 +109,7 @@ TextureImporter:
         width: 23
         height: 758
       alignment: 9
-      pivot: {x: 0.36915058, y: 0.0136346035}
+      pivot: {x: 0.6368541, y: 0.9941521}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -129,7 +130,7 @@ TextureImporter:
         width: 212
         height: 767
       alignment: 9
-      pivot: {x: 0.51419574, y: 0.8256706}
+      pivot: {x: 0.5074237, y: 0.83035696}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,7 +151,7 @@ TextureImporter:
         width: 212
         height: 766
       alignment: 9
-      pivot: {x: 0.47160828, y: 0.849669}
+      pivot: {x: 0.46288198, y: 0.861607}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -172,6 +173,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      HangingCorpse_1: 4708483446316782430
+      HangingCorpse_0: -2960350172755531892
+      HangingCorpse_2: -6835078714784147121
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

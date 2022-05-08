@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -484,6 +485,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tileset_CatacombWall_03_10: 6464016422795587458
+      Tileset_CatacombWall_03_7: -4933745779506242205
+      Tileset_CatacombWall_03_6: -4810910947587816749
+      Tileset_CatacombWall_03_13: -224337145665218607
+      Tileset_CatacombWall_03_11: 4337461368262394914
+      Tileset_CatacombWall_03_2: 8194286413733812884
+      Tileset_CatacombWall_03_3: 386362636821686671
+      Tileset_CatacombWall_03_15: 2259685184060007636
+      Tileset_CatacombWall_03_4: 4998621337428444033
+      Tileset_CatacombWall_03_0: -4827460627380431671
+      Tileset_CatacombWall_03_1: 9172168735299414044
+      Tileset_CatacombWall_03_8: 6213201772486457614
+      Tileset_CatacombWall_03_12: -104453350129271390
+      Tileset_CatacombWall_03_5: 8645939714406702578
+      Tileset_CatacombWall_03_9: 1011152576012235512
+      Tileset_CatacombWall_03_14: 4234427445825672009
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

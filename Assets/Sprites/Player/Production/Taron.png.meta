@@ -87,6 +87,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -583,6 +584,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Taron_LeftArm: 7556281028456775471
+      Taron_Boot: 8238089852413891037
+      Taron_Ankle: -3396529452235936055
+      Taron_10: -9134126520678389492
+      Taron_RightLeg: 2180319799283417768
+      Taron_13: -270272370430504851
+      Taron_RightHip: 8957749240676599027
+      Taron_LeftLeg: -4032145724241900239
+      Taron_RightArm: -5150790943117927526
+      Taron_LowerTorso: -1125262536776402598
+      Taron_LeftCalf: -7638433901737116413
+      Taron_RightCalf: 5281146119556552262
+      Taron_RightHand: -1147431004300991496
+      Taron_LeftHand: 6554357850290904541
+      Taron_14: 4154915621979949136
+      Taron_LeftForarm: 4285746677332476524
+      Taron_RightForarm: 8493421797551990396
+      Taron_LeftHip: -6541748740742880418
+      Taron_Head: 2422132661057484654
+      Taron_UpperTorso: 3412585124125138563
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

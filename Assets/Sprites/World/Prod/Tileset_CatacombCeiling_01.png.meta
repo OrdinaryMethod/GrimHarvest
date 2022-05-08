@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -484,6 +485,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tileset_CatacombCeiling_01_10: 7533554453480781871
+      Tileset_CatacombCeiling_01_3: -8537948920673421344
+      Tileset_CatacombCeiling_01_2: 7881326623005228330
+      Tileset_CatacombCeiling_01_13: -195396692121903061
+      Tileset_CatacombCeiling_01_8: -2237191009513977584
+      Tileset_CatacombCeiling_01_0: 2410901183102610150
+      Tileset_CatacombCeiling_01_9: -2090762167676434093
+      Tileset_CatacombCeiling_01_12: 5528521155910414370
+      Tileset_CatacombCeiling_01_1: -1307513338204787259
+      Tileset_CatacombCeiling_01_4: -8653366664250268322
+      Tileset_CatacombCeiling_01_15: 8491913653660647483
+      Tileset_CatacombCeiling_01_11: -7576862907975241875
+      Tileset_CatacombCeiling_01_7: 185264310694107350
+      Tileset_CatacombCeiling_01_6: 5176644621523085126
+      Tileset_CatacombCeiling_01_14: 393485175004455485
+      Tileset_CatacombCeiling_01_5: -7443577190054428948
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
