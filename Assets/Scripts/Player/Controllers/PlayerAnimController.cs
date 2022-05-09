@@ -6,6 +6,7 @@ public class PlayerAnimController : MonoBehaviour
 {
     private PlayerController _playerController;
     private PlayerCombatController _playerCombatController;
+    private PlayerMonitor _playerMonitor;
     private Animator _playerAnimator;
     private WallClimbing _wallClimbing;
 
@@ -13,6 +14,7 @@ public class PlayerAnimController : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         _playerCombatController = GetComponent<PlayerCombatController>();
+        _playerMonitor = GetComponent<PlayerMonitor>();
         _playerAnimator = GetComponent<Animator>();
         _wallClimbing = GetComponent<WallClimbing>();
     }
@@ -113,6 +115,16 @@ public class PlayerAnimController : MonoBehaviour
         else
         {
             _playerAnimator.SetBool("isStopped", false);
+        }
+
+        //Sanity Death
+        if (_playerMonitor.playerIsInsane)
+        {
+            _playerAnimator.SetBool("isInsane", true);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isInsane", false);
         }
     }
 }

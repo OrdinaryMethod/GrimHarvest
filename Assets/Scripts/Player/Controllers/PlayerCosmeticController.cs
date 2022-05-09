@@ -34,6 +34,7 @@ public class PlayerCosmeticController : MonoBehaviour
     {
         DarkenArmor();
         SpawnMuzzleFlash();
+        TurnOffFlashLight();
     }
 
     private void DarkenArmor()
@@ -68,6 +69,18 @@ public class PlayerCosmeticController : MonoBehaviour
         else
         {
             _muzzleFlash.SetActive(false);
+        }
+    }
+
+    private void TurnOffFlashLight()
+    {
+        if (_playerController.isTouchingFront)
+        {
+            _playerController.playerFlashLight.SetActive(false);
+        }
+        else
+        {
+            _playerController.playerFlashLight.SetActive(true);
         }
     }
 }

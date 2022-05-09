@@ -8,6 +8,7 @@ public class PlayerCombatController : MonoBehaviour
     private Keybinds _keybinds;
     private PlayerStats _playerStats;
     private PlayerController _playerController;
+    private PlayerMonitor _playerMonitor;
 
     [Header("Objects")]
     [SerializeField] private GameObject _firePoint;
@@ -47,9 +48,10 @@ public class PlayerCombatController : MonoBehaviour
         //Components
         _playerStats = GetComponent<PlayerStats>();
         _playerController = GetComponent<PlayerController>();
+        _playerMonitor = GetComponent<PlayerMonitor>();
 
         //Variables
-        if(_playerStats != null || _playerController != null)
+        if (_playerStats != null || _playerController != null)
         {
             _facingRight = _playerController.facingRight;
             _shootingDamage = _playerStats.shootingDamage;
@@ -62,7 +64,7 @@ public class PlayerCombatController : MonoBehaviour
             Debug.LogError("A component on the Player Combat script is null.");
         }
         
-        if (Input.GetKeyDown(_shootKey))
+        if (Input.GetKeyDown(_shootKey) && !_playerMonitor.playerIsInsane && !_playerMonitor.playerIsDead)
         {
             if(!_playerController.isTouchingFront && !_playerController.isHidden)
             {

@@ -18,6 +18,8 @@ TagManager:
   - EntityPatrolPoint
   - PlayerArmor
   - SceneTransitioner
+  - Doodad
+  - DoodadCollider
   layers:
   - Default
   - TransparentFX

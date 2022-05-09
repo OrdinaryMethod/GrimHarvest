@@ -2951,11 +2951,11 @@ GameObject:
   - component: {fileID: 4166731928235367503}
   - component: {fileID: 4525520977234935913}
   - component: {fileID: 4166731928235367505}
+  - component: {fileID: 5666595832898114748}
   - component: {fileID: 6093351206969018232}
   - component: {fileID: 4166731928235367502}
   - component: {fileID: 943494973631047192}
   - component: {fileID: 2999584166302093849}
-  - component: {fileID: 5666595832898114748}
   - component: {fileID: 1562559300299579521}
   - component: {fileID: 1553866692642447181}
   m_Layer: 3
@@ -3106,6 +3106,22 @@ MonoBehaviour:
   shoot: 323
   dataExtractor: 0
   aim: 324
+--- !u!114 &5666595832898114748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166731928235367501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349a81a94f568ec45a8d107d7d3dbb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIsDead: 0
+  _setDeathTimer: 3
+  playerHealth: 100
+  playerSanity: 100
 --- !u!114 &6093351206969018232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,6 +3135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 3
+  playerSanity: 100
   playerSpeed: 20
   shootingDamage: 1
   damage: 1
@@ -3141,7 +3158,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   startingPos: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
-  _playerFlashLight: {fileID: 0}
+  playerFlashLight: {fileID: 0}
   droidActive: 0
   canMove: 0
   speed: 20
@@ -3214,19 +3231,6 @@ MonoBehaviour:
   _wallJumpTime: 0.2
   isTouchingFront: 0
   _isGrounded: 0
---- !u!114 &5666595832898114748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4166731928235367501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349a81a94f568ec45a8d107d7d3dbb2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: 0
 --- !u!114 &1562559300299579521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3668,7 +3672,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4938261672478696989}
-  m_LocalRotation: {x: -0, y: -0, z: -0.6970012, w: 0.7170701}
+  m_LocalRotation: {x: -0, y: -0, z: -0.6993422, w: 0.71478707}
   m_LocalPosition: {x: 6.04, y: -0.3, z: 0}
   m_LocalScale: {x: 2.6320612, y: 2.8619905, z: 0}
   m_ConstrainProportionsScale: 0
@@ -3740,10 +3744,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 31.62
-  m_PointLightOuterAngle: 31.62
+  m_PointLightInnerAngle: 90.35
+  m_PointLightOuterAngle: 111.36
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 215.77452
+  m_PointLightOuterRadius: 67.69407
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

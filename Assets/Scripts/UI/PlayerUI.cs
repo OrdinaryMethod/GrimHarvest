@@ -82,7 +82,34 @@ public class PlayerUI : MonoBehaviour
 
     private void StatusText()
     {    
-         _statusTextDisplay.text = "Sane.";
+        if(_playerMonitor.playerSanity >= 90)
+        {
+            _statusTextDisplay.text = "Sane.";
+        }
+        else if(_playerMonitor.playerSanity < 90 && _playerMonitor.playerSanity >= 75)
+        {
+            _statusTextDisplay.text = "Stressed.";
+        }
+        else if (_playerMonitor.playerSanity < 75 && _playerMonitor.playerSanity >= 50)
+        {
+            _statusTextDisplay.text = "Panicking";
+        }
+        else if (_playerMonitor.playerSanity < 50 && _playerMonitor.playerSanity >= 25)
+        {
+            _statusTextDisplay.text = "Devoid of logic";
+        }
+        else if (_playerMonitor.playerSanity < 25 && _playerMonitor.playerSanity >= 10)
+        {
+            _statusTextDisplay.text = "Losing hope";
+        }
+        else if (_playerMonitor.playerSanity < 10 && _playerMonitor.playerSanity >= 1)
+        {
+            _statusTextDisplay.text = "Sanity slipping";
+        }
+        else if (_playerMonitor.playerSanity < 1)
+        {
+            _statusTextDisplay.text = "All hope is lost";
+        }
     }
 
     private void ZoneText()

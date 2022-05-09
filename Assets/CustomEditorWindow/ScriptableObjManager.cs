@@ -9,8 +9,10 @@ public class ScriptableObjManager : EditorWindow
     ObtainedUpgrades obtainedUpgrades;
     DungeonMasterData dungeonMasterData;
 
+    GameObject playerRespawn;
+
     //Spawn Position
-    Vector2 spawnPos;
+    //Vector2 spawnPos;
     bool facingRight;
 
     //Obtained Upgrades
@@ -22,11 +24,16 @@ public class ScriptableObjManager : EditorWindow
         GetWindow(typeof(ScriptableObjManager));
     }
 
+    private void OnEnable()
+    {
+        playerRespawn = GameObject.Find("PlayerRespawn");
+    }
+
     private void OnGUI()
     {
         GUILayout.Label("Player Spawn Position", EditorStyles.boldLabel);
         vectorValue = (VectorValue)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Player/PlayerPosition.asset", typeof(VectorValue));
-        spawnPos = EditorGUILayout.Vector2Field("Initial Value", spawnPos);
+        //spawnPos = EditorGUILayout.Vector2Field("Initial Value", spawnPos);
         facingRight = EditorGUILayout.Toggle("Facing Right", facingRight);
     
         if (GUILayout.Button("Save Player Spawn Position"))
@@ -54,7 +61,7 @@ public class ScriptableObjManager : EditorWindow
 
     private void SaveSpawnPosition()
     {
-        vectorValue.initialValue = spawnPos;
+        vectorValue.initialValue = new Vector2(playerRespawn.transform.position.x, playerRespawn.transform.position.y);
         vectorValue.facingRight = facingRight;
     }
 

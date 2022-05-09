@@ -14,6 +14,10 @@ public class WorldObjectSpawner : EditorWindow
     GameObject hazardPrefab;
     GameObject SceneTransitionerPrefab;
 
+    [Header("Doodads")]
+    GameObject HangingCorpseUpPrefab;
+    GameObject HangingCorpseDownPrefab;
+
     [MenuItem("Tools/World Object Spawner")]
     public static void ShowWindow()
     {
@@ -33,6 +37,9 @@ public class WorldObjectSpawner : EditorWindow
         barrierPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Barriers/Barrier.prefab", typeof(GameObject));
         hazardPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Hazards/Hazard.prefab", typeof(GameObject));
         SceneTransitionerPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/SceneTransitioners/SceneTransitioner.prefab", typeof(GameObject));
+        HangingCorpseUpPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Doodads/HangingCorpse_Chain_Up.prefab", typeof(GameObject));
+        HangingCorpseDownPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/World/Doodads/HangingCorpse_Chain_Down.prefab", typeof(GameObject));
+
 
         if (GUILayout.Button("Spawn Hiding Spot"))
         {
@@ -49,6 +56,14 @@ public class WorldObjectSpawner : EditorWindow
         else if (GUILayout.Button("Scene Transitioner"))
         {
             SpawnSceneTransitioner();
+        }
+        else if (GUILayout.Button("Hanging Corpse Up"))
+        {
+            SpawnHangingCorpseUp();
+        }
+        else if (GUILayout.Button("Hanging Corpse Down"))
+        {
+            SpawnHangingCorpseDown();
         }
     }
 
@@ -127,6 +142,50 @@ public class WorldObjectSpawner : EditorWindow
         Vector3 spawnPos = new Vector3(spawnCircle.x, 0f, spawnCircle.y);
 
         GameObject newObject = Instantiate(SceneTransitionerPrefab, spawnPos, Quaternion.identity);
+        newObject.name = objectBaseName + " (" + objectID + ")";
+
+        objectID++;
+    }
+
+    private void SpawnHangingCorpseUp()
+    {
+        if(HangingCorpseUpPrefab == null)
+        {
+            Debug.LogError("Hanging Corpse Up needs a prefab assigned.");
+            return;
+        }
+        if (objectBaseName == string.Empty)
+        {
+            Debug.LogError("Please enter a base name for the object.");
+            return;
+        }
+
+        Vector2 spawnCircle = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPos = new Vector3(spawnCircle.x, 0f, spawnCircle.y);
+
+        GameObject newObject = Instantiate(HangingCorpseUpPrefab, spawnPos, Quaternion.identity);
+        newObject.name = objectBaseName + " (" + objectID + ")";
+
+        objectID++;
+    }
+
+    private void SpawnHangingCorpseDown()
+    {
+        if (HangingCorpseDownPrefab == null)
+        {
+            Debug.LogError("Hanging Corpse Down needs a prefab assigned.");
+            return;
+        }
+        if (objectBaseName == string.Empty)
+        {
+            Debug.LogError("Please enter a base name for the object.");
+            return;
+        }
+
+        Vector2 spawnCircle = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPos = new Vector3(spawnCircle.x, 0f, spawnCircle.y);
+
+        GameObject newObject = Instantiate(HangingCorpseDownPrefab, spawnPos, Quaternion.identity);
         newObject.name = objectBaseName + " (" + objectID + ")";
 
         objectID++;

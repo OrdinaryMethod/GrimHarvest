@@ -6,13 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     [HideInInspector] public Rigidbody2D rb2d;
+    private PlayerMonitor _playerMonitor;
     public Transform frontCheck;
     public Transform groundCheck;
     public LayerMask whatIsGround;
     private Keybinds _keyBinds;
     public VectorValue startingPos;
     private WallClimbing _wallClimbing;
-    [SerializeField] private GameObject _playerFlashLight;
+    public GameObject playerFlashLight;
 
     [Header("Droid")]
     public bool droidActive;
@@ -60,13 +61,15 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         _wallClimbing = GetComponent<WallClimbing>();
-        _playerFlashLight = GameObject.Find("PlayerFlashLight");
+        _playerMonitor = GetComponent<PlayerMonitor>();
+        playerFlashLight = GameObject.Find("PlayerFlashLight");
         droidActive = false;
         canMove = true;
         isAiming = false;
 
         //Values from scriptable object
         transform.position = startingPos.initialValue;
+        
         if(!startingPos.facingRight)
         {
             Flip();
@@ -87,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
             MapKeybinds();
 
-            if(canMove)
+            if(canMove && (!_playerMonitor.playerIsInsane || !_playerMonitor.playerIsDead))
             {
                 Running();   
             }
@@ -98,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
                  
             //Flip character
-            if(canMove)
+            if(canMove && (!_playerMonitor.playerIsInsane || !_playerMonitor.playerIsDead))
             {
                 if (_moveInput > 0 && !facingRight)
                 {
@@ -111,17 +114,13 @@ public class PlayerController : MonoBehaviour
             }    
             
             //Control Flashlight
-            if(_playerFlashLight != null)
+            if(playerFlashLight != null)
             {
                 if(isHidden)
                 {
-                    _playerFlashLight.SetActive(false);
+                    playerFlashLight.SetActive(false);
                 }
-                else
-                {
-                    _playerFlashLight.SetActive(true);
-                }
-            }
+            }         
         }   
     }
 
@@ -164,7 +163,7 @@ public class PlayerController : MonoBehaviour
             _groundedCooldown = _setGroundedCooldown;
         }
 
-        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0 && !isCrouching && !isAiming)
+        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0 && !isCrouching && !isAiming && !_playerMonitor.playerIsInsane && !_playerMonitor.playerIsDead)
         {
             isJumping = true;
             StartCoroutine(ResetJumpBool());
@@ -212,19 +211,22 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        // Switch the way the player is labelled as facing
-        facingRight = !facingRight;
+        if(!_playerMonitor.playerIsInsane)
+        {
+            // Switch the way the player is labelled as facing
+            facingRight = !facingRight;
 
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }     
     }
 
     void AimDirection()
     {
         float mouseDistance = Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)); //This prevents body parts from doing goofy shit when mouse is too close to player
 
-        if (Input.GetKey(_aim))
+        if (Input.GetKey(_aim) && !_playerMonitor.playerIsInsane && !_playerMonitor.playerIsDead)
         {
             if(!_wallClimbing.wallSliding && !isTouchingFront && !isHidden && mouseDistance > 11f)
             {
