@@ -126,5 +126,14 @@ public class PlayerAnimController : MonoBehaviour
         {
             _playerAnimator.SetBool("isInsane", false);
         }
+
+        if(_playerController.isHidden)
+        {
+            _playerAnimator.SetBool("isHiding", true);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isHiding", false);
+        }      
     }
 }

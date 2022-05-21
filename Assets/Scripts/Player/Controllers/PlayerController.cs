@@ -67,9 +67,6 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         isAiming = false;
 
-        //Values from scriptable object
-        transform.position = startingPos.initialValue;
-        
         if(!startingPos.facingRight)
         {
             Flip();
@@ -99,15 +96,21 @@ public class PlayerController : MonoBehaviour
             Crouching();
             AimDirection();
 
+            if(isHidden)
+            {
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                isRunning = false;
+            }
+
                  
             //Flip character
             if(canMove && (!_playerMonitor.playerIsInsane || !_playerMonitor.playerIsDead))
             {
-                if (_moveInput > 0 && !facingRight)
+                if (_moveInput > 0 && !facingRight && !isHidden)
                 {
                     Flip();
                 }
-                else if (_moveInput < 0 && facingRight)
+                else if (_moveInput < 0 && facingRight && !isHidden)
                 {
                     Flip();
                 }
@@ -163,7 +166,7 @@ public class PlayerController : MonoBehaviour
             _groundedCooldown = _setGroundedCooldown;
         }
 
-        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0 && !isCrouching && !isAiming && !_playerMonitor.playerIsInsane && !_playerMonitor.playerIsDead)
+        if (Input.GetKeyDown(_jump) && _jumpCooldown <= 0 && _groundedCooldown > 0 && !isCrouching && !isAiming && !_playerMonitor.playerIsInsane && !_playerMonitor.playerIsDead && !isHidden)
         {
             isJumping = true;
             StartCoroutine(ResetJumpBool());
@@ -182,7 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded)
         {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.C) && !isHidden)
             {
                 isCrouching = true; //State
                 canMove = false;

@@ -32,7 +32,7 @@ public class PlayerCosmeticController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DarkenArmor();
+        //DarkenArmor();
         SpawnMuzzleFlash();
         TurnOffFlashLight();
     }
