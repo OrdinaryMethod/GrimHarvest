@@ -42,11 +42,11 @@ public class CoffinController : MonoBehaviour
             
         }
 
-        if(playerCollider.Length == 0)
-        {
-            _player.GetComponent<PlayerController>().isHidden = false;
-            _animator.SetBool("isHiding", false);
-        }     
+        //if(playerCollider.Length == 0)
+        //{
+        //    _player.GetComponent<PlayerController>().isHidden = false;
+        //    _animator.SetBool("isHiding", false);
+        //}     
     }
 
     private void OnDrawGizmosSelected()
