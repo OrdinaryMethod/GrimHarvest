@@ -20,6 +20,7 @@ public class CorpseFly : MonoBehaviour
     [SerializeField] private int _previousSelectPoint;
     private bool _detectPatrolCollision;
     private bool _facingRight;
+    public bool isHorde;
 
     [HideInInspector] const string isPatrollingEnum = "IsPatrolling";
     [HideInInspector] const string isAttackingEnum = "IsAttacking";
@@ -30,6 +31,7 @@ public class CorpseFly : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.Find("Player");
         _agent.updateRotation = false;
+        isHorde = false;
         _agent.updateUpAxis = false;
         _determinPatrolPoint = true;
         _detectPatrolCollision = true;
@@ -41,46 +43,30 @@ public class CorpseFly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Patrol();
-
-        //Object checks
+        //Checks
         if(_player == null)
         {
             Debug.Log(gameObject.name + " is searching for player...");
             _player = GameObject.Find("Player");
         }
 
-        Debug.Log(enemyState);
+        Patrol();
+        Attack();
+        ManageState();
 
-        Vector2 distance = new Vector2(gameObject.transform.position.x - _player.transform.position.x, gameObject.transform.position.y - _player.transform.position.y);
-       
-        if (distance.x < 40 && distance.y < 40)
+        if(isHorde)
         {
-            enemyState = "IsAttacking";
+            _agent.speed = _chaseSpeed;
+            _target = GameObject.Find("Player").transform;
         }
 
-        switch (enemyState)
-        {
-            case isPatrollingEnum:
-                _agent.speed = _patrolSpeed;
-                if(_patrolTarget != null)
-                {
-                    _target = _patrolTarget;
-                    Debug.Log("patrolling");
-                }          
-                break;
-            case isAttackingEnum:
-                _agent.speed = _chaseSpeed;
-                _target = GameObject.Find("Player").transform;
-                Debug.Log("Chasing");
-                break;
-        }
-
-        if(_target != null)
+        //Agent
+        if (_target != null)
         {
             _agent.SetDestination(_target.position);
         }
 
+        //Cosmetic
         if (_agent.velocity.x >= 0.01f && !_facingRight)
         {
             Flip();
@@ -88,6 +74,27 @@ public class CorpseFly : MonoBehaviour
         else if (_agent.velocity.x <= -0.01f && _facingRight)
         {
             Flip();
+        }
+    }
+
+    private void ManageState()
+    {
+        if(!isHorde)
+        {
+            switch (enemyState)
+            {
+                case isPatrollingEnum:
+                    _agent.speed = _patrolSpeed;
+                    if (_patrolTarget != null)
+                    {
+                        _target = _patrolTarget;
+                    }
+                    break;
+                case isAttackingEnum:
+                    _agent.speed = _chaseSpeed;
+                    _target = GameObject.Find("Player").transform;
+                    break;
+            }
         }
     }
 
@@ -101,20 +108,37 @@ public class CorpseFly : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    private void Attack()
+    {
+        Vector2 distance = new Vector2(gameObject.transform.position.x - _player.transform.position.x, gameObject.transform.position.y - _player.transform.position.y);
+
+        if (distance.x < 40 && distance.y < 40)
+        {
+            enemyState = "IsAttacking";
+        }
+    }
+
     private void Patrol()
     {      
-        //Find next Patrol Point
-        if(_determinPatrolPoint)
-        {           
-            int _selectPoint = Random.Range(0, _patrolPoints.Length);
-
-            if(_selectPoint != _previousSelectPoint)
+        if(!isHorde && _patrolPoints.Length <= 0)
+        {
+            if (_determinPatrolPoint)
             {
-                _previousSelectPoint = _selectPoint;
-                _determinPatrolPoint = false;
-                _patrolTarget = _patrolPoints[_selectPoint].transform;
-            }                   
-        }
+                int _selectPoint = Random.Range(0, _patrolPoints.Length);
+
+                if (_selectPoint != _previousSelectPoint)
+                {
+                    _previousSelectPoint = _selectPoint;
+                    _determinPatrolPoint = false;
+                    _patrolTarget = _patrolPoints[_selectPoint].transform;
+                }
+            }
+        }    
+    }
+    IEnumerator ResetPatrolCollision()
+    {
+        yield return new WaitForSeconds(2f);
+        _detectPatrolCollision = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -127,9 +151,5 @@ public class CorpseFly : MonoBehaviour
         }
     }
 
-    IEnumerator ResetPatrolCollision()
-    {
-        yield return new WaitForSeconds(2f);
-        _detectPatrolCollision = true;
-    }
+    
 }

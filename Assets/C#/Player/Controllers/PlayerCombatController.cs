@@ -149,6 +149,13 @@ public class PlayerCombatController : MonoBehaviour
                     barrier.barrierHealth -= _shootingDamage;
                 }            
             }
+
+            //Enemy
+            Stats_Enemy enemyStats = hitInfo.transform.GetComponent<Stats_Enemy>();
+            if(enemyStats)
+            {
+                enemyStats.enemyHealth -= _shootingDamage;
+            }
         }
 
         _lineRenderer.enabled = true;
