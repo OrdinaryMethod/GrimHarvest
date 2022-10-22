@@ -10,6 +10,8 @@ public class CorpseFly : MonoBehaviour
     [Range(0.0f, 50.0f)][SerializeField] private float _patrolSpeed;
     [Range(0.0f, 50.0f)][SerializeField] private float _chaseSpeed;
 
+    [SerializeField] private GameObject _player;
+
     [SerializeField] private Transform _target;
     private NavMeshAgent _agent;
     [SerializeField] private Transform[] _patrolPoints;
@@ -26,6 +28,7 @@ public class CorpseFly : MonoBehaviour
     void Awake()
     {      
         _agent = GetComponent<NavMeshAgent>();
+        _player = GameObject.Find("Player");
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _determinPatrolPoint = true;
@@ -40,6 +43,22 @@ public class CorpseFly : MonoBehaviour
     {
         Patrol();
 
+        //Object checks
+        if(_player == null)
+        {
+            Debug.Log(gameObject.name + " is searching for player...");
+            _player = GameObject.Find("Player");
+        }
+
+        Debug.Log(enemyState);
+
+        Vector2 distance = new Vector2(gameObject.transform.position.x - _player.transform.position.x, gameObject.transform.position.y - _player.transform.position.y);
+       
+        if (distance.x < 40 && distance.y < 40)
+        {
+            enemyState = "IsAttacking";
+        }
+
         switch (enemyState)
         {
             case isPatrollingEnum:
@@ -47,11 +66,13 @@ public class CorpseFly : MonoBehaviour
                 if(_patrolTarget != null)
                 {
                     _target = _patrolTarget;
+                    Debug.Log("patrolling");
                 }          
                 break;
             case isAttackingEnum:
                 _agent.speed = _chaseSpeed;
                 _target = GameObject.Find("Player").transform;
+                Debug.Log("Chasing");
                 break;
         }
 

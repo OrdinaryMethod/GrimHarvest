@@ -61,7 +61,7 @@ public class PlayerCosmeticController : MonoBehaviour
         if(_playerCombatController.lineRendererActive)
         {
             int muzzleFlashSpriteSelect = Random.Range(0, _muzzleFlashSprite.Length);
-            float muzzleFlashSize = Random.Range(0.3f, 0.8f);
+            float muzzleFlashSize = Random.Range(0.1f, 0.2f);
             _muzzleFlash.GetComponent<SpriteRenderer>().sprite = _muzzleFlashSprite[muzzleFlashSpriteSelect];
             _muzzleFlash.transform.localScale = new Vector2(muzzleFlashSize, muzzleFlashSize);
             _muzzleFlash.SetActive(true);
