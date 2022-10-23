@@ -6,7 +6,9 @@ public class Spawner : MonoBehaviour
 {
     private GameMaster _gameMaster;
     [SerializeField] private List<GameObject> _minorEnemies;
+    [SerializeField] private List<string> _activeEnemies;
     private int _currentSpawnCount;
+    private int _totalSpawnCount;
 
     private float _spawnCooldown;
 
@@ -30,7 +32,12 @@ public class Spawner : MonoBehaviour
             if(_gameMaster.hordeActive)
             {
                 SpawnEnemy();
-            }            
+                CheckForSpawnedEnemies();
+            } 
+            else
+            {
+                _currentSpawnCount = 0;
+            }
         }
         else
         {
@@ -50,12 +57,32 @@ public class Spawner : MonoBehaviour
         {
             if (_currentSpawnCount < _gameMaster.maxHordeSpawn)
             {
-                int enemySelect = Random.Range(0, _minorEnemies.Count);
-                _currentSpawnCount++;
+                int enemySelect = Random.Range(0, _minorEnemies.Count);                
                 GameObject enemySpawn = Instantiate(_minorEnemies[enemySelect], transform.position, Quaternion.identity);
-                enemySpawn.name = enemySpawn.name + "_" + _currentSpawnCount + "_" + gameObject.name;
+                enemySpawn.name = enemySpawn.name + "_" + _totalSpawnCount + "_" + gameObject.name;
+                _activeEnemies.Add(enemySpawn.name);
+
+                _currentSpawnCount++;
+                _totalSpawnCount++;
+
                 enemySpawn.GetComponent<Stats_Enemy>().isHorde = true;
                 _spawnCooldown = _gameMaster.setSpawnCooldown;
+            }
+        }
+    }
+
+    private void CheckForSpawnedEnemies()
+    {
+        if(_activeEnemies != null || _activeEnemies.Count > 0)
+        {
+            foreach(string enemyName in _activeEnemies)
+            {
+                GameObject spawnedEnemy = GameObject.Find(enemyName);
+                if(spawnedEnemy == null)
+                {
+                    _currentSpawnCount--;
+                    _activeEnemies.Remove(enemyName);
+                }
             }
         }
     }
