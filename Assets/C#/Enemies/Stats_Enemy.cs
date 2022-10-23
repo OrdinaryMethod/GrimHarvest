@@ -8,6 +8,8 @@ public class Stats_Enemy : MonoBehaviour
     private CorpseFly _corpseFly;
 
     public float enemyHealth;
+    public float enemyDamage;
+    public float enemySpeed;
     public bool isHorde;
 
     // Start is called before the first frame update

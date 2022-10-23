@@ -7,6 +7,8 @@ public class CorpseFly : MonoBehaviour
 {
     public string enemyState;
 
+    private Stats_Enemy stats_enemy;
+
     [Range(0.0f, 50.0f)][SerializeField] private float _patrolSpeed;
     [Range(0.0f, 50.0f)][SerializeField] private float _chaseSpeed;
 
@@ -30,6 +32,7 @@ public class CorpseFly : MonoBehaviour
     {      
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.Find("Player");
+        stats_enemy = gameObject.GetComponent<Stats_Enemy>();
         _agent.updateRotation = false;
         isHorde = false;
         _agent.updateUpAxis = false;
@@ -56,7 +59,7 @@ public class CorpseFly : MonoBehaviour
 
         if(isHorde)
         {
-            _agent.speed = _chaseSpeed;
+            _agent.speed = stats_enemy.enemySpeed;
             _target = GameObject.Find("Player").transform;
         }
 

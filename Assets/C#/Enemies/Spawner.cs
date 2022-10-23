@@ -7,6 +7,13 @@ public class Spawner : MonoBehaviour
     private GameMaster _gameMaster;
     [SerializeField] private List<GameObject> _minorEnemies;
     [SerializeField] private List<string> _activeEnemies;
+
+    [Range(1, 15)] private float _setEnemyDamage;
+    [Range(1, 15)] private float _setEnemyHealth;
+
+    [SerializeField] private float _minSpeed;
+    [SerializeField] private float _maxSpeed;
+
     private int _currentSpawnCount;
     private int _totalSpawnCount;
 
@@ -66,6 +73,7 @@ public class Spawner : MonoBehaviour
                 _totalSpawnCount++;
 
                 enemySpawn.GetComponent<Stats_Enemy>().isHorde = true;
+                enemySpawn.GetComponent<Stats_Enemy>().enemySpeed = Random.Range(_minSpeed, _maxSpeed);
                 _spawnCooldown = _gameMaster.setSpawnCooldown;
             }
         }
@@ -73,17 +81,20 @@ public class Spawner : MonoBehaviour
 
     private void CheckForSpawnedEnemies()
     {
-        if(_activeEnemies != null || _activeEnemies.Count > 0)
+        #pragma warning disable
+        if (_activeEnemies != null || _activeEnemies.Count > 0)
         {
             foreach(string enemyName in _activeEnemies)
-            {
+            {     
                 GameObject spawnedEnemy = GameObject.Find(enemyName);
-                if(spawnedEnemy == null)
+                if (spawnedEnemy == null)
                 {
                     _currentSpawnCount--;
+                    break;
                     _activeEnemies.Remove(enemyName);
                 }
             }
         }
+        #pragma warning restore
     }
 }

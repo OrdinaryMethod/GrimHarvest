@@ -78,5 +78,11 @@ public class PlayerMonitor : MonoBehaviour
             }
 
         }
+
+        if(playerIsDead)
+        {
+            gameObject.transform.position = new Vector3(GameObject.Find("Respawn").transform.position.x, GameObject.Find("Respawn").transform.position.y, 0);
+            playerIsDead = false;
+        }
     }
 }
