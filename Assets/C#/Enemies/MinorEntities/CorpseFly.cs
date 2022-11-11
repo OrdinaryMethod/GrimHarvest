@@ -152,7 +152,13 @@ public class CorpseFly : MonoBehaviour
             _determinPatrolPoint = true;
             StartCoroutine(ResetPatrolCollision());
         }
-    }
 
-    
+        switch (collision.gameObject.tag)
+        {
+            case "Player":
+                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth -= stats_enemy.enemyDamage;
+                break;
+        }
+
+    }
 }

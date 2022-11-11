@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 294222302405528761}
   m_Layer: 0
   m_Name: CorpseFly
-  m_TagString: Entity
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,6 +251,7 @@ MonoBehaviour:
   _determinPatrolPoint: 0
   _patrolTarget: {fileID: 0}
   _previousSelectPoint: 0
+  isHorde: 0
 --- !u!50 &294222302405528758
 Rigidbody2D:
   serializedVersion: 4
@@ -285,6 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 5
+  enemyDamage: 5
+  enemySpeed: 0
+  isHorde: 0
 --- !u!1 &294222302458156206
 GameObject:
   m_ObjectHideFlags: 0

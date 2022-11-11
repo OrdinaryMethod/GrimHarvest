@@ -264,6 +264,11 @@ public class EntityAI : MonoBehaviour
                 _determineNewPatrolPoint = true;
                 _isResting = true;
             }
+            else if(_entityState == "Suspicious" && !_playerController.isHidden)
+            {
+                //here
+                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth = -1000;
+            }
         }
         else if (collision.gameObject.tag == "EntityPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
         {

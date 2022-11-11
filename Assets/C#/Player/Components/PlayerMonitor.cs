@@ -6,6 +6,7 @@ public class PlayerMonitor : MonoBehaviour
 {
     private PlayerStats _playerStats;
     private PlayerController _playerController;
+    private GameObject _gameMaster;
 
     public bool playerIsDead;
     public bool playerIsInsane;
@@ -13,8 +14,9 @@ public class PlayerMonitor : MonoBehaviour
     private float _deathTimer;
     [SerializeField] private float _setDeathTimer;
 
-    public int playerHealth;
+    public float playerHealth;
     public int playerSanity;
+    public float playerRespawnTime;
 
     // Start is called before the first frame update
     private void Awake()
@@ -22,11 +24,13 @@ public class PlayerMonitor : MonoBehaviour
         //Components
         _playerStats = GetComponent<PlayerStats>();
         _playerController = GetComponent<PlayerController>();
+        _gameMaster = GameObject.Find("GameMaster");
 
         playerIsDead = false;
         playerIsInsane = false;
 
         _deathTimer = _setDeathTimer;
+        playerRespawnTime = _gameMaster.GetComponent<GameMaster>().setPlayerRespawnTime;
 
         //Get initial Stats
         if (_playerStats != null)
@@ -79,10 +83,21 @@ public class PlayerMonitor : MonoBehaviour
 
         }
 
+        if(playerHealth <= 0)
+        {
+            playerIsDead = true;
+        }
+
         if(playerIsDead)
         {
-            gameObject.transform.position = new Vector3(GameObject.Find("Respawn").transform.position.x, GameObject.Find("Respawn").transform.position.y, 0);
-            playerIsDead = false;
+            playerRespawnTime -= Time.deltaTime;
+            _playerController.canMove = false;
+
+            if(playerRespawnTime <= 0)
+            {
+                gameObject.transform.position = new Vector3(GameObject.Find("Respawn").transform.position.x, GameObject.Find("Respawn").transform.position.y, 0);
+                playerHealth = _playerStats.playerHealth;               
+            }          
         }
     }
 }
