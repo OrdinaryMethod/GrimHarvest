@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GameMaster : MonoBehaviour
     void Update()
     {
         DestroyEnemies();
+        ResetEntity();
     }
 
     private void DestroyEnemies()
@@ -53,5 +55,31 @@ public class GameMaster : MonoBehaviour
             }       
         }
         
+    }
+
+    private void ResetEntity()
+    {
+        if(_player.GetComponent<PlayerMonitor>().playerIsDead)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        //if(_player.GetComponent<PlayerMonitor>().playerIsDead)
+        //{
+        //    GameObject[] entity = GameObject.FindGameObjectsWithTag("Entity");
+
+        //    foreach (GameObject o in entity)
+        //    {
+        //        if (o.GetComponent<EntityAI>() != null)
+        //        {
+        //            if (o.GetComponent<EntityAI>().startPos != null)
+        //            {
+        //                o.GetComponent<EntityAI>()._entityState = "Patrolling";
+        //                o.GetComponent<EntityAI>()._isResting = false;
+        //                o.transform.position = new Vector3(o.GetComponent<EntityAI>().startPos.x, o.GetComponent<EntityAI>().startPos.y, o.transform.position.z);
+        //            }
+        //        }
+        //    }
+        //}           
     }
 }

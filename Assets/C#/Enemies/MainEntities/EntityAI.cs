@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EntityAI : MonoBehaviour
 {
     [Header("State")]
-    [SerializeField] private string _entityState;
+    [SerializeField] public string _entityState;
 
     [Header("Main Settings")]
     [SerializeField] private Transform _target;
@@ -15,6 +15,7 @@ public class EntityAI : MonoBehaviour
     [Range(0.0f, 50.0f)]
     [SerializeField] private float _chaseSpeed;
     private NavMeshAgent _agent;
+    [HideInInspector] public Vector2 startPos;
 
     [Header("Patrol")]
     [SerializeField] private int _selectedPatrolPoint;
@@ -22,7 +23,7 @@ public class EntityAI : MonoBehaviour
     private int _patrolPointMax;
     private int _patrolPointSelect;
     private bool _determineNewPatrolPoint;
-    [SerializeField] private bool _isResting;
+    [SerializeField] public bool _isResting;
     [Range(0.0f, 10.0f)]
     [SerializeField] private float _setTimeToRest;
     private float _timeToRest;
@@ -68,6 +69,7 @@ public class EntityAI : MonoBehaviour
         _patrolPointSelect = Random.Range(0, _patrolPointMax);
         _selectedPatrolPoint = _patrolPointSelect;
         _timeToRest = _setTimeToRest;
+        startPos = new Vector2(transform.position.x, transform.position.y);
 
         //Ignore fellow entity AI collisions
         foreach(GameObject entity in _entityColliders)
@@ -264,7 +266,7 @@ public class EntityAI : MonoBehaviour
                 _determineNewPatrolPoint = true;
                 _isResting = true;
             }
-            else if(_entityState == "Suspicious" && !_playerController.isHidden)
+            else if((_entityState == "Suspicious" || _entityState == "Hunting") && !_playerController.isHidden)
             {
                 //here
                 collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth = -1000;

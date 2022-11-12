@@ -80,6 +80,11 @@ public class PlayerController : MonoBehaviour
 
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
 
+        if(!canMove)
+        {
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        }
+
         if (!droidActive)
         {
             //Get movement input
