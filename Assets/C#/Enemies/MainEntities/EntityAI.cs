@@ -184,10 +184,8 @@ public class EntityAI : MonoBehaviour
 
             if (distanceToPlayer <= _aggroRange)
             {
-                _agent.SetDestination(_target.position);
+                _agent.SetDestination(new Vector2(_target.position.x, _target.position.y));
                 _agent.speed = _chaseSpeed;
-
-                Debug.Log(name + " can still see you...");
             }  
             else if(distanceToPlayer > _aggroRange)
             {
@@ -266,9 +264,12 @@ public class EntityAI : MonoBehaviour
                 _determineNewPatrolPoint = true;
                 _isResting = true;
             }
+            else if(_entityState == "Hunting" && _playerController.isHidden)
+            {
+                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth = -1000;
+            }
             else if((_entityState == "Suspicious" || _entityState == "Hunting") && !_playerController.isHidden)
             {
-                //here
                 collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth = -1000;
             }
         }

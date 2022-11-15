@@ -20,6 +20,7 @@ TagManager:
   - SceneTransitioner
   - Doodad
   - DoodadCollider
+  - MinorPatrolPoint
   layers:
   - Default
   - TransparentFX

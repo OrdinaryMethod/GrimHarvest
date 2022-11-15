@@ -24,62 +24,14 @@ public class GameMaster : MonoBehaviour
     //left off here
     void Update()
     {
-        DestroyEnemies();
-        ResetEntity();
+        ResetScene();
     }
 
-    private void DestroyEnemies()
-    {       
-        if(_player.GetComponent<PlayerMonitor>().playerIsDead)
-        {
-            _despawn = true;
-        }
-
-        if(_despawn)
-        {
-            GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
-
-            if(_player.GetComponent<PlayerMonitor>().playerRespawnTime <= 0)
-            {
-                if (enemy != null)
-                {
-                    Destroy(enemy);
-                    hordeActive = false;
-                }
-                else
-                {
-                    _despawn = false;
-                    _player.GetComponent<PlayerMonitor>().playerIsDead = false;
-                    _player.GetComponent<PlayerMonitor>().playerRespawnTime = setPlayerRespawnTime;
-                }
-            }       
-        }
-        
-    }
-
-    private void ResetEntity()
+    private void ResetScene()
     {
         if(_player.GetComponent<PlayerMonitor>().playerIsDead)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        //if(_player.GetComponent<PlayerMonitor>().playerIsDead)
-        //{
-        //    GameObject[] entity = GameObject.FindGameObjectsWithTag("Entity");
-
-        //    foreach (GameObject o in entity)
-        //    {
-        //        if (o.GetComponent<EntityAI>() != null)
-        //        {
-        //            if (o.GetComponent<EntityAI>().startPos != null)
-        //            {
-        //                o.GetComponent<EntityAI>()._entityState = "Patrolling";
-        //                o.GetComponent<EntityAI>()._isResting = false;
-        //                o.transform.position = new Vector3(o.GetComponent<EntityAI>().startPos.x, o.GetComponent<EntityAI>().startPos.y, o.transform.position.z);
-        //            }
-        //        }
-        //    }
-        //}           
+        }           
     }
 }

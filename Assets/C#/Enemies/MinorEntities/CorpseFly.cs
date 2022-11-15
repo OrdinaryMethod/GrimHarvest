@@ -17,12 +17,14 @@ public class CorpseFly : MonoBehaviour
     [SerializeField] private Transform _target;
     private NavMeshAgent _agent;
     [SerializeField] private Transform[] _patrolPoints;
+    [SerializeField] private GameObject[] _patrolPointsObjects;
     [SerializeField] private bool _determinPatrolPoint;
     [SerializeField] private Transform _patrolTarget;
     [SerializeField] private int _previousSelectPoint;
     private bool _detectPatrolCollision;
     private bool _facingRight;
     public bool isHorde;
+    private int _selectPoint;
 
     [HideInInspector] const string isPatrollingEnum = "IsPatrolling";
     [HideInInspector] const string isAttackingEnum = "IsAttacking";
@@ -40,7 +42,7 @@ public class CorpseFly : MonoBehaviour
         _detectPatrolCollision = true;
         _facingRight = true;
 
-        enemyState = isPatrollingEnum;
+        enemyState = isPatrollingEnum;    
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class CorpseFly : MonoBehaviour
         Attack();
         ManageState();
 
-        if(isHorde)
+        if (isHorde)
         {
             _agent.speed = stats_enemy.enemySpeed;
             _target = GameObject.Find("Player").transform;
@@ -82,7 +84,7 @@ public class CorpseFly : MonoBehaviour
 
     private void ManageState()
     {
-        if(!isHorde)
+        if (!isHorde)
         {
             switch (enemyState)
             {
@@ -123,31 +125,34 @@ public class CorpseFly : MonoBehaviour
 
     private void Patrol()
     {      
-        if(!isHorde && _patrolPoints.Length <= 0)
+        if(!isHorde && _patrolPoints.Length > 0)
         {
             if (_determinPatrolPoint)
             {
-                int _selectPoint = Random.Range(0, _patrolPoints.Length);
+                _selectPoint = Random.Range(0, _patrolPoints.Length);
 
                 if (_selectPoint != _previousSelectPoint)
                 {
                     _previousSelectPoint = _selectPoint;
                     _determinPatrolPoint = false;
                     _patrolTarget = _patrolPoints[_selectPoint].transform;
+                    Debug.Log(_selectPoint);
+
                 }
             }
         }    
     }
     IEnumerator ResetPatrolCollision()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
         _detectPatrolCollision = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "EntityPatrolPoint" && enemyState == isPatrollingEnum && _detectPatrolCollision)
+        if(collision.tag == "MinorPatrolPoint" && enemyState == isPatrollingEnum && _detectPatrolCollision && collision.gameObject.name == _target.gameObject.name)
         {
+            
             _detectPatrolCollision = false;
             _determinPatrolPoint = true;
             StartCoroutine(ResetPatrolCollision());

@@ -56,27 +56,27 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if(_spawnCooldown > 0)
-        {
-            _spawnCooldown -= Time.deltaTime;
-        }
-        else
-        {
-            if (_currentSpawnCount < _gameMaster.maxHordeSpawn)
-            {
-                int enemySelect = Random.Range(0, _minorEnemies.Count);                
-                GameObject enemySpawn = Instantiate(_minorEnemies[enemySelect], transform.position, Quaternion.identity);
-                enemySpawn.name = enemySpawn.name + "_" + _totalSpawnCount + "_" + gameObject.name;
-                _activeEnemies.Add(enemySpawn.name);
+        //if(_spawnCooldown > 0)
+        //{
+        //    _spawnCooldown -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    if (_currentSpawnCount < _gameMaster.maxHordeSpawn)
+        //    {
+        //        int enemySelect = Random.Range(0, _minorEnemies.Count);                
+        //        GameObject enemySpawn = Instantiate(_minorEnemies[enemySelect], transform.position, Quaternion.identity);
+        //        enemySpawn.name = enemySpawn.name + "_" + _totalSpawnCount + "_" + gameObject.name;
+        //        _activeEnemies.Add(enemySpawn.name);
 
-                _currentSpawnCount++;
-                _totalSpawnCount++;
+        //        _currentSpawnCount++;
+        //        _totalSpawnCount++;
 
-                enemySpawn.GetComponent<Stats_Enemy>().isHorde = true;
-                enemySpawn.GetComponent<Stats_Enemy>().enemySpeed = Random.Range(_minSpeed, _maxSpeed);
-                _spawnCooldown = _gameMaster.setSpawnCooldown;
-            }
-        }
+        //        enemySpawn.GetComponent<Stats_Enemy>().isHorde = true;
+        //        enemySpawn.GetComponent<Stats_Enemy>().enemySpeed = Random.Range(_minSpeed, _maxSpeed);
+        //        _spawnCooldown = _gameMaster.setSpawnCooldown;
+        //    }
+        //}
     }
 
     private void CheckForSpawnedEnemies()

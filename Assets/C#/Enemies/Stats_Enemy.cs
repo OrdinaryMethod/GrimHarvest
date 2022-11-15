@@ -21,10 +21,10 @@ public class Stats_Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(_corpseFly != null)
-        {
-            _corpseFly.isHorde = true;
-        }
+        //if(_corpseFly != null)
+        //{
+        //    _corpseFly.isHorde = true;
+        //}
 
         if(enemyHealth <= 0)
         {
