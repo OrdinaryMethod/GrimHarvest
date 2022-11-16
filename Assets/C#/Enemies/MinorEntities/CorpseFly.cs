@@ -25,6 +25,7 @@ public class CorpseFly : MonoBehaviour
     private bool _facingRight;
     public bool isHorde;
     private int _selectPoint;
+    [SerializeField] private float _aggroRange;
 
     [HideInInspector] const string isPatrollingEnum = "IsPatrolling";
     [HideInInspector] const string isAttackingEnum = "IsAttacking";
@@ -117,7 +118,7 @@ public class CorpseFly : MonoBehaviour
     {
         Vector2 distance = new Vector2(gameObject.transform.position.x - _player.transform.position.x, gameObject.transform.position.y - _player.transform.position.y);
 
-        if (distance.x < 40 && distance.y < 40)
+        if (distance.x < _aggroRange && distance.y < _aggroRange)
         {
             enemyState = "IsAttacking";
         }
@@ -136,7 +137,6 @@ public class CorpseFly : MonoBehaviour
                     _previousSelectPoint = _selectPoint;
                     _determinPatrolPoint = false;
                     _patrolTarget = _patrolPoints[_selectPoint].transform;
-                    Debug.Log(_selectPoint);
 
                 }
             }
@@ -161,7 +161,12 @@ public class CorpseFly : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Player":
-                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth -= stats_enemy.enemyDamage;
+                if(!collision.gameObject.GetComponentInParent<PlayerMonitor>().isInvincible)
+                {
+                    collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth -= stats_enemy.enemyDamage;
+                    collision.gameObject.GetComponentInParent<PlayerMonitor>().isInvincible = true;
+                    collision.gameObject.GetComponentInParent<PlayerCosmeticController>().flashSprites = true;
+                }               
                 break;
         }
 

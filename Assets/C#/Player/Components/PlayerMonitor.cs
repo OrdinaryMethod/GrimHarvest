@@ -17,6 +17,9 @@ public class PlayerMonitor : MonoBehaviour
     public float playerHealth;
     public int playerSanity;
     public float playerRespawnTime;
+    public bool isInvincible;
+    [SerializeField] private float _setInvincibleTime;
+    private float _invincibleTime;
 
     // Start is called before the first frame update
     private void Awake()
@@ -28,6 +31,9 @@ public class PlayerMonitor : MonoBehaviour
 
         playerIsDead = false;
         playerIsInsane = false;
+        isInvincible = false;
+
+        _invincibleTime = _setInvincibleTime;
 
         _deathTimer = _setDeathTimer;
         playerRespawnTime = _gameMaster.GetComponent<GameMaster>().setPlayerRespawnTime;
@@ -50,6 +56,7 @@ public class PlayerMonitor : MonoBehaviour
         if (_playerStats != null)
         {
             CheckPlayerHealth();
+            TurnInvincible();
         }
         else
         {
@@ -98,6 +105,20 @@ public class PlayerMonitor : MonoBehaviour
                 gameObject.transform.position = new Vector3(GameObject.Find("Respawn").transform.position.x, GameObject.Find("Respawn").transform.position.y, 0);
                 playerHealth = _playerStats.playerHealth;               
             }          
+        }
+    }
+
+    private void TurnInvincible()
+    {
+        if (isInvincible)
+        {
+            _invincibleTime -= Time.deltaTime;
+            if(_invincibleTime <= 0)
+            {                           
+                isInvincible = false;
+                _invincibleTime = _setInvincibleTime;
+            }
+
         }
     }
 }
