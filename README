@@ -1,1 +1,26 @@
+Personal Game Project
+Title: No title yet
+Genre: 2D, Metroidvania, Horror, puzzle
+Theme: SCP 
+Developer: Cayden O'Shea
+
+Key Gameplay:
+  1. Player is in the dark
+  2. Shooting and melee available to player
+  3. Wall climb/ jump
+  4. Entity that will determine where in the level to scout on its own. If player is within sight, Entity will go for the kill on the player. 
+  Also will detect sound when player fires gun and proceed to associated area
+  5. Minor enemies can be found throughout level
+  6. Solve the puzzle to unlock the next section of the level without being killed by the Entity lurking in the dark
+  7. Can use minimap to help determine if A.I is nearby if not immediately visible
+  
+ Tech Used
+ 1. Tilemap for world rendering
+ 2. NavMesh/NavAgent for enemy pathing
+ 3. GIMP for spritesheets
+ 
+ Status: Prototype nearly complete
+  
+ 
+
 
