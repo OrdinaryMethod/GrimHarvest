@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class CorpseFly : MonoBehaviour
 {
     public string enemyState;
+    private Rigidbody2D rb2d;
+    private NavMeshAgent agent;
 
     private Stats_Enemy stats_enemy;
 
@@ -26,6 +28,7 @@ public class CorpseFly : MonoBehaviour
     public bool isHorde;
     private int _selectPoint;
     [SerializeField] private float _aggroRange;
+    [SerializeField] private float _bounce;
 
     [HideInInspector] const string isPatrollingEnum = "IsPatrolling";
     [HideInInspector] const string isAttackingEnum = "IsAttacking";
@@ -36,6 +39,8 @@ public class CorpseFly : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.Find("Player");
         stats_enemy = gameObject.GetComponent<Stats_Enemy>();
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         isHorde = false;
         _agent.updateUpAxis = false;
@@ -161,12 +166,17 @@ public class CorpseFly : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Player":
-                if(!collision.gameObject.GetComponentInParent<PlayerMonitor>().isInvincible)
+                if (!collision.gameObject.GetComponentInParent<PlayerMonitor>().isInvincible)
                 {
                     collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth -= stats_enemy.enemyDamage;
                     collision.gameObject.GetComponentInParent<PlayerMonitor>().isInvincible = true;
                     collision.gameObject.GetComponentInParent<PlayerCosmeticController>().flashSprites = true;
-                }               
+                    float bounce = 6f; //amount of force to apply
+
+
+                    agent.isStopped = true;
+                    
+                }           
                 break;
         }
 
