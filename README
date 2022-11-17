@@ -18,6 +18,7 @@ Key Gameplay:
  1. Tilemap for world rendering
  2. NavMesh/NavAgent for enemy pathing
  3. GIMP for spritesheets
+ 4. Unity engine
  
  Status: Prototype nearly complete
   
