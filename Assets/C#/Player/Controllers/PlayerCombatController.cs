@@ -178,7 +178,7 @@ public class PlayerCombatController : MonoBehaviour
             for (int i = 0; i < enemyCollider.Length; i++)
             {
                 Debug.Log("You strike an enemy");
-                //enemyCollider[i].GetComponentInParent<EnemyController>().playerHealth -= damage;
+                enemyCollider[i].GetComponentInParent<Stats_Enemy>().enemyHealth -= _meleeDamage;
             }
 
             //barriers

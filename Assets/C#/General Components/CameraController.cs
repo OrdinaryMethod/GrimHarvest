@@ -8,11 +8,21 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _speed;
+    private float _xOffset;
 
     public bool isMinimap;
 
     void Update()
     {
+        if(_player.gameObject.GetComponent<PlayerController>().facingRight)
+        {
+            _xOffset = _offset.x;
+        }
+        else
+        {
+            _xOffset = -_offset.x;
+        }
+
         if(_player == null)
         {
             _player = GameObject.Find("Player").transform;
@@ -23,7 +33,7 @@ public class CameraController : MonoBehaviour
             {
                 if (!_player.gameObject.GetComponent<PlayerMonitor>().playerIsDead)
                 {
-                    Vector3 desiredPos = _player.position + _offset;
+                    Vector3 desiredPos = _player.position + new Vector3(_xOffset, 0, _offset.z);
                     transform.position = Vector3.Lerp(transform.position, desiredPos, _speed * Time.deltaTime);
                 }
             }

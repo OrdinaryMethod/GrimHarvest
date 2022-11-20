@@ -22,61 +22,61 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentSpawnCount = 0;
-        _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        //_currentSpawnCount = 0;
+        //_gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
 
-        if(_gameMaster != null)
-        {
-            _spawnCooldown = _gameMaster.setSpawnCooldown;
-        }
+        //if(_gameMaster != null)
+        //{
+        //    _spawnCooldown = _gameMaster.setSpawnCooldown;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_gameMaster != null)
-        {
-            if(_gameMaster.hordeActive)
-            {
-                SpawnEnemy();
-                CheckForSpawnedEnemies();
-            } 
-            else
-            {
-                _currentSpawnCount = 0;
-            }
-        }
-        else
-        {
-            Debug.Log(gameObject.name + " is searching for game master...");
-            _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        }
+        //if(_gameMaster != null)
+        //{
+        //    if(_gameMaster.hordeActive)
+        //    {
+        //        SpawnEnemy();
+        //        CheckForSpawnedEnemies();
+        //    } 
+        //    else
+        //    {
+        //        _currentSpawnCount = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.Log(gameObject.name + " is searching for game master...");
+        //    _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        //}
         
     }
 
     private void SpawnEnemy()
     {
-        if(_spawnCooldown > 0)
-        {
-            _spawnCooldown -= Time.deltaTime;
-        }
-        else
-        {
-            if (_currentSpawnCount < _gameMaster.maxHordeSpawn)
-            {
-                int enemySelect = Random.Range(0, _minorEnemies.Count);                
-                GameObject enemySpawn = Instantiate(_minorEnemies[enemySelect], transform.position, Quaternion.identity);
-                enemySpawn.name = enemySpawn.name + "_" + _totalSpawnCount + "_" + gameObject.name;
-                _activeEnemies.Add(enemySpawn.name);
+        //if(_spawnCooldown > 0)
+        //{
+        //    _spawnCooldown -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    if (_currentSpawnCount < _gameMaster.maxHordeSpawn)
+        //    {
+        //        int enemySelect = Random.Range(0, _minorEnemies.Count);                
+        //        GameObject enemySpawn = Instantiate(_minorEnemies[enemySelect], transform.position, Quaternion.identity);
+        //        enemySpawn.name = enemySpawn.name + "_" + _totalSpawnCount + "_" + gameObject.name;
+        //        _activeEnemies.Add(enemySpawn.name);
 
-                _currentSpawnCount++;
-                _totalSpawnCount++;
+        //        _currentSpawnCount++;
+        //        _totalSpawnCount++;
 
-                enemySpawn.GetComponent<Stats_Enemy>().isHorde = true;
-                enemySpawn.GetComponent<Stats_Enemy>().enemySpeed = Random.Range(_minSpeed, _maxSpeed);
-                _spawnCooldown = _gameMaster.setSpawnCooldown;
-            }
-        }
+        //        enemySpawn.GetComponent<Stats_Enemy>().isHorde = true;
+        //        enemySpawn.GetComponent<Stats_Enemy>().enemySpeed = Random.Range(_minSpeed, _maxSpeed);
+        //        _spawnCooldown = _gameMaster.setSpawnCooldown;
+        //    }
+        //}
     }
 
     private void CheckForSpawnedEnemies()

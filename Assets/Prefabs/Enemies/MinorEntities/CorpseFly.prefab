@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 294222302391297051}
   - component: {fileID: 294222302391297048}
   m_Layer: 0
-  m_Name: CorpseFly_Lungs
+  m_Name: CorpseFly_Lungs_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 294222302405528756}
   - component: {fileID: 294222302405528758}
   - component: {fileID: 294222302405528761}
+  - component: {fileID: 3275311387655061724}
   m_Layer: 0
   m_Name: CorpseFly
   m_TagString: Enemy
@@ -248,10 +249,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _patrolPointsObjects: []
   _determinPatrolPoint: 0
   _patrolTarget: {fileID: 0}
   _previousSelectPoint: 0
   isHorde: 0
+  _aggroRange: 0
+  _bounce: 0
+  _spawnPosObj: {fileID: 4524707265517927276, guid: 5a393d87a31935b44af2f8cd3d9393ea,
+    type: 3}
 --- !u!50 &294222302405528758
 Rigidbody2D:
   serializedVersion: 4
@@ -289,6 +295,26 @@ MonoBehaviour:
   enemyDamage: 5
   enemySpeed: 0
   isHorde: 0
+--- !u!95 &3275311387655061724
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294222302405528754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d7e3396417d9434f8308731a29a10c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &294222302458156206
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +700,7 @@ GameObject:
   - component: {fileID: 294222303576614537}
   - component: {fileID: 294222303576614534}
   m_Layer: 0
-  m_Name: CorpseFly_Lungs
+  m_Name: CorpseFly_Lungs_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

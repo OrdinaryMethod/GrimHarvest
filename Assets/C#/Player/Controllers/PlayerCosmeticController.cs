@@ -16,8 +16,11 @@ public class PlayerCosmeticController : MonoBehaviour
 
     [Header("Armor")]
     [SerializeField] private GameObject[] _playerArmor;
-    
+    private SpriteRenderer[] spriteRenderer;
 
+    public bool flashSprites;
+    [SerializeField] private float _setFlashTime;
+    private float _flashTime;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +30,10 @@ public class PlayerCosmeticController : MonoBehaviour
         _playerAnimController = GetComponent<PlayerAnimController>();
 
         _playerArmor = GameObject.FindGameObjectsWithTag("PlayerArmor");
+        spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
+
+        flashSprites = false;
+        _flashTime = _setFlashTime;
     }
 
     // Update is called once per frame
@@ -35,6 +42,7 @@ public class PlayerCosmeticController : MonoBehaviour
         //DarkenArmor();
         SpawnMuzzleFlash();
         TurnOffFlashLight();
+        FlashSprites();
     }
 
     private void DarkenArmor()
@@ -82,5 +90,48 @@ public class PlayerCosmeticController : MonoBehaviour
         {
             _playerController.playerFlashLight.SetActive(true);
         }
+    }
+
+    private void FlashSprites()
+    {
+        if(flashSprites)
+        {
+            flashSprites = false;
+            StartCoroutine(TriggerFlashSprites());
+        }
+    }
+
+    IEnumerator TriggerFlashSprites()
+    {
+        foreach (SpriteRenderer sp in spriteRenderer)
+        {
+            sp.enabled = false;
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach(SpriteRenderer sp in spriteRenderer)
+        {
+            sp.enabled = true;
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (SpriteRenderer sp in spriteRenderer)
+        {
+            sp.enabled = false;
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (SpriteRenderer sp in spriteRenderer)
+        {
+            sp.enabled = true;
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (SpriteRenderer sp in spriteRenderer)
+        {
+            sp.enabled = false;
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (SpriteRenderer sp in spriteRenderer)
+        {
+            sp.enabled = true;
+        }
+        Debug.Log("flashing sprites");
     }
 }
