@@ -181,10 +181,7 @@ public class CorpseFly : MonoBehaviour
     IEnumerator EndRetreat()
     {
         //HERE: make sprite face player
-        if()
-        {
-
-        }
+    
 
         yield return new WaitForSeconds(3f);
         _canFlip = true;
