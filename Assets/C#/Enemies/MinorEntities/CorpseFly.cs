@@ -29,9 +29,15 @@ public class CorpseFly : MonoBehaviour
     private int _selectPoint;
     [SerializeField] private float _aggroRange;
     [SerializeField] private float _bounce;
+    [SerializeField] private GameObject _spawnPosObj;
+    private GameObject _spawnPos;
+    private bool _isRetreating;
+    private bool _canAttack;
+    private bool _canFlip;
 
     [HideInInspector] const string isPatrollingEnum = "IsPatrolling";
     [HideInInspector] const string isAttackingEnum = "IsAttacking";
+    [HideInInspector] const string isRetreatingEnum = "IsRetreating";
 
     // Start is called before the first frame update
     void Awake()
@@ -47,8 +53,12 @@ public class CorpseFly : MonoBehaviour
         _determinPatrolPoint = true;
         _detectPatrolCollision = true;
         _facingRight = true;
+        _isRetreating = false;
+        _canAttack = true;
+        _canFlip = true;
+        enemyState = isPatrollingEnum;
 
-        enemyState = isPatrollingEnum;    
+        _spawnPos = Instantiate(_spawnPosObj, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -62,14 +72,14 @@ public class CorpseFly : MonoBehaviour
         }
 
         Patrol();
-        Attack();
+        Attack();       
         ManageState();
 
-        if (isHorde)
-        {
-            _agent.speed = stats_enemy.enemySpeed;
-            _target = GameObject.Find("Player").transform;
-        }
+        //if (isHorde)
+        //{
+        //    _agent.speed = stats_enemy.enemySpeed;
+        //    _target = GameObject.Find("Player").transform;
+        //}
 
         //Agent
         if (_target != null)
@@ -80,11 +90,17 @@ public class CorpseFly : MonoBehaviour
         //Cosmetic
         if (_agent.velocity.x >= 0.01f && !_facingRight)
         {
-            Flip();
+            if(_canFlip)
+            {
+                Flip();
+            }      
         }
         else if (_agent.velocity.x <= -0.01f && _facingRight)
         {
-            Flip();
+            if (_canFlip)
+            {
+                Flip();
+            }
         }
     }
 
@@ -102,8 +118,13 @@ public class CorpseFly : MonoBehaviour
                     }
                     break;
                 case isAttackingEnum:
-                    _agent.speed = _chaseSpeed;
-                    _target = GameObject.Find("Player").transform;
+                        _agent.speed = _chaseSpeed;
+                        _target = GameObject.Find("Player").transform;                  
+                    break;
+                case isRetreatingEnum:
+                    agent.speed = _patrolSpeed;
+                    _target = _spawnPos.transform;
+                    StartCoroutine(EndRetreat());
                     break;
             }
         }
@@ -123,9 +144,12 @@ public class CorpseFly : MonoBehaviour
     {
         Vector2 distance = new Vector2(gameObject.transform.position.x - _player.transform.position.x, gameObject.transform.position.y - _player.transform.position.y);
 
-        if (distance.x < _aggroRange && distance.y < _aggroRange)
+        if (distance.x < _aggroRange && distance.y < _aggroRange && !_isRetreating)
         {
-            enemyState = "IsAttacking";
+            if(_canAttack)
+            {
+                enemyState = isAttackingEnum;
+            }
         }
     }
 
@@ -147,10 +171,24 @@ public class CorpseFly : MonoBehaviour
             }
         }    
     }
+
     IEnumerator ResetPatrolCollision()
     {
         yield return new WaitForSeconds(0.1f);
         _detectPatrolCollision = true;
+    }
+
+    IEnumerator EndRetreat()
+    {
+        //HERE: make sprite face player
+        if()
+        {
+
+        }
+
+        yield return new WaitForSeconds(3f);
+        _canFlip = true;
+        enemyState = isAttackingEnum;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -171,11 +209,9 @@ public class CorpseFly : MonoBehaviour
                     collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth -= stats_enemy.enemyDamage;
                     collision.gameObject.GetComponentInParent<PlayerMonitor>().isInvincible = true;
                     collision.gameObject.GetComponentInParent<PlayerCosmeticController>().flashSprites = true;
-                    float bounce = 6f; //amount of force to apply
-
-
-                    agent.isStopped = true;
-                    
+                    _canAttack = false;
+                    _canFlip = false;
+                    enemyState = isRetreatingEnum;                 
                 }           
                 break;
         }

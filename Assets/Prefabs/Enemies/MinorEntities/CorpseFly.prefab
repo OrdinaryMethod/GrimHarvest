@@ -254,6 +254,10 @@ MonoBehaviour:
   _patrolTarget: {fileID: 0}
   _previousSelectPoint: 0
   isHorde: 0
+  _aggroRange: 0
+  _bounce: 0
+  _spawnPosObj: {fileID: 4524707265517927276, guid: 5a393d87a31935b44af2f8cd3d9393ea,
+    type: 3}
 --- !u!50 &294222302405528758
 Rigidbody2D:
   serializedVersion: 4

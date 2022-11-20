@@ -22,35 +22,35 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentSpawnCount = 0;
-        _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        //_currentSpawnCount = 0;
+        //_gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
 
-        if(_gameMaster != null)
-        {
-            _spawnCooldown = _gameMaster.setSpawnCooldown;
-        }
+        //if(_gameMaster != null)
+        //{
+        //    _spawnCooldown = _gameMaster.setSpawnCooldown;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_gameMaster != null)
-        {
-            if(_gameMaster.hordeActive)
-            {
-                SpawnEnemy();
-                CheckForSpawnedEnemies();
-            } 
-            else
-            {
-                _currentSpawnCount = 0;
-            }
-        }
-        else
-        {
-            Debug.Log(gameObject.name + " is searching for game master...");
-            _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        }
+        //if(_gameMaster != null)
+        //{
+        //    if(_gameMaster.hordeActive)
+        //    {
+        //        SpawnEnemy();
+        //        CheckForSpawnedEnemies();
+        //    } 
+        //    else
+        //    {
+        //        _currentSpawnCount = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.Log(gameObject.name + " is searching for game master...");
+        //    _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        //}
         
     }
 
