@@ -26,6 +26,7 @@ public class PlayerCombatController : MonoBehaviour
     public Transform attackPos;
     public LayerMask whatIsEnemy;
     public LayerMask whatIsBarrier;
+    public LayerMask whatIsSwitch;
     [Range(0.0f, 25.0f)]
     [SerializeField] private float _attackRange;
     [Range(0.0f, 100.0f)]
@@ -190,7 +191,17 @@ public class PlayerCombatController : MonoBehaviour
                     Debug.Log("You strike a barrier");
                     barrierCollider[i].GetComponentInParent<Barrier>().barrierHealth -= _meleeDamage;
                 }
-            }      
+            }
+
+            //Switch
+            Collider2D[] switchCollider = Physics2D.OverlapCircleAll(attackPos.position, _attackRange, whatIsSwitch);
+            for (int i = 0; i < switchCollider.Length; i++)
+            {
+                if (!switchCollider[i].GetComponentInParent<Switch>().switchOn)
+                {
+                    switchCollider[i].GetComponentInParent<Switch>().switchOn = true;
+                }
+            }
         }
         
     }

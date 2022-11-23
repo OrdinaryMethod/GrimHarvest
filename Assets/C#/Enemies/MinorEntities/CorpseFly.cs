@@ -75,12 +75,6 @@ public class CorpseFly : MonoBehaviour
         Attack();       
         ManageState();
 
-        //if (isHorde)
-        //{
-        //    _agent.speed = stats_enemy.enemySpeed;
-        //    _target = GameObject.Find("Player").transform;
-        //}
-
         //Agent
         if (_target != null)
         {
@@ -90,17 +84,12 @@ public class CorpseFly : MonoBehaviour
         //Cosmetic
         if (_agent.velocity.x >= 0.01f && !_facingRight)
         {
-            if(_canFlip)
-            {
-                Flip();
-            }      
+      
+           Flip();      
         }
         else if (_agent.velocity.x <= -0.01f && _facingRight)
         {
-            if (_canFlip)
-            {
-                Flip();
-            }
+           Flip();
         }
     }
 
@@ -181,8 +170,7 @@ public class CorpseFly : MonoBehaviour
     IEnumerator EndRetreat()
     {
         //HERE: make sprite face player
-    
-
+        _canFlip = false;
         yield return new WaitForSeconds(3f);
         _canFlip = true;
         enemyState = isAttackingEnum;
