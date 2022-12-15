@@ -5,12 +5,12 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     public bool switchOn;
-    private Animator anim;
+    private Animator _anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
         switchOn = false;
     }
 
@@ -19,7 +19,11 @@ public class Switch : MonoBehaviour
     {
         if(switchOn)
         {
-            anim.SetBool("SwitchOn", true);
+            _anim.SetBool("SwitchOn", true);
+        }
+        else
+        {
+            _anim.SetBool("SwitchOn", false);
         }
     }
 }

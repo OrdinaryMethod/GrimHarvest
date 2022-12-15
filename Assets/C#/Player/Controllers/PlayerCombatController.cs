@@ -201,6 +201,10 @@ public class PlayerCombatController : MonoBehaviour
                 {
                     switchCollider[i].GetComponentInParent<Switch>().switchOn = true;
                 }
+                else
+                {
+                    switchCollider[i].GetComponentInParent<Switch>().switchOn = false;
+                }
             }
         }
         

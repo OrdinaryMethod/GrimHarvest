@@ -28,10 +28,6 @@ public class DoodadController : MonoBehaviour
         {
             _dangerCooldown = _setDangerCooldown;
         }
-        else
-        {
-            Debug.LogWarning("Dangerous doodad " + name + " has no cooldown time set.");
-        }
         
     }
 

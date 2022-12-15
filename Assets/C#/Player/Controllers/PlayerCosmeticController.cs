@@ -12,6 +12,7 @@ public class PlayerCosmeticController : MonoBehaviour
     [SerializeField] private GameObject _muzzleFlash;
     [SerializeField] private Sprite[] _muzzleFlashSprite;
     [SerializeField] private bool _isShooting;
+    [SerializeField] private bool _showTooltip;
     //[SerializeField] private bool 
 
     [Header("Armor")]
@@ -34,6 +35,7 @@ public class PlayerCosmeticController : MonoBehaviour
 
         flashSprites = false;
         _flashTime = _setFlashTime;
+        _showTooltip = false;
     }
 
     // Update is called once per frame
