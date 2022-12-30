@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &847472791
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 847472790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6153978586312025742}
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,10 +72,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 100
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
     type: 3}
-  m_Color: {r: 0.9150943, g: 0.77927685, b: 0.07338022, a: 1}
+  m_Color: {r: 0.8301887, g: 0.71633244, b: 0.11356357, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -859,6 +859,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6153978586312025742}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &924785287093667736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6470175061388045089}
+  m_Layer: 3
+  m_Name: PlayerCameraAimDir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6470175061388045089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924785287093667736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.29, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4166731928371697990}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460618884510876101
 GameObject:
@@ -1845,7 +1876,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.75
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -3213,7 +3244,7 @@ MonoBehaviour:
   playerSanity: 100
   playerRespawnTime: 0
   isInvincible: 0
-  _setInvincibleTime: 0
+  _setInvincibleTime: 3
 --- !u!114 &6093351206969018232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3254,7 +3285,7 @@ MonoBehaviour:
   droidActive: 0
   canMove: 0
   speed: 20
-  jumpForce: 50
+  jumpForce: 45
   _setJumpCooldown: 0.05
   _setGroundedCooldown: 0.08
   isGrounded: 0
@@ -3292,15 +3323,15 @@ MonoBehaviour:
   attackPos: {fileID: 3126789930977152385}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   whatIsBarrier:
     serializedVersion: 2
     m_Bits: 128
   whatIsSwitch:
     serializedVersion: 2
-    m_Bits: 0
-  _attackRange: 3
-  _meleeDamage: 2
+    m_Bits: 524288
+  _attackRange: 4.4
+  _meleeDamage: 6.4
   noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
     type: 3}
   noiseLocation: {fileID: 0}
@@ -3321,8 +3352,8 @@ MonoBehaviour:
   wallSliding: 0
   _wallSlidingSpeed: 5
   wallJumping: 0
-  _xWallForce: 40
-  _yWallForce: 45
+  _xWallForce: 35
+  _yWallForce: 40
   _wallJumpTime: 0.2
   isTouchingFront: 0
   _isGrounded: 0
@@ -3404,6 +3435,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4021558361082497077}
+  - {fileID: 6470175061388045089}
   m_Father: {fileID: 4166731928111650649}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3794,7 +3826,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.902
+  m_FalloffIntensity: 0.338
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
   m_LightVolumeIntensity: 1
@@ -3844,8 +3876,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 129.68001
-  m_PointLightOuterAngle: 150.69
+  m_PointLightInnerAngle: 129.68
+  m_PointLightOuterAngle: 150.69006
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 67.69407
   m_ShapeLightParametricSides: 5
@@ -4953,8 +4985,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8417948420631403913}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.49, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 0.06, y: -0.25, z: 0}
+  m_LocalScale: {x: 0.3383979, y: 0.3383979, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6743641142595108108}
@@ -5001,8 +5033,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 2422132661057484654, guid: 6c5b9d3c8fb494a49ae068698cb6d81b,
-    type: 3}
+  m_Sprite: {fileID: -4247133, guid: f3ec68cc78395bc4f9540c1db828d0d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
