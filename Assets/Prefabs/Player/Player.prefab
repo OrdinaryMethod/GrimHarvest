@@ -3212,6 +3212,8 @@ MonoBehaviour:
   playerHealth: 100
   playerSanity: 100
   playerRespawnTime: 0
+  isInvincible: 0
+  _setInvincibleTime: 0
 --- !u!114 &6093351206969018232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3294,6 +3296,9 @@ MonoBehaviour:
   whatIsBarrier:
     serializedVersion: 2
     m_Bits: 128
+  whatIsSwitch:
+    serializedVersion: 2
+    m_Bits: 0
   _attackRange: 3
   _meleeDamage: 2
   noiseSourcePrefab: {fileID: 4250257077018609371, guid: a72c5f329fd8a6643b571a141260d1b0,
@@ -3366,7 +3371,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 59fc963c88017f244867d33ed23e1e2c, type: 3}
   - {fileID: 21300000, guid: 77336b42205558d4186126b7393bdded, type: 3}
   _isShooting: 0
+  _showTooltip: 0
   _playerArmor: []
+  flashSprites: 0
+  _setFlashTime: 0
 --- !u!1 &4166731928371697991
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Catacombs/Template_Catacomb.unity
+    path: Assets/Scenes/Alpha/Catacombs/Template_Catacomb.unity
     guid: 7a321f62a3fee624b87093596a45e30d
   - enabled: 0
-    path: Assets/Scenes/Catacombs/TestScene1.unity
+    path: Assets/Scenes/Alpha/Catacombs/TestScene1.unity
     guid: b907a60af25383e469ac0a7642522ede
   - enabled: 0
-    path: Assets/Scenes/Catacombs/TestScene2.unity
+    path: Assets/Scenes/Alpha/Catacombs/TestScene2.unity
     guid: e3a08b83c46cc5b45b691f4e31c94751
   - enabled: 0
-    path: Assets/Scenes/Catacombs/TestScene3.unity
+    path: Assets/Scenes/Alpha/Catacombs/TestScene3.unity
     guid: 5c9912cff67b70641afa59d572ed9e95
   - enabled: 0
-    path: Assets/Scenes/Catacombs/TestScene4.unity
+    path: Assets/Scenes/Alpha/Catacombs/TestScene4.unity
     guid: 7fcd3dbdd8286394ca301d4005ae8939
   - enabled: 1
-    path: Assets/Scenes/Catacombs/TestScene5.unity
+    path: Assets/Scenes/Master.unity
     guid: 1d48c258cdbcfa24ea7f138855a60c1d
   m_configObjects: {}
