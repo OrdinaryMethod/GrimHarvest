@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.61, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5050452691563420919}
   m_RootOrder: 0
@@ -62,6 +63,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 240.6, y: -202.1, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5050452691022825289}
   - {fileID: 7876143417176784315}
@@ -194,8 +196,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityState: 
   _target: {fileID: 0}
-  _patrolSpeed: 10
-  _chaseSpeed: 15
+  _patrolSpeed: 26
+  _chaseSpeed: 48
+  startPos: {x: 0, y: 0}
   _selectedPatrolPoint: 0
   _patrolPointObjects: []
   _isResting: 0
@@ -204,7 +207,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2057
   _castPoint: {fileID: 5050452691022825289}
-  _aggroRange: 20
+  _aggroRange: 30
   PlayerHidingPos: {fileID: 0}
   _hearingPos: {fileID: 7876143417176784315}
   _whatIsNoise:
@@ -253,6 +256,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5050452691563420919}
   m_RootOrder: 1
