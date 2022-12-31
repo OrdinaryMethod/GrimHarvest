@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
-    private GameObject _player;
+    private GameObject _player;   
 
     public int maxHordeSpawn;
     public bool hordeActive;
@@ -34,4 +34,6 @@ public class GameMaster : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }           
     }
+
+  
 }

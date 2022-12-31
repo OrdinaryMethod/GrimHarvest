@@ -13,6 +13,11 @@ public class CameraController : MonoBehaviour
 
     public bool isMinimap;
 
+    void Start()
+    {
+        transform.position = new Vector3(_player.position.x, _player.position.y, 0);
+    }
+
     void Update()
     {
         if(_player.gameObject.GetComponent<PlayerController>().facingRight)

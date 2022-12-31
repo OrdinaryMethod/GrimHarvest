@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         isAiming = false;
 
+        transform.position = startingPos.initialValue;
+    
+
         if(!startingPos.facingRight)
         {
             Flip();

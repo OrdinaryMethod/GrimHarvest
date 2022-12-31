@@ -132,8 +132,8 @@ public class CorpseFly : MonoBehaviour
     private void Attack()
     {
         Vector2 distance = new Vector2(gameObject.transform.position.x - _player.transform.position.x, gameObject.transform.position.y - _player.transform.position.y);
-
-        if (distance.x < _aggroRange && distance.y < _aggroRange && !_isRetreating)
+        Debug.Log(distance);
+        if (distance.x < _aggroRange && (distance.y < _aggroRange && distance.y > -_aggroRange) && !_isRetreating)
         {
             if(_canAttack)
             {

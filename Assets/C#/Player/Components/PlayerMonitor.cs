@@ -83,7 +83,7 @@ public class PlayerMonitor : MonoBehaviour
                     _deathTimer = _setDeathTimer;
                     playerHealth = _playerStats.playerHealth;
                     playerSanity= _playerStats.playerSanity;
-                    transform.position = GameObject.Find("PlayerRespawn").transform.position;
+                    //transform.position = GameObject.Find("PlayerRespawn").transform.position;
                     _playerController.canMove = true;
                 }
             }
@@ -102,7 +102,7 @@ public class PlayerMonitor : MonoBehaviour
 
             if(playerRespawnTime <= 0)
             {
-                gameObject.transform.position = new Vector3(GameObject.Find("Respawn").transform.position.x, GameObject.Find("Respawn").transform.position.y, 0);
+                //gameObject.transform.position = new Vector3(GameObject.Find("Respawn").transform.position.x, GameObject.Find("Respawn").transform.position.y, 0);
                 playerHealth = _playerStats.playerHealth;               
             }          
         }
