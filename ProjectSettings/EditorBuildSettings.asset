@@ -24,9 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Master.unity
     guid: 1d48c258cdbcfa24ea7f138855a60c1d
   - enabled: 1
-    path: Assets/Scenes/Catacombs_Prod/Lower Drop.unity
-    guid: 727994c21f821d04eb10ce371a773dbe
-  - enabled: 1
     path: Assets/Scenes/Catacombs_Prod/Central Chamber.unity
     guid: 0adfdeb7b908f2c4f839de320381c4cd
+  - enabled: 1
+    path: Assets/Scenes/Catacombs_Prod/Lower Drop.unity
+    guid: 727994c21f821d04eb10ce371a773dbe
   m_configObjects: {}
