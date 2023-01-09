@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public VectorValue startingPos;
     private WallClimbing _wallClimbing;
     public GameObject playerFlashLight;
+    private AudioController_Player audio;
 
     [Header("Droid")]
     public bool droidActive;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
         _wallClimbing = GetComponent<WallClimbing>();
         _playerMonitor = GetComponent<PlayerMonitor>();
         playerFlashLight = GameObject.Find("PlayerFlashLight");
+        audio = GetComponent<AudioController_Player>();
         droidActive = false;
         canMove = true;
         isAiming = false;
@@ -193,11 +195,11 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded)
         {
-            if (Input.GetKey(KeyCode.C) && !isHidden)
+            if (Input.GetKey(KeyCode.S) && !isHidden)
             {
                 isCrouching = true; //State
                 canMove = false;
-
+                isRunning = false;
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             }
             else

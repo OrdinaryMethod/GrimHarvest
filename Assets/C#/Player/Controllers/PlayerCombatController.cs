@@ -9,6 +9,7 @@ public class PlayerCombatController : MonoBehaviour
     private PlayerStats _playerStats;
     private PlayerController _playerController;
     private PlayerMonitor _playerMonitor;
+    private AudioController_Player _audio;
 
     [Header("Objects")]
     [SerializeField] private GameObject _firePoint;
@@ -39,9 +40,19 @@ public class PlayerCombatController : MonoBehaviour
     [Header("Animation")]
     public bool isShooting;
 
+    public float sniperShotCooldown;
+    public float setSniperShotCooldown;
+    [SerializeField] private bool _sniperShotFired;
+
     //Keybinds
     private KeyCode _shootKey;
     private KeyCode _meleeAttack;
+
+    void Start()
+    {
+        _sniperShotFired = false;
+        sniperShotCooldown = setSniperShotCooldown;
+    }
 
     // Update is called once per frame
     void Update()
@@ -50,6 +61,9 @@ public class PlayerCombatController : MonoBehaviour
         _playerStats = GetComponent<PlayerStats>();
         _playerController = GetComponent<PlayerController>();
         _playerMonitor = GetComponent<PlayerMonitor>();
+        _audio = GetComponent<AudioController_Player>();
+
+       
 
         //Variables
         if (_playerStats != null || _playerController != null)
@@ -69,9 +83,26 @@ public class PlayerCombatController : MonoBehaviour
         {
             if(!_playerController.isTouchingFront && !_playerController.isHidden)
             {
-                StartCoroutine(Shoot());
+                if (_sniperShotFired == false)
+                {
+                    _sniperShotFired = true;
+                    StartCoroutine(Shoot());
+                }
+                
             }  
-        }    
+        }
+        
+        //Reset sniper cooldown
+        if(_sniperShotFired)
+        {
+            sniperShotCooldown -= Time.deltaTime;
+        }
+
+        if(sniperShotCooldown <= 0)
+        {
+            _sniperShotFired = false;
+            sniperShotCooldown = setSniperShotCooldown;
+        }
     }
 
     private void GetKeyBinds()
@@ -86,6 +117,10 @@ public class PlayerCombatController : MonoBehaviour
     IEnumerator Shoot()
     {
         isShooting = true;
+        if(_playerController.isCrouching)
+        {
+            _audio.sniperShot = true;
+        }
 
         GameObject noiseSource = GameObject.Find("NoiseLocation(Clone)");
 
