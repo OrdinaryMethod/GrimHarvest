@@ -117,6 +117,16 @@ public class PlayerAnimController : MonoBehaviour
             _playerAnimator.SetBool("isStopped", false);
         }
 
+        //Aim
+        if(_playerController.isAiming)
+        {
+            _playerAnimator.SetBool("isAiming", true);
+        }
+        else
+        {
+            _playerAnimator.SetBool("isAiming", false);
+        }
+
         //Sanity Death
         if (_playerMonitor.playerIsInsane)
         {

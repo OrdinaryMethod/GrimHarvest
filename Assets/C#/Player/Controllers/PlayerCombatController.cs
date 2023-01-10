@@ -117,10 +117,9 @@ public class PlayerCombatController : MonoBehaviour
     IEnumerator Shoot()
     {
         isShooting = true;
-        if(_playerController.isCrouching)
-        {
-            _audio.sniperShot = true;
-        }
+        
+        _audio.sniperShot = true;
+        
 
         GameObject noiseSource = GameObject.Find("NoiseLocation(Clone)");
 
