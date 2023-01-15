@@ -13,11 +13,25 @@ public class CameraController : MonoBehaviour
 
     public bool isMinimap;
 
+    public float zoomSpeed = 0.5f;
+    public float targetOrtho;
+    public float smoothSpeed = 2.0f;
+    public float minOrtho = 1.0f;
+    public float maxOrtho = 20.0f;
+
+
     void Start()
     {
-        transform.position = new Vector3(_player.position.x, _player.position.y, 0);
-    }
+        if(_player == null)
+        {
+            _player = GameObject.Find("Player").GetComponent<Transform>();
+        }
 
+        transform.position = new Vector3(_player.position.x, _player.position.y, 0);
+
+        targetOrtho = Camera.main.orthographicSize;
+    }
+      
     void Update()
     {
         if(_player.gameObject.GetComponent<PlayerController>().facingRight)
@@ -68,11 +82,25 @@ public class CameraController : MonoBehaviour
             }                        
         }
 
-        PlayerAimDirection();
+        //CameraZoom();
     }
 
-    private void PlayerAimDirection()
+    private void CameraZoom()
     {
-        
+        if(!isMinimap)
+        {
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll != 0.0f)
+            {
+                targetOrtho -= scroll * zoomSpeed;
+                targetOrtho = Mathf.Clamp(targetOrtho, minOrtho, maxOrtho);
+            }
+            else
+            {
+
+            }
+
+            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
+        }
     }
 }

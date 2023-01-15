@@ -13,12 +13,14 @@ public class PlayerCombatController : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private GameObject _firePoint;
+    public GameObject redDotPrefab; 
 
     [Header("General Variables")]
     [SerializeField] private bool _facingRight;
 
     [Header("Shooting Variables")]
     [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private LineRenderer _aimingLineRenderer;
     private int _shootingDamage;
     public bool lineRendererActive;
 
@@ -51,21 +53,23 @@ public class PlayerCombatController : MonoBehaviour
     void Start()
     {
         _sniperShotFired = false;
-        sniperShotCooldown = setSniperShotCooldown;
+        sniperShotCooldown = setSniperShotCooldown;       
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Components
         _playerStats = GetComponent<PlayerStats>();
         _playerController = GetComponent<PlayerController>();
         _playerMonitor = GetComponent<PlayerMonitor>();
         _audio = GetComponent<AudioController_Player>();
 
-       
+        if (_playerController.isAiming)
+        {
+            RedDot();
+        
+        }
 
-        //Variables
         if (_playerStats != null || _playerController != null)
         {
             _facingRight = _playerController.facingRight;
@@ -83,7 +87,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             if(!_playerController.isTouchingFront && !_playerController.isHidden)
             {
-                if (_sniperShotFired == false)
+                if (_sniperShotFired == false && _playerController.isAiming)
                 {
                     _sniperShotFired = true;
                     StartCoroutine(Shoot());
@@ -91,14 +95,30 @@ public class PlayerCombatController : MonoBehaviour
                 
             }  
         }
-        
+
+        SniperShotCooldown();
+
+        if(_playerController.isAiming)
+        {
+            _aimingLineRenderer.enabled = true;
+        }
+        else
+        {
+            _aimingLineRenderer.enabled = false;
+        }
+
+        RedDot();
+    }
+
+    private void SniperShotCooldown()
+    {
         //Reset sniper cooldown
-        if(_sniperShotFired)
+        if (_sniperShotFired)
         {
             sniperShotCooldown -= Time.deltaTime;
         }
 
-        if(sniperShotCooldown <= 0)
+        if (sniperShotCooldown <= 0)
         {
             _sniperShotFired = false;
             sniperShotCooldown = setSniperShotCooldown;
@@ -112,6 +132,73 @@ public class PlayerCombatController : MonoBehaviour
         //Assign
         _shootKey = _keybinds.shoot;
         _meleeAttack = _keybinds.meleeAttack;
+    }
+
+    private void RedDot()
+    {
+        RaycastHit2D hitInfo;      
+
+        if (_facingRight)
+        {
+            hitInfo = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.right);
+
+            if (hitInfo)
+            {            
+                //Spawn line
+                _aimingLineRenderer.SetPosition(0, _firePoint.transform.position);
+                _aimingLineRenderer.SetPosition(1, hitInfo.point);
+            }
+            else
+            {
+                //Spawn line
+               
+            }
+        }
+        else
+        {
+            hitInfo = Physics2D.Raycast(_firePoint.transform.position, -_firePoint.transform.right);
+
+
+            if (hitInfo)
+            {
+                //Spawn line
+                _aimingLineRenderer.SetPosition(1, _firePoint.transform.position);
+                _aimingLineRenderer.SetPosition(0, hitInfo.point);
+            }
+            else
+            {
+
+                //Spawn line
+                _aimingLineRenderer.SetPosition(1, _firePoint.transform.position);
+                _aimingLineRenderer.SetPosition(0, _firePoint.transform.position - _firePoint.transform.right * 100);
+            }
+        }
+
+        if(_playerController.isAiming)
+        {
+            GameObject redDot = Instantiate(redDotPrefab, hitInfo.point, Quaternion.identity);
+            StartCoroutine(DestroyRedDot(redDot));
+        }
+
+        //Ignore certain trigger colliders
+        if(hitInfo)
+        {
+            if(hitInfo.transform.gameObject.tag == "Switch" || hitInfo.transform.gameObject.tag == "EntityPatrolPoint")
+            {
+                Physics2D.queriesHitTriggers = false;
+            }
+            else
+            {
+                Physics2D.queriesHitTriggers = true;
+            }
+        }
+        
+    }
+
+    IEnumerator DestroyRedDot(GameObject redDot)
+    {
+        yield return new WaitForSeconds(0.05f);
+        Destroy(redDot);
     }
 
     IEnumerator Shoot()
