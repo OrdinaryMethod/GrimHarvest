@@ -13,12 +13,11 @@ public class CameraController : MonoBehaviour
 
     public bool isMinimap;
 
-    public float zoomSpeed = 0.5f;
-    public float targetOrtho;
-    public float smoothSpeed = 2.0f;
-    public float minOrtho = 1.0f;
-    public float maxOrtho = 20.0f;
-
+    public float zoomSpeed;
+    public float zoomMin;
+    public float zoomMax;
+    public bool isZooming;
+    private float desiredZoom;
 
     void Start()
     {
@@ -28,8 +27,6 @@ public class CameraController : MonoBehaviour
         }
 
         transform.position = new Vector3(_player.position.x, _player.position.y, 0);
-
-        targetOrtho = Camera.main.orthographicSize;
     }
       
     void Update()
@@ -82,25 +79,25 @@ public class CameraController : MonoBehaviour
             }                        
         }
 
-        //CameraZoom();
+        CameraZoom();
     }
 
     private void CameraZoom()
     {
         if(!isMinimap)
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            if (scroll != 0.0f)
+  
+            if(_player.gameObject.GetComponent<PlayerController>().isAiming && _player.gameObject.GetComponent<PlayerController>().isCrouching)
             {
-                targetOrtho -= scroll * zoomSpeed;
-                targetOrtho = Mathf.Clamp(targetOrtho, minOrtho, maxOrtho);
+                desiredZoom = Mathf.Lerp(Camera.main.orthographicSize, zoomMax, zoomSpeed * Time.deltaTime);
+                Camera.main.orthographicSize = desiredZoom;
             }
-            else
+            else //Reset
             {
-
+                desiredZoom = Mathf.Lerp(Camera.main.orthographicSize, zoomMin, zoomSpeed * Time.deltaTime);
+                Camera.main.orthographicSize = desiredZoom;
             }
-
-            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
+            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, zoomMin, zoomMax);
         }
     }
 }
