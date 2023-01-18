@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private WallClimbing _wallClimbing;
     public GameObject playerFlashLight;
     private AudioController_Player audio;
+
+    public float flashLightDistance;
 
     [Header("Droid")]
     public bool droidActive;
@@ -129,11 +132,36 @@ public class PlayerController : MonoBehaviour
             //Control Flashlight
             if(playerFlashLight != null)
             {
-                if(isHidden)
+                //if(isHidden)
+                //{
+                //    playerFlashLight.SetActive(false);
+                //}
+            }   
+            
+            //Turn flashlight on/off
+            if(!isAiming)
+            {
+                playerFlashLight.SetActive(false);
+            }
+            else
+            {
+                playerFlashLight.SetActive(true);
+
+                float lerpSpeed = 20f;
+
+                if (flashLightDistance >= 155)
                 {
-                    playerFlashLight.SetActive(false);
+                    playerFlashLight.GetComponent<Light2D>().pointLightOuterRadius = 
+                        Mathf.Lerp(playerFlashLight.GetComponent<Light2D>().pointLightOuterRadius, 155, lerpSpeed * Time.deltaTime);
+                    
                 }
-            }         
+                else
+                {
+                    playerFlashLight.GetComponent<Light2D>().pointLightOuterRadius =
+                       Mathf.Lerp(playerFlashLight.GetComponent<Light2D>().pointLightOuterRadius, flashLightDistance + 3, lerpSpeed * Time.deltaTime);
+                   
+                }              
+            }
         }   
     }
 

@@ -34,7 +34,7 @@ public class AudioController_Player : MonoBehaviour
         if (_playerController != null) //Main controller
         {
             //Running
-            if (_playerController.isRunning)
+            if (_playerController.isRunning && !_playerController.isTouchingFront)
             {
                 _running.active = true;
 

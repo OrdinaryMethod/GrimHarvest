@@ -64,12 +64,6 @@ public class PlayerCombatController : MonoBehaviour
         _playerMonitor = GetComponent<PlayerMonitor>();
         _audio = GetComponent<AudioController_Player>();
 
-        if (_playerController.isAiming)
-        {
-            RedDot();
-        
-        }
-
         if (_playerStats != null || _playerController != null)
         {
             _facingRight = _playerController.facingRight;
@@ -100,14 +94,21 @@ public class PlayerCombatController : MonoBehaviour
 
         if(_playerController.isAiming)
         {
-            _aimingLineRenderer.enabled = true;
+            if(_playerController.isCrouching)
+            {
+                _aimingLineRenderer.enabled = true;
+            }
+            else
+            {
+                _aimingLineRenderer.enabled = false;
+            }
+            
+            RedDot();
         }
         else
         {
             _aimingLineRenderer.enabled = false;
         }
-
-        RedDot();
     }
 
     private void SniperShotCooldown()
@@ -174,10 +175,15 @@ public class PlayerCombatController : MonoBehaviour
             }
         }
 
-        if(_playerController.isAiming)
+        if(_playerController.isAiming && _playerController.isCrouching)
         {
             GameObject redDot = Instantiate(redDotPrefab, hitInfo.point, Quaternion.identity);
             StartCoroutine(DestroyRedDot(redDot));
+        }
+
+        if(hitInfo)
+        {
+            _playerController.flashLightDistance = hitInfo.distance;
         }
 
         //Ignore certain trigger colliders

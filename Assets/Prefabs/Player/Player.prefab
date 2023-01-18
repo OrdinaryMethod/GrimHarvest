@@ -3961,6 +3961,7 @@ MonoBehaviour:
     m_Bits: 2048
   startingPos: {fileID: 11400000, guid: b8011bfcdf8b1d641821008a7971d39d, type: 2}
   playerFlashLight: {fileID: 0}
+  flashLightDistance: 0
   droidActive: 0
   canMove: 0
   speed: 20
@@ -4506,14 +4507,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4938261672478696989}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70673585, w: 0.70747757}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 6.04, y: -0.3, z: 0}
   m_LocalScale: {x: 2.6320612, y: 2.8619905, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6689226154985443016}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &8355814850556519736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4531,7 +4532,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.338
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -4579,10 +4580,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 129.68
-  m_PointLightOuterAngle: 150.69006
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 59.55099
+  m_PointLightInnerAngle: 14.51
+  m_PointLightOuterAngle: 18.85
+  m_PointLightInnerRadius: 5.276841
+  m_PointLightOuterRadius: 118.679474
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
