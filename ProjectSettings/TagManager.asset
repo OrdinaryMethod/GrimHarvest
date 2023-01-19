@@ -22,6 +22,7 @@ TagManager:
   - DoodadCollider
   - MinorPatrolPoint
   - Switch
+  - DJ
   layers:
   - Default
   - TransparentFX

@@ -10,9 +10,12 @@ public class PlayerCombatController : MonoBehaviour
     private PlayerController _playerController;
     private PlayerMonitor _playerMonitor;
     private AudioController_Player _audio;
+    private CameraController _cameraController;
+    [SerializeField] private GameObject _laserPointer;
 
     [Header("Objects")]
     [SerializeField] private GameObject _firePoint;
+    [SerializeField] private GameObject _redDotPoint;
     public GameObject redDotPrefab; 
 
     [Header("General Variables")]
@@ -53,7 +56,9 @@ public class PlayerCombatController : MonoBehaviour
     void Start()
     {
         _sniperShotFired = false;
-        sniperShotCooldown = setSniperShotCooldown;       
+        sniperShotCooldown = setSniperShotCooldown;  
+        _cameraController = GameObject.Find("Camera").GetComponent<CameraController>();
+        _laserPointer.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,6 +68,8 @@ public class PlayerCombatController : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _playerMonitor = GetComponent<PlayerMonitor>();
         _audio = GetComponent<AudioController_Player>();
+
+        
 
         if (_playerStats != null || _playerController != null)
         {
@@ -94,20 +101,18 @@ public class PlayerCombatController : MonoBehaviour
 
         if(_playerController.isAiming)
         {
-            if(_playerController.isCrouching)
-            {
-                _aimingLineRenderer.enabled = true;
-            }
-            else
-            {
-                _aimingLineRenderer.enabled = false;
-            }
             
+            _aimingLineRenderer.enabled = true;
+            
+            _aimingLineRenderer.enabled = false;
+            
+            _laserPointer.SetActive(true);
             RedDot();
         }
         else
         {
             _aimingLineRenderer.enabled = false;
+            _laserPointer.SetActive(false);
         }
     }
 
@@ -141,41 +146,29 @@ public class PlayerCombatController : MonoBehaviour
 
         if (_facingRight)
         {
-            hitInfo = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.right);
+            hitInfo = Physics2D.Raycast(_redDotPoint.transform.position, _redDotPoint.transform.right);
 
             if (hitInfo)
             {            
                 //Spawn line
-                _aimingLineRenderer.SetPosition(0, _firePoint.transform.position);
+                _aimingLineRenderer.SetPosition(0, _redDotPoint.transform.position);
                 _aimingLineRenderer.SetPosition(1, hitInfo.point);
-            }
-            else
-            {
-                //Spawn line
-               
             }
         }
         else
         {
-            hitInfo = Physics2D.Raycast(_firePoint.transform.position, -_firePoint.transform.right);
+            hitInfo = Physics2D.Raycast(_redDotPoint.transform.position, -_redDotPoint.transform.right);
 
 
             if (hitInfo)
             {
                 //Spawn line
-                _aimingLineRenderer.SetPosition(1, _firePoint.transform.position);
+                _aimingLineRenderer.SetPosition(1, _redDotPoint.transform.position);
                 _aimingLineRenderer.SetPosition(0, hitInfo.point);
-            }
-            else
-            {
-
-                //Spawn line
-                _aimingLineRenderer.SetPosition(1, _firePoint.transform.position);
-                _aimingLineRenderer.SetPosition(0, _firePoint.transform.position - _firePoint.transform.right * 100);
-            }
+            }           
         }
 
-        if(_playerController.isAiming && _playerController.isCrouching)
+        if(_playerController.isAiming)
         {
             GameObject redDot = Instantiate(redDotPrefab, hitInfo.point, Quaternion.identity);
             StartCoroutine(DestroyRedDot(redDot));
@@ -189,7 +182,7 @@ public class PlayerCombatController : MonoBehaviour
         //Ignore certain trigger colliders
         if(hitInfo)
         {
-            if(hitInfo.transform.gameObject.tag == "Switch" || hitInfo.transform.gameObject.tag == "EntityPatrolPoint")
+            if(hitInfo.transform.gameObject.tag == "Switch" || hitInfo.transform.gameObject.tag == "EntityPatrolPoint" || hitInfo.transform.gameObject.tag == "NoiseSource")
             {
                 Physics2D.queriesHitTriggers = false;
             }
@@ -288,6 +281,8 @@ public class PlayerCombatController : MonoBehaviour
 
         _lineRenderer.enabled = true;
         lineRendererActive = true;
+
+        StartCoroutine(_cameraController.Shake(0.05f));
 
         yield return new WaitForSeconds(0.02f);
 

@@ -19,6 +19,10 @@ public class CameraController : MonoBehaviour
     public bool isZooming;
     private float desiredZoom;
 
+    public float shakeAmount = 0.7f;
+    private Vector3 currentPos;
+    private float smooth = 0.5f;
+
     void Start()
     {
         if(_player == null)
@@ -99,5 +103,20 @@ public class CameraController : MonoBehaviour
             }
             Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, zoomMin, zoomMax);
         }
+    }
+
+    public IEnumerator Shake(float duration)
+    {
+        currentPos = transform.position;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-0.5f, 0.5f) * shakeAmount;
+            float y = Random.Range(-0.5f, 0.5f) * shakeAmount;
+            transform.position = new Vector3(currentPos.x + x, currentPos.y + y, currentPos.z);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = currentPos;
     }
 }

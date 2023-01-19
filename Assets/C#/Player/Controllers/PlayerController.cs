@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerFlashLight.SetActive(true);
 
-                float lerpSpeed = 20f;
+                float lerpSpeed = 40f;
 
                 if (flashLightDistance >= 155)
                 {
@@ -264,12 +264,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void AimDirection()
-    {
-        float mouseDistance = Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)); //This prevents body parts from doing goofy shit when mouse is too close to player
-
+    {      
         if (Input.GetKey(_aim) && !_playerMonitor.playerIsInsane && !_playerMonitor.playerIsDead)
         {
-            if(!_wallClimbing.wallSliding && !isTouchingFront && !isHidden && mouseDistance > 11f)
+            float mouseDistance = Vector3.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)); //This prevents body parts from doing goofy shit when mouse is too close to player
+            if (!_wallClimbing.wallSliding && !isTouchingFront && !isHidden && mouseDistance > 11f)
             {
                 isRunning = false;
                 canMove = false;
