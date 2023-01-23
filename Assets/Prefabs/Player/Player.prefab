@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &847472791
 Transform:
   m_ObjectHideFlags: 0
@@ -4141,7 +4141,7 @@ MonoBehaviour:
   noiseLocation: {fileID: 0}
   isShooting: 0
   sniperShotCooldown: 0
-  setSniperShotCooldown: 1
+  setSniperShotCooldown: 2
   _sniperShotFired: 0
 --- !u!114 &2999584166302093849
 MonoBehaviour:

@@ -282,7 +282,7 @@ public class PlayerCombatController : MonoBehaviour
         _lineRenderer.enabled = true;
         lineRendererActive = true;
 
-        StartCoroutine(_cameraController.Shake(0.05f));
+        //StartCoroutine(_cameraController.Shake(0.05f));
 
         yield return new WaitForSeconds(0.02f);
 
