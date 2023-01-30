@@ -49,6 +49,8 @@ public class PlayerCombatController : MonoBehaviour
     public float setSniperShotCooldown;
     [SerializeField] private bool _sniperShotFired;
 
+    private GameObject redDot;
+
     //Keybinds
     private KeyCode _shootKey;
     private KeyCode _meleeAttack;
@@ -77,7 +79,12 @@ public class PlayerCombatController : MonoBehaviour
             _shootingDamage = _playerStats.shootingDamage;
 
             GetKeyBinds();
-            MeleeAttack();
+
+            if(!_playerController.isAiming)
+            {
+                MeleeAttack();
+            }
+            
         }
         else
         {
@@ -146,8 +153,8 @@ public class PlayerCombatController : MonoBehaviour
 
         if (_facingRight)
         {
-            hitInfo = Physics2D.Raycast(_redDotPoint.transform.position, _redDotPoint.transform.right);
-
+            hitInfo = Physics2D.Raycast(_redDotPoint.transform.position, _redDotPoint.transform.right, Mathf.Infinity, ~LayerMask.GetMask("PatrolPoint", "Switch", "NoiseSource"));
+          
             if (hitInfo)
             {            
                 //Spawn line
@@ -157,7 +164,7 @@ public class PlayerCombatController : MonoBehaviour
         }
         else
         {
-            hitInfo = Physics2D.Raycast(_redDotPoint.transform.position, -_redDotPoint.transform.right);
+            hitInfo = Physics2D.Raycast(_redDotPoint.transform.position, -_redDotPoint.transform.right, Mathf.Infinity, ~LayerMask.GetMask("PatrolPoint", "Switch", "NoiseSource"));
 
 
             if (hitInfo)
@@ -170,42 +177,31 @@ public class PlayerCombatController : MonoBehaviour
 
         if(_playerController.isAiming)
         {
-            GameObject redDot = Instantiate(redDotPrefab, hitInfo.point, Quaternion.identity);
+            redDot = Instantiate(redDotPrefab, hitInfo.point, Quaternion.identity);
             StartCoroutine(DestroyRedDot(redDot));
+        }
+        else
+        {
+            Destroy(redDot);
         }
 
         if(hitInfo)
         {
             _playerController.flashLightDistance = hitInfo.distance;
-        }
-
-        //Ignore certain trigger colliders
-        if(hitInfo)
-        {
-            if(hitInfo.transform.gameObject.tag == "Switch" || hitInfo.transform.gameObject.tag == "EntityPatrolPoint" || hitInfo.transform.gameObject.tag == "NoiseSource")
-            {
-                Physics2D.queriesHitTriggers = false;
-            }
-            else
-            {
-                Physics2D.queriesHitTriggers = true;
-            }
-        }
-        
+        }      
     }
 
     IEnumerator DestroyRedDot(GameObject redDot)
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.01f);
         Destroy(redDot);
     }
 
     IEnumerator Shoot()
     {
-        isShooting = true;
-        
+        isShooting = true;        
         _audio.sniperShot = true;
-        
+        Physics2D.queriesHitTriggers = true;
 
         GameObject noiseSource = GameObject.Find("NoiseLocation(Clone)");
 
@@ -223,7 +219,7 @@ public class PlayerCombatController : MonoBehaviour
 
         if (_facingRight)
         {
-            hitInfo = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.right);
+            hitInfo = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.right, Mathf.Infinity, ~LayerMask.GetMask("PatrolPoint", "Switch", "NoiseSource"));
 
             if (hitInfo)
             {
@@ -240,7 +236,7 @@ public class PlayerCombatController : MonoBehaviour
         }
         else
         {
-            hitInfo = Physics2D.Raycast(_firePoint.transform.position, -_firePoint.transform.right);
+            hitInfo = Physics2D.Raycast(_firePoint.transform.position, -_firePoint.transform.right, Mathf.Infinity, ~LayerMask.GetMask("PatrolPoint", "Switch", "NoiseSource"));
                 
 
             if (hitInfo)
@@ -259,7 +255,7 @@ public class PlayerCombatController : MonoBehaviour
         }
 
         //Damage Logic
-        if(hitInfo)
+        if (hitInfo)
         {
             //Barrier
             Barrier barrier = hitInfo.transform.GetComponent<Barrier>();
@@ -273,10 +269,17 @@ public class PlayerCombatController : MonoBehaviour
 
             //Enemy
             Stats_Enemy enemyStats = hitInfo.transform.GetComponent<Stats_Enemy>();
+            EntityAI entityAI = hitInfo.transform.GetComponent<EntityAI>();
             if(enemyStats)
             {
                 enemyStats.enemyHealth -= _shootingDamage;
             }
+            if(entityAI)
+            {
+                entityAI._entityState = "Hunting";
+            }
+
+            
         }
 
         _lineRenderer.enabled = true;
@@ -294,6 +297,7 @@ public class PlayerCombatController : MonoBehaviour
     {
         if(Input.GetKeyDown(_meleeAttack) && !_playerController.isTouchingFront)
         {
+            Physics2D.queriesHitTriggers = true;
             isMelee = true;
 
             //basic enemy
@@ -319,6 +323,7 @@ public class PlayerCombatController : MonoBehaviour
             Collider2D[] switchCollider = Physics2D.OverlapCircleAll(attackPos.position, _attackRange, whatIsSwitch);
             for (int i = 0; i < switchCollider.Length; i++)
             {
+                Debug.Log("switch hit");
                 if (!switchCollider[i].GetComponentInParent<Switch>().switchOn)
                 {
                     switchCollider[i].GetComponentInParent<Switch>().switchOn = true;

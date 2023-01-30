@@ -514,6 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191664748}
   - component: {fileID: 1191664749}
+  - component: {fileID: 2678551731564302531}
   m_Layer: 3
   m_Name: PlayerAimingLine
   m_TagString: Untagged
@@ -635,6 +636,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &2678551731564302531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191664747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e8b326f41db5545aee5e4d21ac7271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1673903914
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,7 +2153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977522589678889291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.46, y: 0.09, z: 0}
+  m_LocalPosition: {x: 6.19, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4629,7 +4642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4938261672478696989}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 6.04, y: -0.3, z: 0}
+  m_LocalPosition: {x: 7.19, y: -0.18, z: 0}
   m_LocalScale: {x: 2.6320612, y: 2.8619905, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []

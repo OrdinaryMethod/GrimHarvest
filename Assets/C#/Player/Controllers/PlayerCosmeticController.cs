@@ -134,6 +134,5 @@ public class PlayerCosmeticController : MonoBehaviour
         {
             sp.enabled = true;
         }
-        Debug.Log("flashing sprites");
     }
 }

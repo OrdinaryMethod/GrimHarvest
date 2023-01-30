@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class EntityAI : MonoBehaviour
 {
+    private Stats_Enemy _stats;
+
     [Header("State")]
-    [SerializeField] public string _entityState;
+    public string _entityState;
 
     [Header("Main Settings")]
     [SerializeField] private Transform _target;
@@ -64,6 +66,7 @@ public class EntityAI : MonoBehaviour
         _patrolPointObjects = GameObject.FindGameObjectsWithTag("EntityPatrolPoint");
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _entityColliders = GameObject.FindGameObjectsWithTag("Entity");
+        _stats = GetComponent<Stats_Enemy>();
 
         _patrolPointMax = _patrolPointObjects.Length;
         _patrolPointSelect = Random.Range(0, _patrolPointMax);
@@ -266,11 +269,11 @@ public class EntityAI : MonoBehaviour
             }
             else if(_entityState == "Hunting" && _playerController.isHidden)
             {
-                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth = -1000;
+                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth =- _stats.enemyDamage;
             }
             else if((_entityState == "Suspicious" || _entityState == "Hunting") && !_playerController.isHidden)
             {
-                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth = -1000;
+                collision.gameObject.GetComponentInParent<PlayerMonitor>().playerHealth =-_stats.enemyDamage;
             }
         }
         else if (collision.gameObject.tag == "EntityPatrolPoint" && collision.gameObject == _patrolPointObjects[_selectedPatrolPoint])
